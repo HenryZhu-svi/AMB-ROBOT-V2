@@ -70,12 +70,12 @@
             </button>
             <button class="action-card charge" data-action="charge">
               <span class="action-icon">ϟ</span>
-              <span><strong>Go Charge</strong><small>Navigate to default charger CP1</small></span>
+              <span><strong>Go Charge</strong><small id="chargeActionHint">Charging point not configured</small></span>
               <b>›</b>
             </button>
             <button class="action-card standby" data-action="standby">
               <span class="action-icon">↩</span>
-              <span><strong>Return to Standby</strong><small>Return to standby point HR775</small></span>
+              <span><strong>Return to Standby</strong><small id="standbyActionHint">Standby point not configured</small></span>
               <b>›</b>
             </button>
           </div>
@@ -204,6 +204,16 @@
       <div class="config-dialog-head"><div><span class="panel-kicker">CONFIGURATION</span><h2 id="configTitle">Standby Point</h2></div><button value="cancel" class="dialog-x" aria-label="Close">×</button></div>
       <p id="configDescription" class="config-description"></p><div id="configFields" class="config-fields"></div><small id="configFeedback" class="config-feedback"></small>
       <div class="config-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save Changes</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="pointDialog" class="dialog config-dialog">
+    <form method="dialog" id="pointForm">
+      <div class="config-dialog-head"><div><span class="panel-kicker">APPROVED DESTINATIONS</span><h2>Go to Point</h2></div><button value="cancel" class="dialog-x" aria-label="Close">×</button></div>
+      <p class="config-description">Select one of the destinations enabled by an administrator.</p>
+      <div id="pointChoices" class="point-choices"></div>
+      <small id="pointFeedback" class="form-error"></small>
+      <div class="config-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Continue</button></div>
     </form>
   </dialog>
 

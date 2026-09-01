@@ -210,6 +210,18 @@
     if (!msg) return false;
     const topic = msg.topic;
     const payload = msg.payload;
+    if (topic === 'ui/state/snapshot') { applyFleetSnapshot(payload); return true; }
+    if (topic === 'ui/command/ack' || topic === 'fleet/command/ack') {
+      const commandId = payload && (payload.command_id || payload.request_id);
+      if (commandId && commandId === fleetState.pendingCommandId && payload.accepted === false) {
+        fleetState.pendingCommandId = null;
+        fleetState.taskState = 'failed';
+        fleetState.task = Object.assign({}, fleetState.task, { error: payload.error || 'Fleet command rejected' });
+        fleetState.lastUpdate = new Date().toISOString();
+        renderFleetState();
+      }
+      return true;
+    }
     if (topic === 'fleet/task-snapshot' || topic === 'fleet/state') { applyFleetSnapshot(payload); return true; }
     if (topic === 'fleet/job-progress') { applyLegacyProgress(payload); return true; }
     if (topic === 'enqueue/success') { requestFleetState(); return true; }

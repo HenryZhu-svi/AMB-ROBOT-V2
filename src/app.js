@@ -36,6 +36,30 @@
   }
   window.sendEdge = sendEdge;
 
+  function controlAvailable() {
+    return navigator.onLine && transport.getStatus() === 'online';
+  }
+
+  function pointId(value) {
+    if (typeof value === 'string') return value.trim();
+    if (!value || typeof value !== 'object') return '';
+    return String(value.id || value.point || value.poi || value.value || '').trim();
+  }
+
+  function normalizeVisiblePoints(value) {
+    if (Array.isArray(value)) return value.map(item => typeof item === 'string' ? { id: item, label: item } : { id: pointId(item), label: String(item.label || item.name || pointId(item)) }).filter(item => item.id);
+    if (!value || typeof value !== 'object') return [];
+    if (Array.isArray(value.points)) return normalizeVisiblePoints(value.points);
+    const selected = value.point;
+    const ids = Array.isArray(selected) ? selected : selected ? [selected] : [];
+    return ids.map(id => ({ id: String(id), label: String(value['label_' + id] || id) }));
+  }
+
+  function configuredPoint(kind) {
+    const config = state.config || {};
+    return pointId(kind === 'charge' ? config.chargingPoint : config.standbyPoint);
+  }
+
   function connectionLabel(value) {
     if (value === 'online') return 'Online';
     if (['syncing', 'connecting', 'resyncing'].includes(value)) return 'Syncing';
@@ -57,6 +81,14 @@
     $('#fleetStatus').textContent = connectionLabel(fleet);
     $('#fleetDot').className = 'status-dot ' + (fleet === 'online' ? 'ok' : 'warn');
     $('#footerMessage').textContent = connection.uibuilder === 'online' ? 'Control service connected' : 'Restoring control connection';
+
+    const chargePoint = configuredPoint('charge');
+    const standbyPoint = configuredPoint('standby');
+    $('#chargeActionHint').textContent = chargePoint ? 'Navigate to charger ' + chargePoint : 'Charging point not configured';
+    $('#standbyActionHint').textContent = standbyPoint ? 'Return to standby point ' + standbyPoint : 'Standby point not configured';
+    $('[data-action="charge"]').disabled = !chargePoint || !controlAvailable();
+    $('[data-action="standby"]').disabled = !standbyPoint || !controlAvailable();
+    $('[data-action="point"]').disabled = !normalizeVisiblePoints(current.config && current.config.visiblePoints).length || !controlAvailable();
 
     if (Number.isFinite(battery)) {
       const safeBattery = Math.max(0, Math.min(100, battery));
@@ -87,6 +119,11 @@
   }
 
   function startMove(source, target) {
+    if (!controlAvailable()) {
+      $('#footerMessage').textContent = 'Command unavailable while local control is offline';
+      transport.requestSnapshot('command-blocked-offline');
+      return;
+    }
     const from = state.robot.currentPoi || '—';
     store.patch({ navigation: { state: 'submitting', source, from, destination: target }, robot: { mode: 'Submitting' }, task: { source: 'local', name: source, state: 'submitting', destination: target } }, 'navigation-submit');
     $('#movingTitle').textContent = 'Moving to ' + target;
@@ -115,6 +152,19 @@
   }
   window.confirmAction = confirmAction;
 
+  function escapeHtml(value) {
+    const span = document.createElement('span');
+    span.textContent = String(value);
+    return span.innerHTML;
+  }
+
+  function openPointDialog() {
+    const points = normalizeVisiblePoints(state.config && state.config.visiblePoints);
+    $('#pointChoices').innerHTML = points.map((point, index) => '<label class="point-choice"><input type="radio" name="destination" value="' + escapeHtml(point.id) + '" ' + (index === 0 ? 'checked' : '') + '><span><strong>' + escapeHtml(point.label) + '</strong><small>' + escapeHtml(point.id) + '</small></span><b>›</b></label>').join('');
+    $('#pointFeedback').textContent = points.length ? '' : 'No operator destinations are configured.';
+    $('#pointDialog').showModal();
+  }
+
   $$('[data-action]').forEach(button => button.addEventListener('click', () => {
     const action = button.dataset.action;
     if (action === 'device') return $('#infoDialog').showModal();
@@ -124,10 +174,19 @@
       return $('#settingsDialog').showModal();
     }
     if (action === 'fleet') return window.openFleetTasks();
-    if (action === 'point') return confirmAction('Go to Point', 'Navigate to approved destination LM47.', 'Start Move', () => startMove('Point-to-Point Move', 'LM47'));
-    if (action === 'charge') return confirmAction('Go to Charger', 'Robot will navigate to default charger CP1.', 'Go Charge', () => startMove('Charging Run', 'CP1'));
-    if (action === 'standby') return confirmAction('Return to Standby', 'Robot will return to standby point HR775.', 'Return', () => startMove('Standby Return', 'HR775'));
+    if (action === 'point') return openPointDialog();
+    if (action === 'charge') { const target = configuredPoint('charge'); return target && confirmAction('Go to Charger', 'Robot will navigate to charger ' + target + '.', 'Go Charge', () => startMove('Charging Run', target)); }
+    if (action === 'standby') { const target = configuredPoint('standby'); return target && confirmAction('Return to Standby', 'Robot will return to standby point ' + target + '.', 'Return', () => startMove('Standby Return', target)); }
   }));
+
+  $('#pointForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const target = new FormData(event.currentTarget).get('destination');
+    if (!target) { $('#pointFeedback').textContent = 'Select a destination.'; return; }
+    const selected = normalizeVisiblePoints(state.config && state.config.visiblePoints).find(item => item.id === target);
+    $('#pointDialog').close();
+    confirmAction('Go to Point', 'Navigate to ' + (selected && selected.label || target) + ' (' + target + ').', 'Start Move', () => startMove('Point-to-Point Move', target));
+  });
 
   $('#movingTouchArea').addEventListener('pointerup', () => {
     sendEdge('pause', { target: state.navigation.destination });
@@ -187,7 +246,11 @@
   $('#configForm').addEventListener('submit', event => {
     event.preventDefault();
     const dialog = $('#configDialog');
-    const values = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const data = new FormData(event.currentTarget);
+    let values = Object.fromEntries(data.entries());
+    if (dialog.dataset.config === 'points') {
+      values = { points: data.getAll('point').map(id => ({ id, label: String(data.get('label_' + id) || id).trim() || id })) };
+    }
     sendEdge('settings/save', { section: dialog.dataset.config, values });
     $('#configFeedback').textContent = 'Saving changes…';
   });
@@ -211,6 +274,10 @@
     }
     if (topic === 'ui/command/ack' || topic === 'fleet/command/ack') {
       store.resolveCommand(payload && (payload.request_id || payload.command_id));
+      if (payload && payload.accepted === false) {
+        $('#footerMessage').textContent = 'Command rejected: ' + (payload.error || 'unknown reason');
+        transport.requestSnapshot('command-rejected');
+      }
       return;
     }
 

@@ -12,6 +12,8 @@ Operator-facing AMR control interface built for Node-RED uibuilder.
 - Offline and reconnection-aware UI states
 - Shared frontend state with revision-aware snapshot restore
 - Node-RED uibuilder transport with automatic state requests on reconnect
+- Home navigation actions driven by the Node-RED configuration snapshot (no hard-coded standby, charging, or operator POIs)
+- Approved-point selector with operator labels and offline command blocking
 
 The Fleet Management service is treated as an external, unchanged system. Node-RED provides the UI adaptation and state synchronization layer.
 
