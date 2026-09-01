@@ -1,0 +1,5020 @@
+[
+    {
+        "id": "0a01cdc12f3cc8f8",
+        "type": "tab",
+        "label": "Telemetry, Command & UI Hub",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d65aafb1a7447bd2",
+        "type": "tab",
+        "label": "Config, Utilities & Scratch",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "tab_fleet_engine_01",
+        "type": "tab",
+        "label": "Fleet Job Engine & Charging",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "tab_external_api_01",
+        "type": "tab",
+        "label": "External APIs & WebSocket",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e1dcfad18329af3b",
+        "type": "group",
+        "z": "tab_fleet_engine_01",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "ee6ac5bac94adea3",
+            "3506de33c33f9235",
+            "78324f612bf14835",
+            "e46d08455e2a548c",
+            "7d36dcd123dc5a51",
+            "fcfbe17238098e24",
+            "1a06504001a8e9be",
+            "3e781e5aa9636c8a",
+            "d3094ec2c4df6098",
+            "e611518e3a6fb409",
+            "7c83c394881edf49",
+            "c8922701fedde03d",
+            "9f34ec80e84d79fc",
+            "d2cd775e121afda8",
+            "c16166715c49e489",
+            "e986a3c2f3b61e01"
+        ],
+        "x": 2344,
+        "y": 999,
+        "w": 1572,
+        "h": 442
+    },
+    {
+        "id": "042bb1ed779cf0e5",
+        "type": "group",
+        "z": "tab_fleet_engine_01",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "93e165cdbfccd605",
+            "0054de7de45464af",
+            "fe569427de824a14",
+            "7347be50ae2f5ba8",
+            "fa01b7bd3f598cc6",
+            "57a51b159a100895",
+            "a6d98a867fa6a3cd",
+            "c21761218db4c6d5",
+            "065cd89402870d89",
+            "01b982469447fe99",
+            "62e47cb18273021c",
+            "463ba4f9e31c704c",
+            "1e7d7fd8a39aa554",
+            "aa92639ea49f435e",
+            "aacac0c6e63890a8",
+            "73153fe5e6b8c3dd",
+            "b5691345823dfba8",
+            "f6c438ae211aaf92",
+            "744842b6aaf37f14",
+            "cf8cc47627d18c42",
+            "614d766f9bd5e773",
+            "f18f908398d964d7",
+            "69cfa931a3be7831",
+            "092c21cfb0503571",
+            "2029b9fcf639ab85",
+            "18e3a2c6e8b052a7",
+            "aca2fafccdae522b",
+            "51cdc23f5dbd2801",
+            "3c0fb8fe1ca6c9cb",
+            "b30edacd949c3778",
+            "a25b13930f8fa51d",
+            "834f09abb6e65dc9",
+            "e6d6bd10485a3d40",
+            "0a8f256bd6e771cb",
+            "d58557ca9f888507",
+            "9e6a3275a0b101f8",
+            "ac811e265d05e5b8",
+            "1e6973d8ad19b50c",
+            "0aa02ca8aab9d7e6",
+            "adedd1f8db92dc66",
+            "a612916ad21e224e",
+            "036cf7e8092989f0",
+            "ed9eb397cc723332",
+            "698ff9feff8ce18e",
+            "c2c1efbe7ffba298",
+            "8411c0901867bc79",
+            "4dc72ad0b09965ea",
+            "dd369a033a33100a",
+            "88b5dc0fd768a172",
+            "8b26049943b57bd9",
+            "14f47bab05d6a441",
+            "5e5e09b358620289",
+            "06712734d61ecf91",
+            "c07f7bf69ea24c71",
+            "63e1502114032e6a",
+            "cfg_inject",
+            "cfg_fn",
+            "09b3fa2f314148b8",
+            "ec7d8e9c2a4f693b",
+            "44963605dea70586",
+            "b940f92dd12198b0",
+            "50933782e113c4bf",
+            "ef6fb177fd6b822d"
+        ],
+        "x": 0,
+        "y": 0,
+        "w": null,
+        "h": null
+    },
+    {
+        "id": "01b982469447fe99",
+        "type": "group",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "75fe3996c9de386b",
+            "b9d2bf403a07d717",
+            "5fa499ea0e16ed37",
+            "72258bb7875b1528",
+            "f7d6ea9318a95e28",
+            "c266316709c33fbd"
+        ],
+        "x": 1574,
+        "y": 999,
+        "w": 672,
+        "h": 282
+    },
+    {
+        "id": "62e47cb18273021c",
+        "type": "group",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "8edfd1b83648ab32",
+            "3eaed0ea0181b109",
+            "96703d01e8a1d338",
+            "4a70682d00653c4e",
+            "95a6348631cebe04",
+            "21a9c73ae43aa763",
+            "68a50b8d322c143b",
+            "eb5ece1eac6e1a57",
+            "70f754c070d8e5ea",
+            "420d944b29fb8731",
+            "1e91cc4f72a279a6",
+            "c8a97f15037c8b97",
+            "269e36b36852b1b1"
+        ],
+        "x": 1384,
+        "y": 1499,
+        "w": 952,
+        "h": 642
+    },
+    {
+        "id": "e332f377e29d8391",
+        "type": "websocket-listener",
+        "path": "ws://172.17.5.12:9000/ws/queue/33/",
+        "wholemsg": "false"
+    },
+    {
+        "id": "3efcaa348a134079",
+        "type": "seer-config",
+        "name": "AMB-03",
+        "host": "127.0.0.1",
+        "port": 8000,
+        "tenantId": "",
+        "robotId": "AMB-03",
+        "timeout": 10000
+    },
+    {
+        "id": "8be02c9d40c4905d",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "ddaa8493a9c37866",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#ff9029",
+            "bgPage": "#000000",
+            "groupBg": "#363636",
+            "groupOutline": "#363636"
+        },
+        "sizes": {
+            "pagePadding": "25px",
+            "groupGap": "5px",
+            "groupBorderRadius": "",
+            "widgetGap": "30px"
+        }
+    },
+    {
+        "id": "5ddc01795758dec3",
+        "type": "ui-page",
+        "name": "MainUISVI2Page",
+        "ui": "8be02c9d40c4905d",
+        "path": "/menu",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "ddaa8493a9c37866",
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "32963c05fb8ced3f",
+        "type": "ui-group",
+        "name": "Left",
+        "page": "5ddc01795758dec3",
+        "width": "12",
+        "height": "6",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "ui_group_main",
+        "type": "ui-group",
+        "name": "Dashboard",
+        "page": "",
+        "width": "6",
+        "height": "4",
+        "order": 1
+    },
+    {
+        "id": "ui_group_batt",
+        "type": "ui-group",
+        "name": "Battery",
+        "page": "",
+        "width": "6",
+        "height": "4",
+        "order": 1,
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "15b063cc9dc1baae",
+        "type": "ui-group",
+        "name": "Main",
+        "page": "43592275f9fd4f61",
+        "width": "6",
+        "height": "4",
+        "order": 1,
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "seer_api_cfg_01",
+        "type": "seer-api-config",
+        "name": "AMB-03",
+        "host": "192.168.192.5",
+        "version": "1",
+        "timeout": 10000,
+        "statusPort": 19204,
+        "controlPort": "19202",
+        "taskPort": 19206,
+        "configPort": 19207,
+        "otherPort": 19210,
+        "pushPort": 19301
+    },
+    {
+        "id": "mqtt_broker_job_update01",
+        "type": "mqtt-broker",
+        "name": "Fleet Gateway MQTT",
+        "broker": "172.17.5.12",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "65bcae3e8cd99339",
+        "type": "uibuilder",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "topic": "",
+        "url": "AMB-ROBOT",
+        "okToGo": true,
+        "fwdInMessages": false,
+        "allowScripts": false,
+        "allowStyles": false,
+        "copyIndex": true,
+        "templateFolder": "blank",
+        "extTemplate": "",
+        "showfolder": false,
+        "reload": false,
+        "sourceFolder": "src",
+        "deployedVersion": "7.6.2",
+        "showMsgUib": false,
+        "title": "",
+        "descr": "",
+        "editurl": "vscode://vscode-remote/ssh-remote+172.17.5.43/home/amr02/.node-red/uibuilder/AMB-ROBOT/?windowId=_blank",
+        "x": 900,
+        "y": 520,
+        "wires": [
+            [
+                "3db9db3f2fb9d28a",
+                "819da27b271e767b",
+                "save_pages_fn",
+                "sync_robot_conn_fn",
+                "v2_compat_command_adapter"
+            ],
+            [
+                "v2_compat_client_event"
+            ]
+        ]
+    },
+    {
+        "id": "819da27b271e767b",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 11",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "x": 1080,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3230c93c6052aaa0",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "battery topic",
+        "func": "var data = msg.payload;\n\nmsg.topic = 'battery';\nmsg.payload = {\n    battery_pct: data.battery_level,\n    charging: data.charging,\n    max_charge_voltage: data.max_charge_voltage\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "2bd7cb961e21ed97",
+        "type": "robot-wifi",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "WiFi",
+        "server": "3efcaa348a134079",
+        "pollInterval": "0",
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [
+                "5b29c2b68360c3c0",
+                "5187c46d47b9e5d0",
+                "fp_acc_online"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5b29c2b68360c3c0",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "wifi topic",
+        "func": "msg.topic = 'wifi';\nmsg.payload = {\n  online: msg.payload.online,\n  rssi: msg.payload.rssi,\n  ssid: msg.payload.ssid\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 420,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "a43f16be90fdcbb4",
+        "type": "robot-currentmap",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Current Map",
+        "server": "3efcaa348a134079",
+        "pollInterval": "0",
+        "x": 410,
+        "y": 480,
+        "wires": [
+            [
+                "aa5903e2dfd0abbc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "aa5903e2dfd0abbc",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "map topic",
+        "func": "msg.topic   = 'map';\nmsg.payload = msg.payload.current_map || '-';\nreturn msg;",
+        "outputs": 1,
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "00ef05668e6d8cea",
+                "65bcae3e8cd99339"
+            ]
+        ]
+    },
+    {
+        "id": "a5b6b9f1beacba5a",
+        "type": "robot-currentpoi",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Current POI",
+        "server": "3efcaa348a134079",
+        "pollInterval": "0",
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "1208527fda5a862f",
+                "904b39cb5fd11ae9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1208527fda5a862f",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "poi + status + distance",
+        "func": "var p = msg.payload || {};\nnode.send([{ topic:'poi', payload: p.current_poi || global.get('current_poi') || '-' }]);\nnode.send([{ topic:'status', payload: p.mode || 'idle' }]);\nif (p.current_poi) global.set('current_poi', p.current_poi);\nif (p.target_point) {\n  node.send([{ topic:'destination', payload: p.target_point }]);\n}\nvar path = p.unfinished_path || [];\nif (path.length > 0) {\n  var last = path[path.length - 1];\n  node.send([{ topic:'distance', payload: Math.round((last.distance||0)*10)/10 }]);\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 540,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "2f31e7579c71f9ab",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "4f3e2cdd2191f5bc",
+        "type": "robot-mode",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Mode",
+        "server": "3efcaa348a134079",
+        "pollInterval": "0",
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "74458d0a0d6f47b4",
+                "30b093d842f07fa6",
+                "fp_acc_mode"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "74458d0a0d6f47b4",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "status topic",
+        "func": "msg.topic   = 'status';\nmsg.payload = msg.payload.mode || 'idle';\nreturn msg;",
+        "outputs": 1,
+        "x": 590,
+        "y": 600,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "fd03739247a9aa98",
+        "type": "robot-status",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Robot Name",
+        "server": "3efcaa348a134079",
+        "pollInterval": "0",
+        "x": 400,
+        "y": 660,
+        "wires": [
+            [
+                "8ee1b06c6ad9f341"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8ee1b06c6ad9f341",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "robotName topic",
+        "func": "msg.topic   = 'robotName';\nmsg.payload = msg.payload.name || '-';\nreturn msg;",
+        "outputs": 1,
+        "x": 600,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3db9db3f2fb9d28a",
+        "type": "switch",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Route command",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "nav",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "pause",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "resume",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "cancel",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "charge",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sound",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "getjob",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "wait/control/ready",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "enqueue",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "relocate",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "poi/fetch",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "wait/control/cancel",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 12,
+        "x": 1200,
+        "y": 460,
+        "wires": [
+            [
+                "bf582916ebca19f7",
+                "2ebc0e9ccc6a06f1"
+            ],
+            [
+                "85582fee19aae763"
+            ],
+            [
+                "390328a49426273d"
+            ],
+            [
+                "poi_cancel_ui_fn"
+            ],
+            [
+                "e1311ce76d5ca1b8"
+            ],
+            [
+                "9625b4b122c110c7"
+            ],
+            [
+                "7bb8f5cd14bd272a"
+            ],
+            [
+                "5c86a54e6d830279"
+            ],
+            [
+                "enq_node_01"
+            ],
+            [
+                "fn_build_relocate_req"
+            ],
+            [
+                "seer_station_01"
+            ],
+            [
+                "5c86a54e6d830279"
+            ]
+        ]
+    },
+    {
+        "id": "bf582916ebca19f7",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "nav poi",
+        "func": "const payload = msg.payload || {};\nconst currentStatus = global.get('current_status');\nconst cfg = global.get('cfg') || {};\n\nif (currentStatus === 'completed') {\n    if (!cfg.standbyPoi) {\n        node.error('standbyPoi is not configured', msg);\n        return null;\n    }\n\n    msg.poi = cfg.standbyPoi;\n    global.set('current_status', 'idle');\n    node.warn('Going to standby: ' + msg.poi);\n    return msg;\n}\n\nmsg.poi = payload.point;\n\nif (!msg.poi) {\n    node.error('Destination point is required', msg);\n    return null;\n}\n\nif (currentStatus === 'getjob') {\n    const destination = payload.label || payload.destination || payload.point;\n    global.set('getjob_name', destination);\n    node.warn('getjob_name set: ' + destination);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 340,
+        "wires": [
+            [
+                "030d591fd769473a",
+                "1a7445c6f52ff988"
+            ]
+        ]
+    },
+    {
+        "id": "ade363b933d65ff4",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "nav OK",
+        "func": "var p = msg.payload || {};\nvar poi = p.poi || p.current_station || msg.poi || msg.stationId || msg.point || '-';\n\nnode.send({ topic: 'poi', payload: poi });\nnode.send({ topic: 'nav/arrived', payload: Object.assign({}, p, { target: poi, poi: poi }) });\nnode.send({ topic: 'status', payload: { mode: 'idle', target: poi, arrived: true } });\nglobal.set(\"current_poi\", poi);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1820,
+        "y": 300,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "85582fee19aae763",
+        "type": "robot-pause",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Pause",
+        "server": "3efcaa348a134079",
+        "x": 1380,
+        "y": 500,
+        "wires": [
+            [],
+            [
+                "8e56c698982e0330"
+            ]
+        ]
+    },
+    {
+        "id": "390328a49426273d",
+        "type": "robot-resume",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Resume",
+        "server": "3efcaa348a134079",
+        "x": 1380,
+        "y": 540,
+        "wires": [
+            [],
+            [
+                "8e56c698982e0330"
+            ]
+        ]
+    },
+    {
+        "id": "590cf8e0d2797052",
+        "type": "robot-cancel",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Cancel",
+        "server": "3efcaa348a134079",
+        "x": 1380,
+        "y": 580,
+        "wires": [
+            [],
+            [
+                "8e56c698982e0330"
+            ]
+        ]
+    },
+    {
+        "id": "e1311ce76d5ca1b8",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "charge id",
+        "func": "msg.chargeId = msg.payload.chargeId || 'CP1';\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 620,
+        "wires": [
+            [
+                "bf0b6f67756deaf4"
+            ]
+        ]
+    },
+    {
+        "id": "bf0b6f67756deaf4",
+        "type": "robot-gocharge",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Go Charge",
+        "server": "3efcaa348a134079",
+        "chargeId": "LM1",
+        "maxSpeed": "0.5",
+        "maxWspeed": "0.5",
+        "x": 1550,
+        "y": 620,
+        "wires": [
+            [],
+            [
+                "8e56c698982e0330"
+            ]
+        ]
+    },
+    {
+        "id": "9625b4b122c110c7",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "sound action",
+        "func": "msg.action    = msg.payload.action;\nmsg.audioName = msg.payload.name || '';\nreturn msg;",
+        "outputs": 1,
+        "x": 1370,
+        "y": 700,
+        "wires": [
+            [
+                "f7a09e6cca1f6ef0"
+            ]
+        ]
+    },
+    {
+        "id": "f7a09e6cca1f6ef0",
+        "type": "robot-sound",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Sound",
+        "server": "3efcaa348a134079",
+        "action": "play_audio",
+        "audioName": "wait60sec",
+        "x": 1570,
+        "y": 700,
+        "wires": [
+            [
+                "f95f7f4672931e8a"
+            ],
+            [
+                "8e56c698982e0330"
+            ]
+        ]
+    },
+    {
+        "id": "8e56c698982e0330",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "cmd errors",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "x": 1810,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c7bca4cee24e6f5f",
+        "type": "robot-pose",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "pollInterval": 0,
+        "x": 390,
+        "y": 780,
+        "wires": [
+            [
+                "5eab324518b11926",
+                "fp_acc_pose"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "235f565f4c830952",
+        "type": "inject",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 780,
+        "wires": [
+            [
+                "c7bca4cee24e6f5f",
+                "seer_station_01"
+            ]
+        ]
+    },
+    {
+        "id": "5eab324518b11926",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug pose",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "7df4e75a51f234e2",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug batt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9c220e0fd9759363",
+        "type": "link out",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Canceljob",
+        "mode": "link",
+        "links": [
+            "ee6ac5bac94adea3"
+        ],
+        "x": 1745,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "030d591fd769473a",
+        "type": "robot-nav",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "stationId": "",
+        "sourceId": "SELF_POSITION",
+        "pollInterval": "2000",
+        "arrivalTimeout": "600000",
+        "x": 1630,
+        "y": 440,
+        "wires": [
+            [
+                "ade363b933d65ff4",
+                "691b4b06ad6b3d80",
+                "3ab1655de32161cc"
+            ],
+            [
+                "194e207bfbc1938a"
+            ],
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "5e20bb4f78ad2306",
+        "type": "robot-battery",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "pollInterval": 0,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "7df4e75a51f234e2",
+                "3230c93c6052aaa0",
+                "022575e3671676e9",
+                "ab8ccfc785b44d17",
+                "fp_acc_battery"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1a7445c6f52ff988",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1630,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "691b4b06ad6b3d80",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1810,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "2ebc0e9ccc6a06f1",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "30b093d842f07fa6",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug mode",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "f95f7f4672931e8a",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1720,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "5187c46d47b9e5d0",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug wifi",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "00ef05668e6d8cea",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug map",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "2f31e7579c71f9ab",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug currentpoi",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "7a69aa0fdf7096c5",
+        "type": "inject",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Poll 5s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 200,
+        "y": 400,
+        "wires": [
+            [
+                "a5b6b9f1beacba5a",
+                "4f3e2cdd2191f5bc",
+                "fd03739247a9aa98",
+                "5e20bb4f78ad2306",
+                "a43f16be90fdcbb4",
+                "2bd7cb961e21ed97",
+                "robot_estop_01",
+                "7d56d28a0500cb46"
+            ]
+        ]
+    },
+    {
+        "id": "4a477ddd71ff5946",
+        "type": "inject",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1580,
+        "y": 820,
+        "wires": [
+            [
+                "590cf8e0d2797052"
+            ]
+        ]
+    },
+    {
+        "id": "4b41b9c78e8f99b9",
+        "type": "ui-button",
+        "z": "0a01cdc12f3cc8f8",
+        "group": "32963c05fb8ced3f",
+        "name": "",
+        "label": "<font size = 8>Goto Change",
+        "order": 2,
+        "width": "5",
+        "height": "3",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 960,
+        "y": 80,
+        "wires": [
+            [
+                "c8c664d72a884cf8"
+            ]
+        ]
+    },
+    {
+        "id": "b95ba80cab713704",
+        "type": "ui-button",
+        "z": "0a01cdc12f3cc8f8",
+        "group": "32963c05fb8ced3f",
+        "name": "",
+        "label": "<font size = 8>Home",
+        "order": 3,
+        "width": "5",
+        "height": "2",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "standby",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "#6cc3d6",
+        "textColor": "white",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 940,
+        "y": 40,
+        "wires": [
+            [
+                "0d8f8b44e1987dea"
+            ]
+        ]
+    },
+    {
+        "id": "accf65ded21e0476",
+        "type": "robot-nav",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "stationId": "",
+        "sourceId": "SELF_POSITION",
+        "pollInterval": "3000",
+        "arrivalTimeout": "300000",
+        "x": 1410,
+        "y": 40,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c8c664d72a884cf8",
+        "type": "robot-gocharge",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Go Charge",
+        "server": "3efcaa348a134079",
+        "chargeId": "CP1",
+        "maxSpeed": "0.5",
+        "maxWspeed": "0.5",
+        "x": 1410,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "0d8f8b44e1987dea",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "LM583",
+        "func": "msg.poi = \"LM583\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 40,
+        "wires": [
+            [
+                "accf65ded21e0476"
+            ]
+        ]
+    },
+    {
+        "id": "022575e3671676e9",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Battery Logic",
+        "func": "// ดึงค่า %\nlet pct = msg.payload.battery_level;\n\n// กัน undefined\nif (pct === undefined || pct === null) {\n    pct = 0;\n}\n\n// จำกัด 0-100\npct = Math.max(0, Math.min(100, Number(pct)));\n\n// 🔥 เช็คสถานะชาร์จ\nlet isCharging = msg.payload.charging === true;\n\n// 🎯 เปลี่ยน title ตามสถานะ\nif (isCharging) {\n    msg.ui_update = {\n        label: \"⚡ Charging\"\n    };\n} else {\n    msg.ui_update = {\n        label: \"Battery\"\n    };\n}\n\n// ส่งค่าเข้า gauge\nmsg.payload = pct;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 160,
+        "wires": [
+            [
+                "565459bb91848495"
+            ]
+        ]
+    },
+    {
+        "id": "565459bb91848495",
+        "type": "ui-gauge",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Battery",
+        "group": "32963c05fb8ced3f",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "5",
+        "height": "3",
+        "gtype": "gauge-battery",
+        "gstyle": "needle",
+        "title": "Battery",
+        "alwaysShowTitle": false,
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "30",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "70",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": "",
+        "sizeGap": "",
+        "sizeKeyThickness": "",
+        "className": "",
+        "x": 1220,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b1d1057da1e5f58",
+        "type": "ui-button",
+        "z": "0a01cdc12f3cc8f8",
+        "group": "32963c05fb8ced3f",
+        "name": "",
+        "label": "<font size = 8>Standby",
+        "order": 4,
+        "width": "5",
+        "height": "2",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "standby",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "#6cc3d6",
+        "textColor": "white",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 950,
+        "y": 120,
+        "wires": [
+            [
+                "dc922ef48696ad4a"
+            ]
+        ]
+    },
+    {
+        "id": "dc922ef48696ad4a",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "LM53",
+        "func": "msg.poi = \"LM53\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 120,
+        "wires": [
+            [
+                "a6044e4d75ca777a"
+            ]
+        ]
+    },
+    {
+        "id": "a6044e4d75ca777a",
+        "type": "robot-nav",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "stationId": "",
+        "sourceId": "SELF_POSITION",
+        "pollInterval": "3000",
+        "arrivalTimeout": "300000",
+        "x": 1410,
+        "y": 120,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7dbfc73b745abf08",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Battery Logic",
+        "func": "let pct = msg.payload.battery_level;\n\nif (pct === undefined || pct === null) {\n    pct = 0;\n}\n\npct = Math.max(0, Math.min(100, Number(pct)));\n\nmsg.payload = pct;\nreturn msg;",
+        "outputs": 1,
+        "x": 690,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "194e207bfbc1938a",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1880,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "31d59e0d96429950",
+        "type": "link in",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "in nav fleet ui",
+        "links": [
+            "c2c1efbe7ffba298",
+            "06712734d61ecf91",
+            "94d5c78dc42917c7"
+        ],
+        "x": 825,
+        "y": 740,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "94d5c78dc42917c7",
+        "type": "link out",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "ui getjob",
+        "mode": "link",
+        "links": [
+            "31d59e0d96429950"
+        ],
+        "x": 1045,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "7bb8f5cd14bd272a",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "convert payload getjob",
+        "func": "global.set(\"current_status\", \"getjob\");\nnode.warn(\"Status set to: getjob\");\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 600,
+        "wires": [
+            [
+                "94d5c78dc42917c7",
+                "9336e48e20de3b5a"
+            ]
+        ]
+    },
+    {
+        "id": "5c86a54e6d830279",
+        "type": "link out",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "ui robot ready",
+        "mode": "link",
+        "links": [
+            "88b5dc0fd768a172"
+        ],
+        "x": 1195,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "75c18017fcd450f4",
+        "type": "inject",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 800,
+        "y": 780,
+        "wires": [
+            [
+                "b8e1e64162f8a364"
+            ]
+        ]
+    },
+    {
+        "id": "b8e1e64162f8a364",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "function 2",
+        "func": "msg.topic = \"ui/page\";\nmsg.payload = {\n  page: \"A\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 700,
+        "wires": [
+            [
+                "65bcae3e8cd99339"
+            ]
+        ]
+    },
+    {
+        "id": "9336e48e20de3b5a",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug getjob from uibuilder",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "3ab1655de32161cc",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "getjob arrival → update subjob",
+        "func": "var current_status = global.get(\"current_status\");\nif (current_status === \"getjob\") {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "x": 2110,
+        "y": 340,
+        "wires": [
+            [
+                "c558768b707d8a20",
+                "0d86a49dddc83dcd"
+            ]
+        ]
+    },
+    {
+        "id": "c558768b707d8a20",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2580,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "0d86a49dddc83dcd",
+        "type": "link out",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "ui getjob",
+        "mode": "link",
+        "links": [
+            "065cd89402870d89"
+        ],
+        "x": 2315,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "enq_debug",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "enqueue result",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2300,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "enq_link_accept",
+        "type": "link out",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "trigger accept job",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 2565,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "save_pages_fn",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Save config/pages",
+        "func": "if (msg.topic !== 'config/pages') return null;\nmsg.payload = JSON.stringify(msg.payload, null, 2);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 220,
+        "wires": [
+            [
+                "save_pages_file"
+            ]
+        ]
+    },
+    {
+        "id": "save_pages_file",
+        "type": "file",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Write config-button.json",
+        "filename": "/home/amr02/.node-red/uibuilder/AMB-ROBOT/src/config-button.json",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "x": 1330,
+        "y": 220,
+        "wires": [
+            [
+                "94e8d9e4cb6efac6"
+            ]
+        ]
+    },
+    {
+        "id": "94e8d9e4cb6efac6",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ab8ccfc785b44d17",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Check Battery Low",
+        "func": " \nconst BATTERY_THRESHOLD = 20; \n \nconst currentStatus = global.get(\"current_status\");\nconst cfg = global.get(\"robot_config\") || {}; \n \nconst currentBattery = msg.payload.battery_level;  \n \nnode.status({ fill: \"green\", shape: \"dot\", text: `Bat: ${currentBattery}% | Status: ${currentStatus}` });\n \nif (currentBattery < BATTERY_THRESHOLD && currentStatus === \"idle\") {\n  \n    global.set(\"current_status\", \"CP1\");\n    \n     \n    msg.payload = {\n        amr_id: cfg.amrId || 37,\n        point: \"CP1\",  \n        command: \"goto_charge\"\n    };\n    \n    node.status({ fill: \"yellow\", shape: \"blink\", text: \"Low Battery! Dispatched to Charging\" });\n    return msg;\n}\n\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "030d591fd769473a",
+                "4e8cc42613eddc2c"
+            ]
+        ]
+    },
+    {
+        "id": "4e8cc42613eddc2c",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c232c1e4e4e4a38a",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Build MQTT ACK",
+        "func": "var orig = msg._estop_cmd || {};\nif (!orig.status_topic) { node.warn('no status_topic'); return null; }\nmsg.topic   = orig.status_topic;\nmsg.payload = JSON.stringify({\n    command_id: orig.command_id,\n    status:     'completed',\n    result:     { is_estop: msg.payload.is_estop }\n});\nreturn msg;",
+        "outputs": 1,
+        "x": 790,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2efccf1b91ca1eb",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "enq_node_01",
+        "type": "fleet-enqueue",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "amrId": "33",
+        "enqueueUrl": "http://172.17.5.12:9000/api/v1/queue/enqueue-from-productivity/",
+        "updateSubjobUrl": "http://172.17.5.12:9000/api/v1/queue/update-current-subjob/",
+        "timeout": 10000,
+        "x": 1590,
+        "y": 160,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ],
+            [
+                "65bcae3e8cd99339",
+                "enq_debug",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "robot_estop_01",
+        "type": "robot-estop",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "pollInterval": 0,
+        "x": 370,
+        "y": 720,
+        "wires": [
+            [
+                "c232c1e4e4e4a38a",
+                "65bcae3e8cd99339",
+                "d2efccf1b91ca1eb",
+                "fp_push_01",
+                "v2_compat_state_manager"
+            ],
+            [
+                "debug_estop_err_01"
+            ]
+        ]
+    },
+    {
+        "id": "debug_estop_err_01",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "estop query error",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "fn_build_relocate_req",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "build relocate request",
+        "func": "var p = msg.payload || {};\nmsg.poi = p.poi;\nmsg.poiName = p.poiName;\nif (p.x !== undefined && p.y !== undefined) {\n  msg.payload = {\n    isAuto: false,\n    x: p.x,\n    y: p.y,\n    angle: p.r !== undefined ? p.r : (p.angle !== undefined ? p.angle : 0),\n    length: p.length !== undefined ? p.length : 1.0\n  };\n} else {\n  msg.payload = { isAuto: true };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 900,
+        "wires": [
+            [
+                "robot_relocate_01"
+            ]
+        ]
+    },
+    {
+        "id": "robot_relocate_01",
+        "type": "robot-relocate",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "isAuto": "true",
+        "relocX": 0,
+        "relocY": 0,
+        "angle": 0,
+        "length": 1,
+        "x": 1500,
+        "y": 980,
+        "wires": [
+            [
+                "fn_relocate_success_topic"
+            ],
+            [
+                "fn_relocate_error_topic"
+            ]
+        ]
+    },
+    {
+        "id": "fn_relocate_success_topic",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "relocate success topic",
+        "func": "msg.topic = 'relocate/success';\nmsg.payload = { poi: msg.poi || null, poiName: msg.poiName || null };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1820,
+        "y": 800,
+        "wires": [
+            [
+                "65bcae3e8cd99339"
+            ]
+        ]
+    },
+    {
+        "id": "fn_relocate_error_topic",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "relocate error topic",
+        "func": "msg.topic = 'relocate/error';\nmsg.payload = { poi: msg.poi || null, poiName: msg.poiName || null, error: msg.error || 'Unknown error' };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 1040,
+        "wires": [
+            [
+                "65bcae3e8cd99339"
+            ]
+        ]
+    },
+    {
+        "id": "seer_station_01",
+        "type": "seer-status-station",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "station list",
+        "server": "seer_api_cfg_01",
+        "pollInterval": 0,
+        "x": 460,
+        "y": 920,
+        "wires": [
+            [
+                "fn_poi_stations_fmt"
+            ],
+            [
+                "debug_poi_station_err"
+            ]
+        ]
+    },
+    {
+        "id": "fn_poi_stations_fmt",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "poi/stations topic",
+        "func": "msg.topic = 'poi/stations';\nmsg.payload = (msg.payload && Array.isArray(msg.payload.points))\n  ? msg.payload.points\n  : [];\nreturn msg;",
+        "outputs": 1,
+        "x": 750,
+        "y": 940,
+        "wires": [
+            [
+                "65bcae3e8cd99339"
+            ]
+        ]
+    },
+    {
+        "id": "debug_poi_station_err",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "station error",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "x": 770,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "fp_acc_pose",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "fleet: acc pose",
+        "func": "var st = global.get(\"fleet_state\") || {};\nst.x = msg.payload.x;\nst.y = msg.payload.y;\nst.theta = msg.payload.angle;\nglobal.set(\"fleet_state\", st);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 760,
+        "wires": [
+            [
+                "fp_push_01"
+            ]
+        ]
+    },
+    {
+        "id": "fp_acc_mode",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "fleet: acc mode",
+        "func": "var st = global.get(\"fleet_state\") || {};\nst.mode = msg.payload.mode;\nglobal.set(\"fleet_state\", st);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fp_acc_online",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "fleet: acc online",
+        "func": "var st = global.get(\"fleet_state\") || {};\nst.online = msg.payload.online;\nglobal.set(\"fleet_state\", st);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 880,
+        "wires": [
+            [
+                "2b56acb9ca0fd4ce"
+            ]
+        ]
+    },
+    {
+        "id": "fp_acc_battery",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "fleet: acc battery",
+        "func": "var st = global.get(\"fleet_state\") || {};\nst.charging = msg.payload.charging;\nglobal.set(\"fleet_state\", st);\nreturn null;",
+        "outputs": 1,
+        "x": 610,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fp_push_01",
+        "type": "robot-fleet-push",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "fleetRobotId": "AMB-03",
+        "apiBase": "http://172.17.5.12:9000",
+        "timeout": 10000,
+        "x": 1020,
+        "y": 1020,
+        "wires": [
+            [
+                "fp_debug_ok"
+            ],
+            [
+                "fp_debug_err"
+            ]
+        ]
+    },
+    {
+        "id": "fp_debug_ok",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "fleet push ok",
+        "active": false,
+        "tosidebar": true,
+        "complete": "payload",
+        "x": 1120,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "fp_debug_err",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "fleet push error",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "x": 1120,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "2b56acb9ca0fd4ce",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 28",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "link_sound_in_01",
+        "type": "link in",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "sound cmd in",
+        "links": [
+            "link_sound_out_01"
+        ],
+        "x": 1380,
+        "y": 780,
+        "wires": [
+            [
+                "f7a09e6cca1f6ef0"
+            ]
+        ]
+    },
+    {
+        "id": "sync_robot_conn_fn",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Sync config/robot + config/conn",
+        "func": "if (msg.topic !== 'config/robot' && msg.topic !== 'config/conn') { return null; }\n\nvar fs = global.get('fs');\nvar path = '/home/amr02/.node-red/uibuilder/AMB-ROBOT/src/robot-config.json';\nvar cfg = {};\ntry { cfg = JSON.parse(fs.readFileSync(path, 'utf8')) || {}; } catch (e) { cfg = {}; }\n\nvar p = msg.payload || {};\nif (msg.topic === 'config/robot') {\n    if (p.name !== undefined) cfg.robotName = p.name;\n    if (p.company !== undefined) cfg.company = p.company;\n    if (p.chargePoi !== undefined) cfg.chargePoi = p.chargePoi;\n    if (p.maxSpeed !== undefined) cfg.maxSpeed = p.maxSpeed;\n} else {\n    if (p.host !== undefined) cfg.host = p.host;\n    if (p.port !== undefined) cfg.port = p.port;\n    if (p.robotId !== undefined) cfg.robotId = p.robotId;\n    if (p.tenantId !== undefined) cfg.tenantId = p.tenantId;\n}\n\ntry { fs.writeFileSync(path, JSON.stringify(cfg, null, 2)); }\ncatch (e) { node.warn('robot-config.json write failed: ' + e.message); }\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 280,
+        "wires": [
+            [
+                "65bcae3e8cd99339"
+            ]
+        ]
+    },
+    {
+        "id": "poi_cancel_ui_fn",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "Cancel job + clear occupied UI",
+        "func": "global.set('fleet_transition_epoch', Number(global.get('fleet_transition_epoch') || 0) + 1);\nglobal.set('current_status', 'cancelled');\nvar payload = (msg.payload && typeof msg.payload === 'object') ? msg.payload : {};\nvar poi = payload.point || msg.poi || '';\nvar uiMsg = {\n    topic: 'poi/cancelled',\n    payload: { poi: poi, reason: payload.reason || 'ui-cancelled' }\n};\nreturn [msg, uiMsg];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 860,
+        "wires": [
+            [
+                "590cf8e0d2797052",
+                "9c220e0fd9759363"
+            ],
+            [
+                "65bcae3e8cd99339",
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "7d56d28a0500cb46",
+        "type": "robot-error",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "pollInterval": 0,
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "65bcae3e8cd99339",
+                "684c5b3176866307",
+                "71b65a18d4ad9c3e",
+                "v2_compat_state_manager"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "684c5b3176866307",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 29",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "71b65a18d4ad9c3e",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 30",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "904b39cb5fd11ae9",
+        "type": "debug",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 230,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "4feb66cb0c530c26",
+        "type": "robot-clearallerrors",
+        "z": "d65aafb1a7447bd2",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2415eae71a4854d9",
+        "type": "inject",
+        "z": "d65aafb1a7447bd2",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "4feb66cb0c530c26"
+            ]
+        ]
+    },
+    {
+        "id": "c3e4b7b10e7aa065",
+        "type": "fleet-cancel-job",
+        "z": "d65aafb1a7447bd2",
+        "name": "",
+        "amrId": "38",
+        "apiUrl": "http://172.17.5.12:9000/api/v1/queue/cancel-current-queue/",
+        "timeout": 10000,
+        "x": 760,
+        "y": 540,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2a939dc230eb2c40",
+        "type": "function",
+        "z": "d65aafb1a7447bd2",
+        "name": "add bearer token",
+        "func": "msg.token=\"7277901546d9f0c830f0faf7988c39d22a5aac2e\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 300,
+        "wires": [
+            [
+                "c3e4b7b10e7aa065"
+            ]
+        ]
+    },
+    {
+        "id": "0a8f256bd6e771cb",
+        "type": "function",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "nav poi",
+        "func": "msg.poi = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "d58557ca9f888507"
+            ]
+        ]
+    },
+    {
+        "id": "d58557ca9f888507",
+        "type": "robot-nav",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "stationId": "",
+        "sourceId": "SELF_POSITION",
+        "pollInterval": "1000",
+        "arrivalTimeout": "",
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "ac811e265d05e5b8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9e6a3275a0b101f8",
+        "type": "inject",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "LM53",
+        "payloadType": "str",
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "0a8f256bd6e771cb"
+            ]
+        ]
+    },
+    {
+        "id": "ac811e265d05e5b8",
+        "type": "debug",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "1e6973d8ad19b50c",
+        "type": "inject",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "LM45",
+        "payloadType": "str",
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "0a8f256bd6e771cb"
+            ]
+        ]
+    },
+    {
+        "id": "0aa02ca8aab9d7e6",
+        "type": "function",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "LM53",
+        "func": "msg.poi = \"LM53\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 340,
+        "wires": [
+            [
+                "d58557ca9f888507"
+            ]
+        ]
+    },
+    {
+        "id": "adedd1f8db92dc66",
+        "type": "inject",
+        "z": "d65aafb1a7447bd2",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 340,
+        "wires": [
+            [
+                "0aa02ca8aab9d7e6"
+            ]
+        ]
+    },
+    {
+        "id": "93e165cdbfccd605",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "Update subjob",
+        "func": "if (msg.skipSubjobUpdate === true || msg.navigationPurpose === 'standby') {\n    node.status({ fill: 'grey', shape: 'ring', text: 'standby - no subjob update' });\n    return null;\n}\n\n// msg.token=\"7277901546d9f0c830f0faf7988c39d22a5aac2e\";\n// var current_status = global.get(\"current_status\");\n \n// if (current_status == 'getjob') {\n//     var getjob_name = global.get(\"getjob_name\");\n//     node.warn(\"Completing getjob with job_name: \" + getjob_name);\n//     msg.payload = {\"amr_id\": 33, \"status\": \"completed\", \"job_name\": getjob_name};\n//     global.set(\"getjob_name\", \"\");\n//     global.set(\"current_status\", \"idle\"); \n// } else {\n//     msg.payload = {\"amr_id\": 33,\n//      \"status\": \"completed\"};\n// }\n \n// // global.set(\"current_status\", \"update_current_job_status\");\n// return msg;\n \n\nvar cfg = global.get('cfg');\nmsg.token = cfg.token;\nvar current_status = global.get(\"current_status\");\nif (current_status == 'getjob') {\n    var getjob_name = global.get(\"getjob_name\");\n    node.warn(getjob_name);\n    msg.payload = { amr_id: cfg.amrId, status: \"completed\", job_name: getjob_name };\n    global.set(\"getjob_name\", \"\");\n} else {\n    msg.payload = { amr_id: cfg.amrId, status: \"completed\" };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1120,
+        "wires": [
+            [
+                "a6d98a867fa6a3cd",
+                "698ff9feff8ce18e"
+            ]
+        ]
+    },
+    {
+        "id": "0054de7de45464af",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "Accept New Job",
+        "func": "var cfg = global.get('cfg');\nmsg.token = cfg.token;\nvar current_status = global.get(\"current_status\");\nvar is_charge = global.get(\"charge_state\");\nif (is_charge) { node.warn(\"Cancel Charge\"); return [null, msg]; }\nif (current_status == \"idle\" || current_status == \"\" || typeof current_status !== 'string') {\n    msg.payload = { amr_id: cfg.amrId };\n    return [msg, null];\n} else if (current_status.includes(\"goto\")) {\n    msg.payload = { amr_id: cfg.amrId };\n    return [msg, null];\n} else {\n    node.warn(\"Status: \" + current_status);\n    return [null, null];\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1360,
+        "wires": [
+            [
+                "18e3a2c6e8b052a7",
+                "ed9eb397cc723332"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fe569427de824a14",
+        "type": "comment",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "Fleet Management",
+        "info": "",
+        "x": 230,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "7347be50ae2f5ba8",
+        "type": "inject",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 1260,
+        "wires": [
+            [
+                "93e165cdbfccd605"
+            ]
+        ]
+    },
+    {
+        "id": "fa01b7bd3f598cc6",
+        "type": "inject",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 1360,
+        "wires": [
+            [
+                "0054de7de45464af"
+            ]
+        ]
+    },
+    {
+        "id": "75fe3996c9de386b",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "01b982469447fe99",
+        "name": "Check Current_Station",
+        "func": "msg.payload = msg.payload.poi;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2120,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9d2bf403a07d717",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "01b982469447fe99",
+        "name": "CurrentPOI",
+        "func": "var timeout = -1;\nvar poi = msg.payload; // สมมติว่ามาเป็น string \"LM5\" ตรงๆ\n\nmsg.payload = {\n    \"POI\": poi,\n    \"TIMEOUT\": timeout\n};\n\nglobal.set(\"current_poi\", poi);\n\nreturn [msg, null];\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 1180,
+        "wires": [
+            [
+                "f7d6ea9318a95e28"
+            ]
+        ]
+    },
+    {
+        "id": "5fa499ea0e16ed37",
+        "type": "comment",
+        "z": "tab_fleet_engine_01",
+        "g": "01b982469447fe99",
+        "name": "GO to",
+        "info": "",
+        "x": 1650,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "72258bb7875b1528",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "01b982469447fe99",
+        "name": "movement",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2090,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "f7d6ea9318a95e28",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "01b982469447fe99",
+        "name": "currentpoi",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1820,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "c266316709c33fbd",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "01b982469447fe99",
+        "name": "link update",
+        "mode": "link",
+        "links": [
+            "065cd89402870d89"
+        ],
+        "x": 2045,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "8edfd1b83648ab32",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "STANDBYIDEL",
+        "func": "var current_status = msg.payload.current_status;  // เข้าถึงค่า 'current_status' จาก object\n\nnode.warn(\"Current Status: \" + current_status);  // แสดงค่าที่ดึงมา\n\n// ตรวจสอบค่าของ current_status\nif (current_status === \"idle\") {\n    node.warn(\"Idle detected. Sending standby immediately.\");\n    msg.payload = \"standby\";  // ส่งค่า 'standby'\n    return [msg, null];  // ส่งข้อความไปยัง output 1\n} else {\n    return null;  // ไม่ส่งค่าออกหาก current_status ไม่ใช่ \"idle\"\n}\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1660,
+        "y": 1760,
+        "wires": [
+            [
+                "95a6348631cebe04"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3eaed0ea0181b109",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "link complete",
+        "links": [],
+        "x": 1475,
+        "y": 1640,
+        "wires": [
+            [
+                "4a70682d00653c4e"
+            ]
+        ]
+    },
+    {
+        "id": "96703d01e8a1d338",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "link complete",
+        "links": [],
+        "x": 1475,
+        "y": 1760,
+        "wires": [
+            [
+                "8edfd1b83648ab32"
+            ]
+        ]
+    },
+    {
+        "id": "4a70682d00653c4e",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "SetUI_MainUIPage",
+        "func": "msg.payload = \"MainUIPage\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1660,
+        "y": 1640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "95a6348631cebe04",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "GOTO_STANDBY",
+        "func": "\nvar msg1 = { payload: \"GOTO_STANDBY\" };\nvar msg2 = { payload: \"Idle\" };\n    \nreturn [msg1,msg2]",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1920,
+        "y": 1740,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "21a9c73ae43aa763",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "STANDBY",
+        "func": "\nvar msg1 = { payload: \"-\" };\nvar msg2 = { payload: \"Idle\" };\n    \nreturn [msg1,msg2]",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2120,
+        "y": 1840,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "68a50b8d322c143b",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "Set status to idle",
+        "func": "global.set('current_status', 'idle');\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 1920,
+        "wires": [
+            [
+                "eb5ece1eac6e1a57"
+            ]
+        ]
+    },
+    {
+        "id": "eb5ece1eac6e1a57",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "link accept",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 2295,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "70f754c070d8e5ea",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "GOTO_DOCK",
+        "func": "\nvar msg1 = { payload: \"GOTO_DOCK\" };\nvar msg2 = { payload: \"Working\" };\nglobal.set(\"AutoCancel\",false);\n    \nreturn [msg1,msg2]",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1610,
+        "y": 2020,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "420d944b29fb8731",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "link docking",
+        "links": [],
+        "x": 1475,
+        "y": 2080,
+        "wires": [
+            [
+                "70f754c070d8e5ea",
+                "269e36b36852b1b1"
+            ]
+        ]
+    },
+    {
+        "id": "1e91cc4f72a279a6",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "CHARGING",
+        "func": "\nvar msg1 = { payload: \"CHARGING\" };\nvar msg2 = { payload: \"CHARGING\" };\n    \nreturn [msg1,msg2]",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 2100,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c8a97f15037c8b97",
+        "type": "comment",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "STANDBY",
+        "info": "",
+        "x": 1470,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "269e36b36852b1b1",
+        "type": "robot-gocharge",
+        "z": "tab_fleet_engine_01",
+        "g": "62e47cb18273021c",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "chargeId": "CP1",
+        "maxSpeed": 0.5,
+        "maxWspeed": 0.5,
+        "x": 1620,
+        "y": 2100,
+        "wires": [
+            [
+                "1e91cc4f72a279a6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "57a51b159a100895",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "a6d98a867fa6a3cd",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update ส้ม",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "ee6ac5bac94adea3",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "Getcanceljob",
+        "links": [
+            "9c220e0fd9759363"
+        ],
+        "x": 2405,
+        "y": 1220,
+        "wires": [
+            [
+                "78324f612bf14835",
+                "3506de33c33f9235",
+                "7d36dcd123dc5a51"
+            ]
+        ]
+    },
+    {
+        "id": "3506de33c33f9235",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "UpdateJobstatus",
+        "func": "var msg1 = { payload: \"-\" };\nvar msg2 = { payload: \"Idle\" };\nreturn [msg1,msg2];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2580,
+        "y": 1240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "78324f612bf14835",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "SetUI_MainUIPage",
+        "func": "msg.payload = \"MainUIPage\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2580,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e46d08455e2a548c",
+        "type": "comment",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "Cancel Job",
+        "info": "",
+        "x": 2430,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "c21761218db4c6d5",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "link accept job function",
+        "links": [
+            "eb5ece1eac6e1a57",
+            "e611518e3a6fb409",
+            "634bc96c9e841ed1",
+            "09ad0ce42271beb5",
+            "enq_link_accept",
+            "0d62926adae18fae",
+            "7c83c394881edf49",
+            "7242782aa9b92d3e",
+            "1a73fca453e4c561"
+        ],
+        "x": 335,
+        "y": 1480,
+        "wires": [
+            [
+                "0054de7de45464af"
+            ]
+        ]
+    },
+    {
+        "id": "065cd89402870d89",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "link update subjob function",
+        "links": [
+            "c266316709c33fbd",
+            "0d86a49dddc83dcd",
+            "0d62926adae18fae"
+        ],
+        "x": 305,
+        "y": 1200,
+        "wires": [
+            [
+                "93e165cdbfccd605"
+            ]
+        ]
+    },
+    {
+        "id": "7d36dcd123dc5a51",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "Cancel subjob",
+        "func": " \n// msg.token=\"7277901546d9f0c830f0faf7988c39d22a5aac2e\";\n// var amrId = flow.get('amrId') || global.get('amrId') || 33;;\nvar cfg = global.get('cfg');\nmsg.token = cfg.token;\nmsg.amrId   = cfg.amrId;\nmsg.payload = { amr_id: cfg.amrId, status: 'completed' };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2580,
+        "y": 1180,
+        "wires": [
+            [
+                "fcfbe17238098e24"
+            ]
+        ]
+    },
+    {
+        "id": "fcfbe17238098e24",
+        "type": "http request",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "cancel subjob",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://172.17.5.12:9000/api/v1/queue/cancel-current-queue/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Content-Type",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 2800,
+        "y": 1180,
+        "wires": [
+            [
+                "1a06504001a8e9be",
+                "3e781e5aa9636c8a"
+            ]
+        ]
+    },
+    {
+        "id": "1a06504001a8e9be",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "Set idle after cancel",
+        "func": "// Set current_status to idle only after the cancel HTTP request succeeds.\nif (msg.statusCode >= 200 && msg.statusCode < 300) {\n  global.set('current_status', 'idle');\n  node.status({ fill:'green', shape:'dot', text:'idle' });\n  msg.topic = 'poi/cancelled';\n  msg.payload = { reason: 'job-cancelled' };\n  return [msg, null];\n}\n\nnode.error('cancel-current-queue failed: HTTP ' + msg.statusCode);\nnode.status({ fill:'red', shape:'ring', text:'HTTP ' + msg.statusCode });\nreturn [null, msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 3020,
+        "y": 1140,
+        "wires": [
+            [
+                "c2c1efbe7ffba298",
+                "job_update_build_fn01",
+                "0054de7de45464af"
+            ],
+            [
+                "d3094ec2c4df6098"
+            ]
+        ]
+    },
+    {
+        "id": "3e781e5aa9636c8a",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "cancel HTTP response",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "x": 3050,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "d3094ec2c4df6098",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "cancel failed — NOT idle",
+        "active": false,
+        "tosidebar": true,
+        "complete": "true",
+        "x": 3320,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "e611518e3a6fb409",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "link accept",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 3235,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "463ba4f9e31c704c",
+        "type": "accept-new-job",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "amrId": "33",
+        "apiUrl": "http://172.17.5.12:9000/api/v1/queue/accept-next-job/",
+        "extraFields": [],
+        "mergePayload": true,
+        "timeout": 10000,
+        "returnType": "obj",
+        "x": 720,
+        "y": 1400,
+        "wires": [
+            [
+                "1e7d7fd8a39aa554",
+                "614d766f9bd5e773",
+                "job_update_build_fn01"
+            ],
+            [
+                "aa92639ea49f435e",
+                "5e5e09b358620289",
+                "job_update_build_fn01"
+            ],
+            [
+                "aacac0c6e63890a8",
+                "2029b9fcf639ab85",
+                "14f47bab05d6a441",
+                "job_update_build_fn01"
+            ],
+            [
+                "73153fe5e6b8c3dd",
+                "job_update_build_fn01"
+            ],
+            [
+                "b5691345823dfba8",
+                "c4f2a9017b6e3d58",
+                "job_update_build_fn01"
+            ],
+            [
+                "f6c438ae211aaf92",
+                "job_update_build_fn01"
+            ],
+            [
+                "744842b6aaf37f14",
+                "job_update_build_fn01"
+            ],
+            [
+                "cf8cc47627d18c42"
+            ]
+        ]
+    },
+    {
+        "id": "1e7d7fd8a39aa554",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 17",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "aa92639ea49f435e",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 18",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "aacac0c6e63890a8",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 19",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "73153fe5e6b8c3dd",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 20",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "b5691345823dfba8",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 21",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "f6c438ae211aaf92",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 22",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "744842b6aaf37f14",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 23",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "cf8cc47627d18c42",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 24",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "614d766f9bd5e773",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "nav poi",
+        "func": "var payload = msg.payload;\n\nif (typeof payload === 'string') {\n    msg.poi = payload.trim();\n} else if (payload && typeof payload === 'object') {\n    msg.poi = String(payload.point || payload.poi || '').trim();\n} else {\n    msg.poi = '';\n}\n\nif (!msg.poi) {\n    node.error('Destination point is required', msg);\n    return null;\n}\n\nvar current_status = global.get('current_status');\n\nif (current_status === 'getjob') {\n    var dest = payload && typeof payload === 'object'\n        ? payload.label || payload.destination || payload.point || payload.poi\n        : msg.poi;\n    global.set('getjob_name', dest);\n    node.warn('getjob_name set: ' + dest);\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 1260,
+        "wires": [
+            [
+                "f18f908398d964d7"
+            ]
+        ]
+    },
+    {
+        "id": "f18f908398d964d7",
+        "type": "robot-nav",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "stationId": "",
+        "sourceId": "SELF_POSITION",
+        "pollInterval": "1000",
+        "arrivalTimeout": "380000",
+        "x": 1190,
+        "y": 1460,
+        "wires": [
+            [
+                "8411c0901867bc79",
+                "93e165cdbfccd605",
+                "arrival_sound_01"
+            ],
+            [
+                "092c21cfb0503571"
+            ],
+            [
+                "c2c1efbe7ffba298"
+            ]
+        ]
+    },
+    {
+        "id": "69cfa931a3be7831",
+        "type": "fleet-update-subjob",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "amrId": "33",
+        "apiUrl": "http://172.17.5.12:9000/api/v1/queue/update-current-subjob/",
+        "timeout": 10000,
+        "x": 790,
+        "y": 1000,
+        "wires": [
+            [
+                "57a51b159a100895",
+                "614d766f9bd5e773"
+            ],
+            [
+                "aca2fafccdae522b",
+                "5e5e09b358620289"
+            ],
+            [
+                "51cdc23f5dbd2801",
+                "14f47bab05d6a441"
+            ],
+            [
+                "3c0fb8fe1ca6c9cb"
+            ],
+            [
+                "b30edacd949c3778",
+                "c4f2a9017b6e3d58"
+            ],
+            [
+                "a25b13930f8fa51d"
+            ],
+            [
+                "834f09abb6e65dc9",
+                "ec7d8e9c2a4f693b",
+                "job_update_build_fn01"
+            ],
+            [
+                "e6d6bd10485a3d40"
+            ]
+        ]
+    },
+    {
+        "id": "8b26049943b57bd9",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 25",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "092c21cfb0503571",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 26",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "2029b9fcf639ab85",
+        "type": "robot-sound",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "action": "play_audio",
+        "audioName": "pickup",
+        "x": 930,
+        "y": 1660,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "18e3a2c6e8b052a7",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug accept",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "aca2fafccdae522b",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "51cdc23f5dbd2801",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "3c0fb8fe1ca6c9cb",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "b30edacd949c3778",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "a25b13930f8fa51d",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "834f09abb6e65dc9",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "e6d6bd10485a3d40",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug update 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "a612916ad21e224e",
+        "type": "catch",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "scope": [
+            "69cfa931a3be7831"
+        ],
+        "uncaught": false,
+        "x": 230,
+        "y": 1120,
+        "wires": [
+            [
+                "93e165cdbfccd605"
+            ]
+        ]
+    },
+    {
+        "id": "036cf7e8092989f0",
+        "type": "catch",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "scope": [
+            "463ba4f9e31c704c"
+        ],
+        "uncaught": false,
+        "x": 190,
+        "y": 1560,
+        "wires": [
+            [
+                "0054de7de45464af"
+            ]
+        ]
+    },
+    {
+        "id": "ed9eb397cc723332",
+        "type": "delay",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 1460,
+        "wires": [
+            [
+                "463ba4f9e31c704c"
+            ]
+        ]
+    },
+    {
+        "id": "698ff9feff8ce18e",
+        "type": "delay",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 1040,
+        "wires": [
+            [
+                "69cfa931a3be7831"
+            ]
+        ]
+    },
+    {
+        "id": "c2c1efbe7ffba298",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "out nav fleet",
+        "mode": "link",
+        "links": [
+            "31d59e0d96429950"
+        ],
+        "x": 1385,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "8411c0901867bc79",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "nav OK",
+        "func": "var p = msg.payload || {};\nvar poi = p.poi || p.current_station || msg.poi || msg.stationId || msg.point || '-';\n\nnode.send({ topic: 'poi', payload: poi });\nnode.send({ topic: 'nav/arrived', payload: Object.assign({}, p, { target: poi, poi: poi }) });\nnode.send({ topic: 'status', payload: { mode: 'idle', target: poi, arrived: true } });\nglobal.set(\"current_poi\", poi);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 1380,
+        "wires": [
+            [
+                "c2c1efbe7ffba298"
+            ]
+        ]
+    },
+    {
+        "id": "4dc72ad0b09965ea",
+        "type": "robot-wait",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "title": "Waiting for operator",
+        "detail": "Press ready to continue",
+        "buttonText": "Operator Ready",
+        "seconds": "10",
+        "x": 1000,
+        "y": 1520,
+        "wires": [
+            [
+                "93e165cdbfccd605",
+                "dd369a033a33100a"
+            ],
+            [
+                "ec7d8e9c2a4f693b"
+            ],
+            [
+                "c2c1efbe7ffba298",
+                "wait_sound_seq_01",
+                "persist_wait_status_fn"
+            ]
+        ]
+    },
+    {
+        "id": "dd369a033a33100a",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "88b5dc0fd768a172",
+        "type": "link in",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "ui ready in",
+        "links": [
+            "5c86a54e6d830279"
+        ],
+        "x": 825,
+        "y": 1580,
+        "wires": [
+            [
+                "4dc72ad0b09965ea"
+            ]
+        ]
+    },
+    {
+        "id": "14f47bab05d6a441",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "wait ok",
+        "func": "msg.topic = \"wait/start\";\ndelete msg.waitId;\nif (msg.payload) delete msg.payload.waitId;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1440,
+        "wires": [
+            [
+                "4dc72ad0b09965ea"
+            ]
+        ]
+    },
+    {
+        "id": "5e5e09b358620289",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "function 3",
+        "func": "if (global.get('current_poi', '-') == 'LM696'){\n    msg.topic = \"ui/page\";\n    msg.payload = {\n    page: \"C\"\n    };\n    return msg;\n\n}\nelse if (global.get('current_poi', '-') == 'LM739'){\n    msg.topic = \"ui/page\";\n    msg.payload = {\n    page: \"D\"\n    };\n    return msg;\n\n}\nnode.warn(global.get('current_poi', '-'));\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 1620,
+        "wires": [
+            [
+                "06712734d61ecf91"
+            ]
+        ]
+    },
+    {
+        "id": "06712734d61ecf91",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "31d59e0d96429950"
+        ],
+        "x": 1065,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "c07f7bf69ea24c71",
+        "type": "change",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "set_page",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"page\": \"A\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 920,
+        "wires": [
+            [
+                "63e1502114032e6a"
+            ]
+        ]
+    },
+    {
+        "id": "63e1502114032e6a",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "cfg_inject",
+        "type": "inject",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "Load Config on Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "payload": "",
+        "payloadType": "date",
+        "x": 1640,
+        "y": 980,
+        "wires": [
+            [
+                "cfg_fn"
+            ]
+        ]
+    },
+    {
+        "id": "cfg_fn",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "Config",
+        "func": "global.set('cfg', {\n    apiBase : 'http://172.17.5.12:9000/api/v1',\n    token   : '7277901546d9f0c830f0faf7988c39d22a5aac2e',\n    amrId   : 33,\n    wsUrl   : 'ws://172.17.5.12:9000/ws/queue/33/',\nstandbyPoi : 'HR597',\n    sounds: {\n        wait1: 'waik60sec',\n        wait2: 'wait15sec',\n        wait3: 'wait5sec'\n    },\n    pages: {\n        'A': {\n            project: 'Trial_SVI5',\n            buttons: [\n                { label: 'KAI',  poi: 'KAI'  },\n                { label: 'LM45', poi: 'LM45' }\n            ]\n        }\n    }\n});\nnode.status({fill:'green', shape:'dot', text:'cfg loaded'});\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1890,
+        "y": 980,
+        "wires": [
+            [
+                "09b3fa2f314148b8"
+            ]
+        ]
+    },
+    {
+        "id": "09b3fa2f314148b8",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2080,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "0d62926adae18fae",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "name": "trigger accept job",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 1855,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ec7d8e9c2a4f693b",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "goto_standby",
+        "func": "var cfg = global.get('cfg');\nglobal.set('current_status', 'idle');\n\n// Debounce: don't commit to a physical drive back to the standby POI\n// the instant we see \"idle\". A cancel or job hand-off often reports\n// idle for one poll tick right before the next job/subjob takes over\n// (accept-new-job / fleet-update-subjob poll ~1x/sec). Give that a\n// few seconds to land; if a new job claims current_status before the\n// timer fires, skip the standby detour entirely.\nvar GRACE_MS = 4000;\n\nvar pending = context.get('standbyTimer');\nif (pending) clearTimeout(pending);\n\nvar timer = setTimeout(function () {\n    context.set('standbyTimer', null);\n    if (global.get('current_status') !== 'idle') {\n        node.warn('New job took over before standby nav fired — skipping detour to standby');\n        return;\n    }\n    msg.poi = cfg.standbyPoi;\n    msg.skipSubjobUpdate = true;\n    msg.navigationPurpose = 'standby';\n    node.warn('Going to standby: ' + msg.poi);\n    node.send(msg);\n}, GRACE_MS);\n\ncontext.set('standbyTimer', timer);\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 1300,
+        "wires": [
+            [
+                "44963605dea70586",
+                "f18f908398d964d7"
+            ]
+        ]
+    },
+    {
+        "id": "44963605dea70586",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "7c83c394881edf49",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "accept after standby",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 3845,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "c8922701fedde03d",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "set standby poi",
+        "func": "var cfg = global.get('cfg');\nmsg.poi = cfg.standbyPoi;\nnode.warn('Cancel: going to standby at ' + msg.poi);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3190,
+        "y": 1080,
+        "wires": [
+            [
+                "d2cd775e121afda8"
+            ]
+        ]
+    },
+    {
+        "id": "9f34ec80e84d79fc",
+        "type": "robot-nav",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "nav to standby",
+        "server": "3efcaa348a134079",
+        "stationId": "",
+        "sourceId": "SELF_POSITION",
+        "pollInterval": "1000",
+        "arrivalTimeout": "300000",
+        "x": 3610,
+        "y": 1080,
+        "wires": [
+            [
+                "7c83c394881edf49",
+                "e986a3c2f3b61e01"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d2cd775e121afda8",
+        "type": "delay",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "wait 5s",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "",
+        "nbRateUnits": "",
+        "randomFirst": "",
+        "randomLast": "",
+        "randomUnits": "seconds",
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3390,
+        "y": 1080,
+        "wires": [
+            [
+                "9f34ec80e84d79fc",
+                "c16166715c49e489"
+            ]
+        ]
+    },
+    {
+        "id": "c16166715c49e489",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3590,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "e986a3c2f3b61e01",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "g": "e1dcfad18329af3b",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3810,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "7d390e81849a4c2e",
+        "type": "http response",
+        "z": "tab_fleet_engine_01",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 500,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "9a805ae793770221",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "name": "function 1",
+        "func": "function ParseJSON(msg) {\n    if (typeof msg.payload === 'string') {\n        try {\n            msg.payload = JSON.parse(msg.payload);\n            msg.parsedSuccessfully = true;\n        } catch (e) {\n            msg.payload = { error: \"Failed to parse JSON\", originalPayload: msg.payload };\n            msg.parsedSuccessfully = false;\n            return null;\n        }\n    } else {\n        // If it's already an object, no need to parse\n        msg.parsedSuccessfully = true;\n    }\n    if (msg.payload.error == \"Invalid JSON\"){\n        return null;\n    }\n    return msg;\n}\n\n// Node-RED function node\nreturn ParseJSON(msg);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 2360,
+        "wires": [
+            [
+                "7242782aa9b92d3e"
+            ]
+        ]
+    },
+    {
+        "id": "4fb8a99563b73dec",
+        "type": "http in",
+        "z": "tab_fleet_engine_01",
+        "name": "accept-next-job",
+        "url": "/accept-next-job",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 2300,
+        "wires": [
+            [
+                "7d390e81849a4c2e",
+                "1a73fca453e4c561"
+            ]
+        ]
+    },
+    {
+        "id": "600e35897aa0b5b8",
+        "type": "websocket in",
+        "z": "tab_fleet_engine_01",
+        "name": "trigger to accept next job",
+        "server": "e332f377e29d8391",
+        "client": "",
+        "x": 330,
+        "y": 2360,
+        "wires": [
+            [
+                "9a805ae793770221"
+            ]
+        ]
+    },
+    {
+        "id": "7aac711f116c4868",
+        "type": "status",
+        "z": "tab_fleet_engine_01",
+        "name": "",
+        "scope": [
+            "600e35897aa0b5b8"
+        ],
+        "x": 720,
+        "y": 2300,
+        "wires": [
+            [
+                "41ef2d381d979994"
+            ]
+        ]
+    },
+    {
+        "id": "41ef2d381d979994",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "name": "debug 27",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "6b33f0ca5ee33e49",
+        "type": "websocket in",
+        "z": "tab_fleet_engine_01",
+        "name": "WebSocket Server",
+        "server": "e332f377e29d8391",
+        "client": "",
+        "x": 310,
+        "y": 2440,
+        "wires": [
+            [
+                "4fe0562c3ce8e1aa"
+            ]
+        ]
+    },
+    {
+        "id": "4fe0562c3ce8e1aa",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "name": "Detect Disconnection",
+        "func": "if (msg.payload === null) {\n    node.warn('Client disconnected');\n} else {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 2440,
+        "wires": [
+            [
+                "a861be82c8178eac"
+            ]
+        ]
+    },
+    {
+        "id": "a861be82c8178eac",
+        "type": "debug",
+        "z": "tab_fleet_engine_01",
+        "name": "WebSocket Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "true",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "c4acd33e6310631f",
+        "type": "inject",
+        "z": "tab_fleet_engine_01",
+        "name": "Ping Interval",
+        "props": [],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "x": 300,
+        "y": 2520,
+        "wires": [
+            [
+                "15f7420f90de38d7"
+            ]
+        ]
+    },
+    {
+        "id": "15f7420f90de38d7",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "name": "Format Ping Message",
+        "func": "msg.payload = 'ping';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 2520,
+        "wires": [
+            [
+                "884d8386247aecb7"
+            ]
+        ]
+    },
+    {
+        "id": "884d8386247aecb7",
+        "type": "websocket out",
+        "z": "tab_fleet_engine_01",
+        "name": "WebSocket Ping",
+        "server": "e332f377e29d8391",
+        "client": "",
+        "x": 800,
+        "y": 2520,
+        "wires": []
+    },
+    {
+        "id": "7242782aa9b92d3e",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "name": "triggernextjob",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 675,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "1a73fca453e4c561",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "name": "nextjob",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 435,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "wait_sound_seq_01",
+        "type": "wait-sound-seq",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "sequence": [
+            {
+                "sound": "wait60sec",
+                "atRemaining": "start"
+            },
+            {
+                "sound": "wait15sec",
+                "atRemaining": 15
+            },
+            {
+                "sound": "wait5sec",
+                "atRemaining": 5
+            }
+        ],
+        "x": 1260,
+        "y": 1540,
+        "wires": [
+            [
+                "link_sound_out_01"
+            ]
+        ]
+    },
+    {
+        "id": "arrival_sound_01",
+        "type": "robot-arrival-sound",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "",
+        "jobNameKey": "current_job_name",
+        "rules": [
+            {
+                "poi": "LM47",
+                "jobName": "test_wait",
+                "audioFile": "opendoor.wav"
+            },
+            {
+                "poi": "",
+                "jobName": "wait_only",
+                "audioFile": "opendoor.wav"
+            }
+        ],
+        "x": 1490,
+        "y": 1420,
+        "wires": [
+            [
+                "b940f92dd12198b0"
+            ]
+        ]
+    },
+    {
+        "id": "b940f92dd12198b0",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "function 4",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1700,
+        "y": 1400,
+        "wires": [
+            [
+                "link_sound_out_01"
+            ]
+        ]
+    },
+    {
+        "id": "link_sound_out_01",
+        "type": "link out",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "sound cmd out",
+        "mode": "link",
+        "links": [
+            "link_sound_in_01"
+        ],
+        "x": 1960,
+        "y": 1470,
+        "wires": []
+    },
+    {
+        "id": "c4f2a9017b6e3d58",
+        "type": "robot-checkdoor",
+        "z": "tab_fleet_engine_01",
+        "name": "",
+        "rules": [
+            {
+                "poi": "LM676",
+                "manual": true,
+                "audioFile": "",
+                "delayMs": 60000
+            },
+            {
+                "poi": "LM674",
+                "manual": true,
+                "audioFile": "",
+                "delayMs": 60000
+            }
+        ],
+        "audioFile": "waik60sec",
+        "defaultManual": true,
+        "x": 1040,
+        "y": 1740,
+        "wires": [
+            [
+                "link_sound_out_01"
+            ],
+            [
+                "93e165cdbfccd605"
+            ]
+        ]
+    },
+    {
+        "id": "c9a1e6f4d2b8703a",
+        "type": "fleet-poi-available",
+        "z": "tab_fleet_engine_01",
+        "name": "",
+        "server": "3efcaa348a134079",
+        "apiUrl": "http://172.17.5.12:9000/api/v1/queue/poi-available/",
+        "timeout": 10000,
+        "x": 1070,
+        "y": 1340,
+        "wires": [
+            [
+                "50933782e113c4bf"
+            ],
+            [
+                "ef6fb177fd6b822d"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out_job_update01",
+        "type": "mqtt out",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "job_update → gateway",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt_broker_job_update01",
+        "x": 1180,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "job_update_build_fn01",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "Build job_update (MQTT)",
+        "func": "const tenantId = 'default';\nconst robotId = 'AMB-08';\nconst payload = (msg.payload && typeof msg.payload === 'object') ? msg.payload : {};\nconst messageStatus = String(payload.current_status || payload.status || msg.status || '').toLowerCase();\nconst globalStatus = String(global.get('current_status') || '').toLowerCase();\nconst terminalStates = ['idle', 'completed', 'cancelled', 'canceled'];\nconst shouldClear = terminalStates.includes(messageStatus) || terminalStates.includes(globalStatus);\nconst jobName = String(msg.jobName || '').trim();\nconst nextJobName = shouldClear ? null : (jobName || null);\nconst previousJobName = context.get('lastPublishedJobName');\n\n// Do not continuously publish the same job (or the same cleared state) on every poll.\nif (previousJobName === nextJobName) return null;\n\n// An in-progress message without a job name must not accidentally clear the database.\nif (!shouldClear && !jobName) return null;\n\ncontext.set('lastPublishedJobName', nextJobName);\nif (shouldClear) {\n    global.set('current_job_name', '');\n    delete msg.jobName;\n}\n\nreturn {\n    topic: 'fleet/' + tenantId + '/' + robotId + '/job_update',\n    payload: JSON.stringify({ job_name: nextJobName })\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 1580,
+        "wires": [
+            [
+                "mqtt_out_job_update01"
+            ]
+        ]
+    },
+    {
+        "id": "persist_wait_status_fn",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "name": "Persist wait status",
+        "func": "if (msg.topic !== 'wait/start' && msg.topic !== 'wait/done' && msg.topic !== 'wait/cancelled') return null;\n\nvar fs = global.get('fs');\nvar path = '/home/amr02/.node-red/uibuilder/AMB-ROBOT/src/wait-status.json';\nvar state = msg.topic === 'wait/start'\n    ? { active: true, payload: msg.payload }\n    : { active: false };\n\ntry { fs.writeFileSync(path, JSON.stringify(state, null, 2)); }\ncatch (e) { node.warn('wait-status.json write failed: ' + e.message); }\n\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50933782e113c4bf",
+        "type": "function",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "POI available?",
+        "func": "var poi = msg.poi || '';\nvar occupiedBy = (msg.payload && msg.payload.occupied_by) || null;\n\nif (msg.payload && msg.payload.available === true) {\n    var availableUi = {\n        topic: 'poi/available',\n        payload: { poi: poi, available: true }\n    };\n    return [msg, null, availableUi];\n}\n\nnode.warn('POI ' + poi + ' occupied by ' + (occupiedBy || '?') + ' — retrying');\nvar waitingUi = {\n    topic: 'poi/waiting',\n    payload: {\n        poi: poi,\n        available: false,\n        occupied_by: occupiedBy,\n        retry_seconds: 5\n    }\n};\nreturn [null, msg, waitingUi];\n",
+        "outputs": 3,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 1340,
+        "wires": [
+            [
+                "f18f908398d964d7"
+            ],
+            [
+                "ef6fb177fd6b822d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ef6fb177fd6b822d",
+        "type": "delay",
+        "z": "tab_fleet_engine_01",
+        "g": "042bb1ed779cf0e5",
+        "name": "poi retry wait",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 1300,
+        "wires": [
+            [
+                "c9a1e6f4d2b8703a"
+            ]
+        ]
+    },
+    {
+        "id": "35d54a5ed5ea225b",
+        "type": "http in",
+        "z": "tab_external_api_01",
+        "name": "accept-next-job",
+        "url": "/accept-next-job",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 580,
+        "wires": [
+            [
+                "2bfb8dd2db2e2db5",
+                "634bc96c9e841ed1"
+            ]
+        ]
+    },
+    {
+        "id": "2bfb8dd2db2e2db5",
+        "type": "http response",
+        "z": "tab_external_api_01",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 440,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "ae9f61e962019566",
+        "type": "websocket in",
+        "z": "tab_external_api_01",
+        "name": "trigger to accept next job",
+        "server": "e332f377e29d8391",
+        "client": "",
+        "x": 270,
+        "y": 640,
+        "wires": [
+            [
+                "c7d1539fd5996fd1"
+            ]
+        ]
+    },
+    {
+        "id": "c7d1539fd5996fd1",
+        "type": "function",
+        "z": "tab_external_api_01",
+        "name": "function 38",
+        "func": "function ParseJSON(msg) {\n    if (typeof msg.payload === 'string') {\n        try {\n            msg.payload = JSON.parse(msg.payload);\n            msg.parsedSuccessfully = true;\n        } catch (e) {\n            msg.payload = { error: \"Failed to parse JSON\", originalPayload: msg.payload };\n            msg.parsedSuccessfully = false;\n            return null;\n        }\n    } else {\n        // If it's already an object, no need to parse\n        msg.parsedSuccessfully = true;\n    }\n    if (msg.payload.error == \"Invalid JSON\"){\n        return null;\n    }\n    return msg;\n}\n\n// Node-RED function node\nreturn ParseJSON(msg);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 640,
+        "wires": [
+            [
+                "09ad0ce42271beb5"
+            ]
+        ]
+    },
+    {
+        "id": "195e420fc306df1c",
+        "type": "status",
+        "z": "tab_external_api_01",
+        "name": "",
+        "scope": [
+            "ae9f61e962019566"
+        ],
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "e615e621a411ce16"
+            ]
+        ]
+    },
+    {
+        "id": "e615e621a411ce16",
+        "type": "debug",
+        "z": "tab_external_api_01",
+        "name": "debug 410",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "fbfa773798c17a6e",
+        "type": "websocket in",
+        "z": "tab_external_api_01",
+        "name": "WebSocket Server",
+        "server": "e332f377e29d8391",
+        "client": "",
+        "x": 250,
+        "y": 720,
+        "wires": [
+            [
+                "7e74edd4023b515c"
+            ]
+        ]
+    },
+    {
+        "id": "7e74edd4023b515c",
+        "type": "function",
+        "z": "tab_external_api_01",
+        "name": "Detect Disconnection",
+        "func": "if (msg.payload === null) {\n    node.warn('Client disconnected');\n} else {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 500,
+        "y": 720,
+        "wires": [
+            [
+                "66ccec40cbe59f05"
+            ]
+        ]
+    },
+    {
+        "id": "66ccec40cbe59f05",
+        "type": "debug",
+        "z": "tab_external_api_01",
+        "name": "WebSocket Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "true",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e3dac2a11570500e",
+        "type": "inject",
+        "z": "tab_external_api_01",
+        "name": "Ping Interval",
+        "props": [],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "x": 240,
+        "y": 800,
+        "wires": [
+            [
+                "d231b654ecbdb52c"
+            ]
+        ]
+    },
+    {
+        "id": "d231b654ecbdb52c",
+        "type": "function",
+        "z": "tab_external_api_01",
+        "name": "Format Ping Message",
+        "func": "msg.payload = 'ping';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 800,
+        "wires": [
+            [
+                "36fe89987ff65883"
+            ]
+        ]
+    },
+    {
+        "id": "36fe89987ff65883",
+        "type": "websocket out",
+        "z": "tab_external_api_01",
+        "name": "WebSocket Ping",
+        "server": "e332f377e29d8391",
+        "client": "",
+        "x": 740,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "09ad0ce42271beb5",
+        "type": "link out",
+        "z": "tab_external_api_01",
+        "name": "triggernextjob",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 615,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "634bc96c9e841ed1",
+        "type": "link out",
+        "z": "tab_external_api_01",
+        "name": "nextjob",
+        "mode": "link",
+        "links": [
+            "c21761218db4c6d5"
+        ],
+        "x": 375,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "d31a08a086a5188e",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "svi-gateway": "1.0.0",
+            "@flowfuse/node-red-dashboard": "1.30.1",
+            "node-red-contrib-seer-api-getway": "0.1.0",
+            "node-red-contrib-uibuilder": "7.6.2"
+        }
+    },
+    {
+        "id": "v2_compat_command_adapter",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "V2 UI command compatibility",
+        "func": "const topic = String(msg.topic || '');\nif (topic !== 'ui/state/request' && topic !== 'edge/command/request' && topic !== 'fleet/command/request') return null;\n\nconst payload = msg.payload && typeof msg.payload === 'object' ? msg.payload : {};\nconst action = String(payload.action || '').trim().toLowerCase();\nconst commandId = String(payload.command_id || payload.request_id || '').trim();\nconst out = [null, null, null, null];\n\nif (topic === 'ui/state/request' || (topic === 'fleet/command/request' && action === 'sync')) {\n    msg.topic = 'v2/state/request';\n    out[1] = msg;\n    return out;\n}\nif (!commandId) {\n    out[1] = { topic: 'v2/command/rejected', payload: { error: 'command ID is required' }, _socketId: msg._socketId };\n    return out;\n}\nlet processed = flow.get('v2_processed_command_ids') || [];\nif (!Array.isArray(processed)) processed = [];\nif (processed.includes(commandId)) {\n    out[1] = { topic: 'v2/command/duplicate', payload: { command_id: commandId }, _socketId: msg._socketId };\n    return out;\n}\nfunction accept() {\n    processed.push(commandId);\n    if (processed.length > 200) processed = processed.slice(-200);\n    flow.set('v2_processed_command_ids', processed);\n    try { flow.set('v2_processed_command_ids', processed, 'file'); } catch (e) {}\n    out[1] = { topic: 'v2/command/accepted', payload: { command_id: commandId, action: action, params: payload.params || {}, accepted_at: new Date().toISOString() }, _socketId: msg._socketId };\n}\nif (topic === 'fleet/command/request' && action === 'start') {\n    accept();\n    msg.v2Command = out[1].payload;\n    msg.payload = {};\n    out[2] = msg;\n    return out;\n}\nif (topic === 'fleet/command/request' && action === 'cancel') {\n    accept();\n    msg.v2Command = out[1].payload;\n    msg.payload = { reason: 'ui-cancelled' };\n    out[3] = msg;\n    return out;\n}\nif (topic !== 'edge/command/request') {\n    out[1] = { topic: 'v2/command/rejected', payload: { command_id: commandId, error: 'unsupported V2 command' }, _socketId: msg._socketId };\n    return out;\n}\nconst params = payload.params && typeof payload.params === 'object' ? payload.params : {};\nif (action === 'navigate') {\n    const point = String(params.target || params.destination || params.point || '').trim();\n    if (!point) { out[1] = { topic: 'v2/command/rejected', payload: { command_id: commandId, error: 'navigation target is required' }, _socketId: msg._socketId }; return out; }\n    accept();\n    msg.topic = 'nav';\n    msg.payload = { point: point, destination: point, label: params.label || params.source || point };\n    msg.v2Command = out[1].payload;\n    out[0] = msg;\n} else if (action === 'pause' || action === 'resume' || action === 'cancel') {\n    accept();\n    msg.topic = action;\n    msg.payload = params;\n    msg.v2Command = out[1].payload;\n    out[0] = msg;\n} else if (action === 'settings/save') {\n    accept();\n    msg.topic = 'v2/config/save';\n    out[1] = [out[1], msg];\n} else {\n    out[1] = { topic: 'v2/command/rejected', payload: { command_id: commandId, error: 'unsupported action: ' + action }, _socketId: msg._socketId };\n}\nreturn out;",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 900,
+        "wires": [
+            [
+                "3db9db3f2fb9d28a"
+            ],
+            [
+                "v2_compat_state_manager"
+            ],
+            [
+                "enq_link_accept"
+            ],
+            [
+                "poi_cancel_ui_fn"
+            ]
+        ]
+    },
+    {
+        "id": "v2_compat_client_event",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "V2 uibuilder client event",
+        "func": "const ctrl = msg.uibuilderCtrl || msg.payload || {};\nconst text = JSON.stringify(ctrl).toLowerCase();\nmsg.topic = 'v2/client/event';\nmsg.payload = { connected: !text.includes('disconnect'), event: ctrl, at: new Date().toISOString() };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 960,
+        "wires": [
+            [
+                "v2_compat_state_manager"
+            ]
+        ]
+    },
+    {
+        "id": "v2_compat_state_manager",
+        "type": "function",
+        "z": "0a01cdc12f3cc8f8",
+        "name": "V2 state snapshot compatibility",
+        "func": "const KEY = 'v2_compat_runtime_state';\nfunction defaults() {\n    return { revision: 0, updatedAt: null, connection: { fleet: 'unknown' }, robot: { id: 'AMB-20', name: 'AMB-20', mode: 'unknown', battery: null, currentPoi: '-' }, navigation: { state: 'idle', source: null, from: null, destination: null }, task: null, config: { standbyPoint: null, chargingPoint: null, visiblePoints: [], fleetTasks: [] }, error: null };\n}\nfunction load() {\n    let value = null;\n    try { value = flow.get(KEY, 'file'); } catch (e) {}\n    return value || flow.get(KEY) || defaults();\n}\nfunction save(value) {\n    flow.set(KEY, value);\n    try { flow.set(KEY, value, 'file'); } catch (e) {}\n}\nfunction snapshot(value, request) { return { topic: 'ui/state/snapshot', payload: value, _socketId: request && request._socketId }; }\nconst state = load();\nconst before = JSON.stringify({ connection: state.connection, robot: state.robot, navigation: state.navigation, task: state.task, config: state.config, error: state.error });\nconst topic = String(msg.topic || '');\nconst raw = msg.payload;\nconst payload = raw && typeof raw === 'object' ? raw : {};\nconst out = [];\nlet force = topic === 'v2/state/request' || topic === 'v2/client/event';\n\nif (topic === 'battery') {\n    const value = Number(payload.battery_pct ?? payload.battery ?? raw);\n    if (Number.isFinite(value)) state.robot.battery = value;\n} else if (topic === 'wifi') {\n    state.connection.robot = payload.online === true || payload.connected === true ? 'online' : 'offline';\n} else if (topic === 'poi') {\n    state.robot.currentPoi = String(raw || '-');\n} else if (topic === 'status') {\n    const mode = String(payload.mode || raw || 'unknown');\n    state.robot.mode = mode;\n    const clean = mode.toLowerCase();\n    if (clean.includes('pause')) state.navigation.state = 'paused';\n    else if (clean.includes('move') || clean.includes('run') || clean.includes('nav')) state.navigation.state = 'running';\n    else if (clean === 'idle' && state.navigation.state !== 'cancelling') state.navigation.state = 'idle';\n} else if (topic === 'destination') {\n    state.navigation.destination = String(raw || '-');\n} else if (topic === 'nav/started' || topic === 'nav/progress') {\n    state.navigation.state = 'running';\n    state.navigation.destination = payload.target || payload.destination || payload.poi || state.navigation.destination;\n} else if (topic === 'nav/arrived') {\n    state.robot.currentPoi = String(payload.target || payload.poi || state.navigation.destination || state.robot.currentPoi);\n    state.robot.mode = 'idle';\n    state.navigation = { state: 'idle', source: null, from: null, destination: null };\n} else if (topic === 'nav/error' || topic === 'enqueue/error' || topic === 'fleet/cancel/failed') {\n    state.error = payload.error || payload.message || String(raw || 'operation failed');\n    if (topic === 'nav/error') state.navigation.state = 'failed';\n} else if (topic === 'enqueue/success') {\n    state.connection.fleet = 'online';\n    state.task = Object.assign({}, state.task || {}, { source: 'fleet', name: payload.label || payload.job_name || 'Fleet Task', state: 'submitting' });\n} else if (topic === 'poi/cancelled' || topic === 'nav/cancelled') {\n    state.navigation = { state: 'idle', source: null, from: null, destination: null };\n    state.task = null;\n} else if (topic === 'wait/start') {\n    state.navigation.state = 'waiting';\n    if (state.task) state.task.currentStep = payload.label || payload.title || 'Waiting for operator';\n} else if (topic === 'wait/done' || topic === 'wait/cancelled') {\n    if (state.navigation.state === 'waiting') state.navigation.state = 'idle';\n} else if (topic === 'estop' || topic === 'estop/status') {\n    const source = payload.message || payload;\n    let estop = source;\n    try { if (typeof source === 'string') estop = JSON.parse(source); } catch (e) {}\n    if (estop && (estop.emergency || estop.driver_emc || estop.electric || estop.is_estop)) state.robot.mode = 'emergency';\n} else if (topic === 'v2/config/save') {\n    const params = payload.params || {};\n    const section = String(params.section || '');\n    const values = params.values || {};\n    const cfg = global.get('cfg') || {};\n    if (section === 'standby' && values.standbyPoint) { cfg.standbyPoi = values.standbyPoint; state.config.standbyPoint = values.standbyPoint; }\n    if (section === 'charge' && values.chargePoint) { cfg.chargePoi = values.chargePoint; state.config.chargingPoint = values.chargePoint; }\n    if (section === 'fleet') { state.config.fleetTasks = values; global.set('v2_fleet_config', values); }\n    if (section === 'points') { state.config.visiblePoints = values; global.set('v2_visible_points', values); }\n    global.set('cfg', cfg);\n    out.push({ topic: 'config/saved', payload: { request_id: payload.request_id, section: section, config: state.config }, _socketId: msg._socketId });\n} else if (topic === 'v2/command/accepted') {\n    const action = String(payload.action || '');\n    const params = payload.params || {};\n    if (action === 'navigate') state.navigation = { state: 'submitting', source: params.source || 'local', from: state.robot.currentPoi, destination: params.target || params.destination || params.point || null };\n    if (action === 'pause') state.navigation.state = 'pausing';\n    if (action === 'resume') state.navigation.state = 'resuming';\n    if (action === 'cancel') state.navigation.state = 'cancelling';\n    if (action === 'start') state.connection.fleet = 'syncing';\n    out.push({ topic: 'ui/command/ack', payload: { request_id: payload.command_id, command_id: payload.command_id, action: action, accepted: true, revision: Number(state.revision || 0) + 1 }, _socketId: msg._socketId });\n} else if (topic === 'v2/command/duplicate') {\n    out.push({ topic: 'ui/command/ack', payload: { request_id: payload.command_id, command_id: payload.command_id, accepted: true, duplicate: true, revision: state.revision }, _socketId: msg._socketId });\n} else if (topic === 'v2/command/rejected') {\n    out.push({ topic: 'ui/command/ack', payload: { request_id: payload.command_id || null, command_id: payload.command_id || null, accepted: false, error: payload.error || 'command rejected', revision: state.revision }, _socketId: msg._socketId });\n}\n\nconst cfg = global.get('cfg') || {};\nif (cfg.standbyPoi) state.config.standbyPoint = cfg.standbyPoi;\nif (cfg.chargePoi) state.config.chargingPoint = cfg.chargePoi;\nconst globalPoi = String(global.get('current_poi') || '').trim();\nif (globalPoi) state.robot.currentPoi = globalPoi;\nconst globalStatus = String(global.get('current_status') || '').trim();\nconst globalJob = String(global.get('current_job_name') || '').trim();\nif (globalStatus) state.connection.fleet = 'online';\nif (globalJob) {\n    state.task = Object.assign({}, state.task || {}, { source: 'fleet', name: globalJob, state: globalStatus && globalStatus !== 'idle' ? 'running' : 'available', currentStep: globalStatus || null });\n} else if (globalStatus === 'idle' && state.task && state.task.source === 'fleet') {\n    state.task = null;\n}\nconst after = JSON.stringify({ connection: state.connection, robot: state.robot, navigation: state.navigation, task: state.task, config: state.config, error: state.error });\nconst changed = before !== after;\nif (changed) { state.revision = Number(state.revision || 0) + 1; state.updatedAt = new Date().toISOString(); save(state); }\nif (changed || force) out.push(snapshot(state, msg));\nreturn [out];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 940,
+        "wires": [
+            [
+                "65bcae3e8cd99339"
+            ]
+        ]
+    }
+]

@@ -1,50 +1,58 @@
-# AMB-ROBOT-V2 Node-RED adapter
+# AMB-ROBOT-V2 compatibility version
 
-Import `flow.json` into the same Node-RED runtime that contains the existing Fleet Job Engine from `UI_Adam.json`.
+`adam_flows.json` is the complete existing Node-RED export with a minimal V2 uibuilder compatibility layer added to the active `Telemetry, Command & UI Hub` tab.
 
-## Responsibilities
+It replaces the earlier standalone V2 adapter proposal. The existing robot polling, navigation nodes, Fleet Job Engine, charging logic, HTTP endpoints, WebSocket endpoints, and `svi-gateway` nodes remain in place.
 
-- Hosts the `AMB-ROBOT-V2` uibuilder instance.
-- Validates and deduplicates UI commands.
-- Polls battery, current POI, and robot mode through `svi-gateway` nodes.
-- Maintains a revisioned UI state snapshot.
-- Restores the last state from Node-RED context when persistent context is available.
-- Routes Fleet start and cancellation requests to the existing Fleet Job Engine.
-- Routes local navigation, pause, resume, and cancellation through existing `svi-gateway` node types.
+## Added nodes
 
-It does not modify or replace `amr-fleet-management`.
+- `v2_compat_command_adapter` — accepts the V2 protocol, rejects invalid commands, and deduplicates the latest 200 command IDs.
+- `v2_compat_client_event` — converts uibuilder socket events into state synchronization events.
+- `v2_compat_state_manager` — aggregates existing messages and global Fleet state into revisioned snapshots.
 
-## Required nodes
+## Existing nodes with added wires
 
-- `node-red-contrib-uibuilder`
-- The local `svi-gateway` package used by the existing AMR flow
+The following existing nodes still send their original messages to the old UI and now also send a copy to the V2 state manager:
 
-## Required configuration
+- `3230c93c6052aaa0` — battery topic
+- `5b29c2b68360c3c0` — Wi-Fi topic
+- `1208527fda5a862f` — POI, status, destination, and distance
+- `74458d0a0d6f47b4` — robot mode
+- `ade363b933d65ff4` — navigation arrival
+- `030d591fd769473a` — navigation progress
+- `31d59e0d96429950` — Fleet UI events
+- `enq_node_01` — enqueue success and error
+- `robot_estop_01` — emergency state
+- `poi_cancel_ui_fn` — cancellation state
+- `7d56d28a0500cb46` — robot errors
 
-1. Open `AMB-20 Gateway` and set the deployed `amr-gateway-service` host and port.
-2. Confirm that the existing Fleet flow contains these link inputs:
-   - `c21761218db4c6d5` — accept next Fleet job
-   - `ee6ac5bac94adea3` — cancel current Fleet job
-3. Connect the existing Fleet job-progress output to `Fleet progress input` when progress messages are not already forwarded through another shared link.
-4. Configure Node-RED persistent context storage with a store named `file` for restart persistence. The flow falls back to memory context if that store is unavailable.
-5. Deploy the flow and copy this repository's `src` directory into the generated `AMB-ROBOT-V2` uibuilder instance when uibuilder does not automatically reuse it.
+The existing uibuilder node `65bcae3e8cd99339` also sends V2 commands to the compatibility adapter and client control events to the client-event adapter.
 
-## UI protocol
+## Existing code changed
 
-The frontend sends:
+The function `1208527fda5a862f` now publishes the periodically reported current POI. Its previous POI send statement was commented out. It also refreshes `global.current_poi` when the gateway returns a POI.
 
-- `ui/state/request`
-- `edge/command/request`
-- `fleet/command/request`
+No Fleet API URL, Fleet custom node, robot control node, Fleet Management behavior, or original legacy command route was replaced.
 
-The adapter sends:
+## V2 routing
 
-- `ui/state/snapshot`
-- `ui/command/ack`
-- `config/saved`
+- `edge/command/request:navigate` → existing `nav` route
+- `edge/command/request:pause` → existing `pause` route
+- `edge/command/request:resume` → existing `resume` route
+- `edge/command/request:cancel` → existing `cancel` route
+- `fleet/command/request:start` → existing `enq_link_accept` Fleet accept path
+- `fleet/command/request:cancel` → existing `poi_cancel_ui_fn` cancellation path
+- `ui/state/request` and Fleet `sync` → V2 state snapshot
+- `edge/command/request:settings/save` → V2 configuration compatibility state
 
-Every accepted change increments `revision`. Repeated command IDs are acknowledged without executing the underlying command again.
+Legacy UI messages continue to use the original routes unchanged.
 
-## Important deployment note
+## Persistence
 
-The Fleet link IDs intentionally target the existing `UI_Adam.json` Fleet Job Engine. If that flow is regenerated with different Node-RED IDs, update the two V2 link-out nodes in the editor before deployment.
+The adapter uses a Node-RED context store named `file` when available and falls back to the default context store. Configure `contextStorage` with a `localfilesystem` store named `file` to retain snapshots and processed command IDs across Node-RED restarts.
+
+## Deployment
+
+Import the complete `adam_flows.json` as a versioned replacement of the matching deployed flow export. Do not import it alongside the same 254-node baseline because the existing node IDs are intentionally preserved.
+
+The existing uibuilder URL remains `AMB-ROBOT`. Deploy this repository's `src` files into the existing `AMB-ROBOT/src` instance directory. Keeping that instance name also preserves the current `config-button.json`, `robot-config.json`, and `wait-status.json` paths in the baseline flow.

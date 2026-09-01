@@ -53,4 +53,4 @@ Robot commands use `edge/command/request`. Fleet commands use `fleet/command/req
 npm run check
 ```
 
-The importable Node-RED adapter is available at `node-red/flow.json`. Read `node-red/README.md` before importing because its two Fleet link-out nodes intentionally target the existing `UI_Adam.json` Fleet Job Engine.
+The Node-RED deliverable is a compatibility version of the complete deployed flow export at `node-red/adam_flows.json`. It preserves the existing Fleet and robot-control nodes and adds only the V2 protocol and state-snapshot layer. Read `node-red/README.md` before replacing the deployed flow.
