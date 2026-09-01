@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#e8eef1">
+  <title>SVI AMR</title>
+  <link rel="stylesheet" href="./app.css">
+  <link rel="stylesheet" href="./settings.css">
+  <link rel="stylesheet" href="./fleet.css">
+</head>
+<body>
+  <main id="app" class="app-shell" data-view="home">
+    <section id="homeView" class="view home-view is-active" aria-label="AMR home screen">
+      <header class="topbar">
+        <div class="brand-block">
+          <img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI">
+          <div class="brand-copy">
+            <strong>AMB-20</strong>
+            <span>Autonomous Mobile Robot</span>
+          </div>
+        </div>
+
+        <div class="status-strip">
+          <div class="status-item"><span class="status-dot ok"></span><span>Robot</span><strong id="robotMode">Idle</strong></div>
+          <div class="status-item"><span class="status-dot ok" id="fleetDot"></span><span>Fleet</span><strong id="fleetStatus">Online</strong></div>
+          <div class="status-item battery"><span class="battery-icon"><i id="batteryFill"></i></span><strong id="batteryText">76%</strong></div>
+          <time id="clock">11:50</time>
+        </div>
+      </header>
+
+      <div class="home-grid">
+        <article class="robot-card panel">
+          <div class="panel-kicker">ROBOT</div>
+          <div class="robot-image-wrap">
+            <div class="robot-halo"></div>
+            <img src="./assets/amr.png" alt="AMB-20 AMR" class="robot-image">
+          </div>
+          <div class="robot-meta">
+            <div><span>Device</span><strong>AMB-20</strong></div>
+            <div><span>Current POI</span><strong id="currentPoi">LM45</strong></div>
+          </div>
+        </article>
+
+        <section class="workspace">
+          <article class="task-card panel">
+            <div class="task-heading">
+              <div>
+                <span class="panel-kicker">CURRENT TASK</span>
+                <h1 id="taskTitle">No Active Task</h1>
+                <p id="taskDetail">Robot is ready to accept a new task</p>
+              </div>
+              <span class="task-badge" id="taskBadge">READY</span>
+            </div>
+            <div class="task-route" id="taskRoute" hidden>
+              <span id="routeFrom">LM45</span><i></i><strong id="routeTo">LM47</strong>
+            </div>
+          </article>
+
+          <div class="action-grid">
+            <button class="action-card fleet" data-action="fleet">
+              <span class="action-icon">F</span>
+              <span><strong>Fleet Tasks</strong><small>View and start dispatched tasks</small></span>
+              <b>›</b>
+            </button>
+            <button class="action-card point" data-action="point">
+              <span class="action-icon">⌖</span>
+              <span><strong>Go to Point</strong><small>Navigate to an approved destination</small></span>
+              <b>›</b>
+            </button>
+            <button class="action-card charge" data-action="charge">
+              <span class="action-icon">ϟ</span>
+              <span><strong>Go Charge</strong><small>Navigate to default charger CP1</small></span>
+              <b>›</b>
+            </button>
+            <button class="action-card standby" data-action="standby">
+              <span class="action-icon">↩</span>
+              <span><strong>Return to Standby</strong><small>Return to standby point HR775</small></span>
+              <b>›</b>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <footer class="home-footer">
+        <button data-action="device"><span>◉</span>Device Status</button>
+        <div class="footer-message"><span class="status-dot ok"></span><span id="footerMessage">All systems operational</span></div>
+        <button data-action="settings"><span>⚙</span>Settings</button>
+      </footer>
+    </section>
+
+    <section id="movingView" class="view moving-view" aria-label="Robot is moving">
+      <div class="moving-top">
+        <img src="./assets/svi_logo.svg" alt="SVI">
+        <span id="movingConnection"><i></i>Task in Progress</span>
+      </div>
+      <button id="movingTouchArea" class="moving-touch" aria-label="Tap to pause task">
+        <div class="eyes" aria-hidden="true"><span><i></i></span><span><i></i></span></div>
+        <div class="moving-caption">
+          <strong id="movingTitle">Moving to LM47</strong>
+          <small>Tap the screen to pause</small>
+        </div>
+      </button>
+    </section>
+
+    <section id="pausedView" class="view paused-view" aria-label="Task paused">
+      <header class="pause-header"><img src="./assets/svi_logo.svg" alt="SVI"><span><i></i>Task Paused</span></header>
+      <div class="pause-layout">
+        <div class="paused-face"><div class="eyes still"><span><i></i></span><span><i></i></span></div><small>PAUSED</small></div>
+        <article class="pause-info">
+          <span class="panel-kicker">TASK INFORMATION</span>
+          <h1 id="pausedTaskName">Point-to-Point Move</h1>
+          <dl>
+            <div><dt>Current Action</dt><dd id="pausedAction">Go to LM47</dd></div>
+            <div><dt>Current Location</dt><dd id="pausedFrom">LM45</dd></div>
+            <div><dt>Destination</dt><dd id="pausedTo">LM47</dd></div>
+            <div><dt>Fleet Connection</dt><dd class="online">Online</dd></div>
+          </dl>
+          <div class="pause-actions">
+            <button id="resumeButton" class="primary">Resume Task</button>
+            <button id="cancelButton" class="danger">Cancel Task</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="fleetView" class="view fleet-view" aria-label="Fleet tasks">
+      <header class="fleet-header">
+        <div class="brand-block"><img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI"><div class="brand-copy"><strong>Fleet Tasks</strong><span>AMB-20 Task Control</span></div></div>
+        <div class="fleet-header-actions"><span id="fleetPageConnection" class="fleet-connection syncing"><i></i>Synchronizing</span><button id="fleetBack" type="button">Back</button></div>
+      </header>
+      <div class="fleet-layout">
+        <aside class="fleet-summary">
+          <span class="panel-kicker">ROBOT AVAILABILITY</span>
+          <div class="fleet-robot"><img src="./assets/amr.png" alt="AMB-20 AMR"><div><strong>AMB-20</strong><span id="fleetRobotMode">Checking status</span></div></div>
+          <dl><div><dt>Current POI</dt><dd id="fleetCurrentPoi">LM45</dd></div><div><dt>Fleet</dt><dd id="fleetLinkValue">Connecting</dd></div><div><dt>Last Update</dt><dd id="fleetLastUpdate">—</dd></div></dl>
+          <button id="fleetRetry" class="fleet-retry" type="button">Refresh Status</button>
+        </aside>
+        <main class="fleet-workspace">
+          <div class="fleet-title-row"><div><span class="panel-kicker">CURRENT ASSIGNMENT</span><h1 id="fleetTaskHeading">Checking Fleet status</h1><p id="fleetTaskMessage">Please wait while the latest task state is restored.</p></div><span id="fleetTaskBadge" class="fleet-task-badge syncing">SYNCING</span></div>
+          <article id="fleetTaskCard" class="fleet-task-card" hidden>
+            <div class="fleet-task-main"><span class="fleet-task-symbol">F</span><div><small id="fleetTaskType">FLEET TASK</small><h2 id="fleetTaskName">Standard Cleaning</h2><p id="fleetTaskDetail">Assigned by Fleet Management</p></div></div>
+            <dl class="fleet-task-data"><div><dt>Task ID</dt><dd id="fleetTaskId">—</dd></div><div><dt>Current Step</dt><dd id="fleetTaskStep">—</dd></div><div><dt>Destination</dt><dd id="fleetTaskDestination">—</dd></div></dl>
+            <div class="fleet-progress"><span><b id="fleetProgressText">0%</b><small>Task progress</small></span><i><b id="fleetProgressFill"></b></i></div>
+          </article>
+          <div id="fleetEmptyState" class="fleet-empty"><span>✓</span><h2>No Task Available</h2><p>The robot is ready. New assignments will appear automatically.</p></div>
+          <div class="fleet-actions"><button id="fleetPrimaryAction" class="primary" type="button" disabled>Waiting for Status</button><button id="fleetCancelAction" class="danger" type="button" hidden>Cancel Task</button></div>
+        </main>
+      </div>
+    </section>
+
+    <section id="settingsView" class="view settings-view" aria-label="AMR settings">
+      <header class="settings-header">
+        <div class="brand-block"><img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI"><div class="brand-copy"><strong>Settings</strong><span>AMB-20 Configuration</span></div></div>
+        <button id="closeSettings" class="settings-close" type="button">Done</button>
+      </header>
+      <div class="settings-body">
+        <aside class="settings-intro">
+          <span class="panel-kicker">ADMINISTRATION</span><h1>Robot Settings</h1>
+          <p>Configure the task options and destinations available to operators.</p>
+          <div class="settings-notice"><span>i</span><p>Changes apply to this robot after they are saved.</p></div>
+        </aside>
+        <section class="settings-grid" aria-label="Configuration categories">
+          <button class="settings-card" data-config="fleet" type="button"><span class="settings-card-icon fleet-icon">F</span><span><strong>Fleet Task Configuration</strong><small>Choose the Fleet task exposed on the home screen.</small></span><b>›</b></button>
+          <button class="settings-card" data-config="standby" type="button"><span class="settings-card-icon standby-icon">↩</span><span><strong>Standby Point</strong><small>Set the default destination for Return to Standby.</small></span><b>HR775</b></button>
+          <button class="settings-card" data-config="charge" type="button"><span class="settings-card-icon charge-icon">ϟ</span><span><strong>Charging Point</strong><small>Set the default destination for Go Charge.</small></span><b>CP1</b></button>
+          <button class="settings-card" data-config="points" type="button"><span class="settings-card-icon point-icon">⌖</span><span><strong>Visible Points</strong><small>Select and rename the points operators are allowed to see.</small></span><b>4</b></button>
+        </section>
+      </div>
+      <footer class="settings-footer"><span class="status-dot ok"></span><span>Configuration service connected</span><strong>Last saved: Today, 11:42</strong></footer>
+    </section>
+  </main>
+
+  <dialog id="confirmDialog" class="dialog">
+    <form method="dialog">
+      <span class="dialog-icon" id="dialogIcon">?</span>
+      <h2 id="dialogTitle">Confirm Action</h2>
+      <p id="dialogText"></p>
+      <div><button value="cancel" class="secondary">Back</button><button value="confirm" id="dialogConfirm" class="primary">Confirm</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="dialog settings-dialog">
+    <form method="dialog" id="passwordForm">
+      <span class="dialog-icon lock">⚙</span>
+      <h2>Open Settings</h2>
+      <p>Enter the administrator password</p>
+      <label class="password-field"><input id="settingsPassword" type="password" autocomplete="off" placeholder="Administrator password"><button id="togglePassword" type="button">Show</button></label>
+      <small id="passwordError" class="form-error"></small>
+      <div><button value="cancel" class="secondary">Cancel</button><button value="default" id="passwordSubmit" class="primary">Open Settings</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="infoDialog" class="dialog info-dialog">
+    <form method="dialog">
+      <span class="dialog-icon">i</span><h2>Device Status</h2>
+      <div class="device-list"><div><span>Local Control</span><strong>Connected</strong></div><div><span>Robot</span><strong>Idle</strong></div><div><span>Fleet</span><strong>Online</strong></div><div><span>Current POI</span><strong>LM45</strong></div></div>
+      <div><button value="confirm" class="primary wide">Close</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="configDialog" class="dialog config-dialog">
+    <form method="dialog" id="configForm">
+      <div class="config-dialog-head"><div><span class="panel-kicker">CONFIGURATION</span><h2 id="configTitle">Standby Point</h2></div><button value="cancel" class="dialog-x" aria-label="Close">×</button></div>
+      <p id="configDescription" class="config-description"></p><div id="configFields" class="config-fields"></div><small id="configFeedback" class="config-feedback"></small>
+      <div class="config-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save Changes</button></div>
+    </form>
+  </dialog>
+
+  <script src="./fleet.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

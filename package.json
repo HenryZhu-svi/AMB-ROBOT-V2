@@ -1,0 +1,8 @@
+{
+  "name": "amb-robot-ui-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "python -m http.server 4173 -d src"
+  }
+}
