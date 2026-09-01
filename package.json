@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "python -m http.server 4173 -d src"
+    "start": "python -m http.server 4173 -d src",
+    "dev": "python -m http.server 4173 -d src",
+    "check": "node --check src/state.js && node --check src/transport.js && node --check src/fleet.js && node --check src/app.js"
   }
 }

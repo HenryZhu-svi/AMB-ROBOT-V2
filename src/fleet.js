@@ -39,7 +39,7 @@
         created_at: new Date().toISOString()
       }
     };
-    if (window.uibuilder && typeof window.uibuilder.send === 'function') window.uibuilder.send(message);
+    if (window.AMRTransport) window.AMRTransport.send(message.topic, message.payload, { requestId: id });
     else console.info('[Fleet UI demo]', message);
     return id;
   }
@@ -47,6 +47,7 @@
   function setConnection(connection) {
     const normalized = cleanState(connection) || 'offline';
     fleetState.connection = normalized;
+    if (window.AMRStore) window.AMRStore.patch({ connection: { fleet: normalized } }, 'fleet-connection');
     const chip = $fleet('#fleetPageConnection');
     const value = $fleet('#fleetLinkValue');
     chip.className = 'fleet-connection ' + normalized;
@@ -127,14 +128,29 @@
     const incomingRevision = Number(snapshot.revision || 0);
     if (incomingRevision && incomingRevision < fleetState.revision) return;
     if (incomingRevision) fleetState.revision = incomingRevision;
-    setConnection(snapshot.connection && snapshot.connection.fleet || snapshot.connection || 'online');
+    const fleetConnection = snapshot.connection && typeof snapshot.connection === 'object'
+      ? snapshot.connection.fleet
+      : snapshot.connection;
+    setConnection(fleetConnection || 'online');
     fleetState.task = snapshot.task || null;
     fleetState.taskState = cleanState(snapshot.task && snapshot.task.state || snapshot.taskState || (snapshot.task ? 'available' : 'idle'));
     fleetState.lastUpdate = snapshot.updatedAt || snapshot.updated_at || new Date().toISOString();
     fleetState.pendingCommandId = null;
     clearTimeout(fleetState.syncTimer);
     if (snapshot.robot && snapshot.robot.currentPoi) $fleet('#fleetCurrentPoi').textContent = snapshot.robot.currentPoi;
+    if (window.AMRStore) {
+      window.AMRStore.applySnapshot(Object.assign({}, snapshot, {
+        connection: snapshot.connection && typeof snapshot.connection === 'object'
+          ? snapshot.connection
+          : { fleet: normalizedConnection(snapshot.connection) },
+        task: fleetState.task
+      }), 'fleet-snapshot');
+    }
     renderFleetState();
+  }
+
+  function normalizedConnection(connection) {
+    return cleanState(connection) || 'offline';
   }
 
   function applyLegacyProgress(payload) {
@@ -185,7 +201,9 @@
     dialog.addEventListener('close', function done() { dialog.removeEventListener('close', done); if (dialog.returnValue === 'confirm') { fleetState.pendingCommandId = sendFleetCommand('cancel'); fleetState.taskState = 'pending'; renderFleetState(); } });
   });
 
-  window.addEventListener('online', requestFleetState);
+  window.addEventListener('online', () => {
+    if (!window.AMRTransport || window.AMRTransport.getStatus() === 'online') requestFleetState();
+  });
   window.addEventListener('offline', () => { setConnection('offline'); renderFleetState(); });
 
   window.handleFleetMessage = function (msg) {
@@ -199,4 +217,5 @@
     if (topic === 'poi/cancelled' || topic === 'nav/cancelled') { applyFleetSnapshot({ revision: fleetState.revision + 1, connection: 'online', task: null, taskState: 'cancelled', updatedAt: new Date().toISOString() }); return true; }
     return false;
   };
+  if (window.AMRTransport) window.AMRTransport.subscribe(window.handleFleetMessage);
 })();
