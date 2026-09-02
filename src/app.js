@@ -180,6 +180,7 @@
   }));
 
   $('#pointForm').addEventListener('submit', event => {
+    if (event.submitter && event.submitter.value === 'cancel') return;
     event.preventDefault();
     const target = new FormData(event.currentTarget).get('destination');
     if (!target) { $('#pointFeedback').textContent = 'Select a destination.'; return; }
@@ -214,6 +215,7 @@
     $('#togglePassword').textContent = input.type === 'password' ? 'Show' : 'Hide';
   });
   $('#passwordForm').addEventListener('submit', event => {
+    if (event.submitter && event.submitter.value === 'cancel') return;
     event.preventDefault();
     if ($('#settingsPassword').value !== 'admin_amr') {
       $('#passwordError').textContent = 'Incorrect password. Please try again.';
@@ -222,38 +224,11 @@
     }
     $('#settingsDialog').close();
     setView('settings');
+    window.AMRSettings.refresh();
   });
   $('#closeSettings').addEventListener('click', () => setView('home'));
 
-  const configDefinitions = {
-    fleet: { title: 'Fleet Task Configuration', description: 'Choose the Fleet task operators can start from the home screen.', fields: '<div class="config-field"><label for="fleetTask">FLEET TASK</label><select id="fleetTask" name="fleetTask"><option value="standard-cleaning">Standard Cleaning</option><option value="deep-cleaning">Deep Cleaning</option><option value="inspection">Inspection Route</option></select></div><div class="config-field"><label for="fleetLabel">OPERATOR LABEL</label><input id="fleetLabel" name="fleetLabel" value="Fleet Tasks"></div>' },
-    standby: { title: 'Standby Point', description: 'Set the default destination used by Return to Standby.', fields: '<div class="config-field"><label for="standbyPoint">POINT</label><select id="standbyPoint" name="standbyPoint"><option>HR775</option><option>LM45</option><option>ST01</option></select></div><div class="config-field"><label for="standbyLabel">OPERATOR LABEL</label><input id="standbyLabel" name="standbyLabel" value="Main Standby"></div>' },
-    charge: { title: 'Charging Point', description: 'Set the charging destination used by Go Charge.', fields: '<div class="config-field"><label for="chargePoint">POINT</label><select id="chargePoint" name="chargePoint"><option>CP1</option><option>CP2</option></select></div><div class="config-field"><label for="chargeLabel">OPERATOR LABEL</label><input id="chargeLabel" name="chargeLabel" value="Main Charger"></div>' },
-    points: { title: 'Visible Points', description: 'Only selected points and their operator labels appear in Go to Point.', fields: '<div class="point-row"><input type="checkbox" name="point" value="LM47" checked><strong>LM47</strong><input name="label_LM47" type="text" value="Main Lobby" aria-label="LM47 operator label"></div><div class="point-row"><input type="checkbox" name="point" value="LM52" checked><strong>LM52</strong><input name="label_LM52" type="text" value="East Corridor" aria-label="LM52 operator label"></div><div class="point-row"><input type="checkbox" name="point" value="HR775" checked><strong>HR775</strong><input name="label_HR775" type="text" value="Service Area" aria-label="HR775 operator label"></div><div class="point-row"><input type="checkbox" name="point" value="ST01" checked><strong>ST01</strong><input name="label_ST01" type="text" value="Storage Room" aria-label="ST01 operator label"></div>' }
-  };
-
-  $$('[data-config]').forEach(button => button.addEventListener('click', () => {
-    const key = button.dataset.config;
-    const config = configDefinitions[key];
-    const dialog = $('#configDialog');
-    dialog.dataset.config = key;
-    $('#configTitle').textContent = config.title;
-    $('#configDescription').textContent = config.description;
-    $('#configFields').innerHTML = config.fields;
-    $('#configFeedback').textContent = '';
-    dialog.showModal();
-  }));
-  $('#configForm').addEventListener('submit', event => {
-    event.preventDefault();
-    const dialog = $('#configDialog');
-    const data = new FormData(event.currentTarget);
-    let values = Object.fromEntries(data.entries());
-    if (dialog.dataset.config === 'points') {
-      values = { points: data.getAll('point').map(id => ({ id, label: String(data.get('label_' + id) || id).trim() || id })) };
-    }
-    sendEdge('settings/save', { section: dialog.dataset.config, values });
-    $('#configFeedback').textContent = 'Saving changes…';
-  });
+  // Settings are handled by settings.js using the live point catalog.
 
   function normalizedRobotPatch(topic, payload) {
     if (topic === 'battery') return { battery: Number(payload && typeof payload === 'object' ? payload.battery_pct ?? payload.battery : payload) };
@@ -299,7 +274,7 @@
       setView('home', { persist: false });
       return;
     }
-    if (topic === 'config/saved') {
+    if (topic === 'config/saved' && !window.AMRSettings) {
       store.resolveCommand(payload && payload.request_id);
       if (payload && payload.config) store.patch({ config: payload.config }, 'config-saved');
       $('#configFeedback').textContent = 'Settings saved';

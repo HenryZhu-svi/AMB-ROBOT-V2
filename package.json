@@ -5,6 +5,6 @@
   "scripts": {
     "start": "python -m http.server 4173 -d src",
     "dev": "python -m http.server 4173 -d src",
-    "check": "node --check src/state.js && node --check src/transport.js && node --check src/fleet.js && node --check src/app.js && node scripts/check-flow.js"
+    "check": "node --check src/state.js && node --check src/transport.js && node --check src/fleet.js && node --check src/app.js && node --check src/settings.js && node scripts/check-flow.js && node scripts/check-settings.js && node scripts/check-stations.js"
   }
 }

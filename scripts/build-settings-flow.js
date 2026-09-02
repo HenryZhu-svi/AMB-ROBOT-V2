@@ -1,0 +1,25 @@
+'use strict';
+// Deterministic transformation of the existing Adam flow, not a standalone flow.
+const fs = require('fs'), path = require('path');
+const root = path.join(__dirname, '..');
+const file = path.join(root, 'node-red/adam_flows.json');
+const nodes = JSON.parse(fs.readFileSync(file, 'utf8'));
+const get = id => nodes.find(n => n.id === id);
+const ui = get('65bcae3e8cd99339');
+const station = get('seer_station_01');
+station.type = 'robot-stationlist';
+station.server = get('3230c93c6052aaa0') ? nodes.find(n => n.type === 'robot-battery').server : station.server;
+const fmt = get('fn_poi_stations_fmt');
+fmt.func = "const points = msg.payload && msg.payload.points;\nif (!Array.isArray(points)) return null;\nflow.set('v2_point_catalog', { points, at:Date.now() });\nmsg.topic = 'poi/stations';\nmsg.payload = { points, request_id:msg._pointRequestId };\nreturn msg;";
+function upsert(node) { const i = nodes.findIndex(n => n.id === node.id); if (i < 0) nodes.push(node); else nodes[i] = node; }
+upsert({ id:'v2_settings_service', type:'function', z:ui.z, name:'Persistent UI settings', func:fs.readFileSync(path.join(root, 'node-red/settings-service.js'), 'utf8'), outputs:1, x:1440, y:1040, wires:[[ui.id]] });
+upsert({ id:'v2_points_error', type:'function', z:ui.z, name:'Point query error to UI', func:"flow.set('v2_point_catalog', null); msg.topic = 'poi/error'; msg.payload = { error:msg.error || 'Point query failed' }; return msg;", outputs:1, x:740, y:1000, wires:[[ui.id]] });
+if (!station.wires[1].includes('v2_points_error')) station.wires[1].push('v2_points_error');
+if (!ui.wires[0].includes('v2_settings_service')) ui.wires[0].push('v2_settings_service');
+upsert({ id:'v2_settings_load', type:'inject', z:ui.z, name:'Restore saved UI settings', props:[{p:'topic',vt:'str'}], topic:'ui/settings/request', once:true, onceDelay:1, repeat:'', x:1140, y:1040, wires:[['v2_settings_service']] });
+const manager = get('v2_compat_state_manager');
+const marker = "const after = JSON.stringify(";
+if (!manager.func.includes("global.get('v2_saved_config')")) manager.func = manager.func.replace(marker, "state.config = Object.assign({}, state.config, global.get('v2_saved_config') || {});\n" + marker);
+const adapter = get('v2_compat_command_adapter');
+if (!adapter.func.includes('Use ui/settings/save')) adapter.func = adapter.func.replace("if (topic === 'ui/state/request' ||", "if (action === 'settings/save') return [null, {topic:'v2/command/rejected', payload:{command_id:commandId,error:'Use ui/settings/save for persistent settings'}, _socketId:msg._socketId}, null, null];\nif (topic === 'ui/state/request' ||");
+fs.writeFileSync(file, JSON.stringify(nodes, null, 4) + '\n');
