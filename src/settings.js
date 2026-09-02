@@ -20,7 +20,7 @@
   }
   function refresh() {
     ready = false;
-    feedback('Loading current map points…');
+    feedback('Loading map points from the wired AMR…');
     renderSummary();
     if (transport.getStatus() !== 'online') { feedback('Local control is offline. Reconnect and retry.'); return; }
     transport.send('ui/settings/request', {}, { track:false });
@@ -80,7 +80,7 @@
       catalog = list; ready = true; renderSummary();
       if ($('#configDialog').open) renderEditor();
     }
-    if (msg.topic === 'poi/error') { clearTimeout(timer); request = null; ready = false; feedback(msg.payload?.error || 'Point query failed. Retry to continue.'); }
+    if (msg.topic === 'poi/error' && request && msg.payload?.request_id === request) { clearTimeout(timer); request = null; ready = false; feedback(msg.payload?.error || 'Point query failed. Retry to continue.'); }
     if (msg.topic === 'ui/settings/state' || msg.topic === 'ui/settings/saved') {
       config = msg.payload.config; revision = msg.payload.revision;
       store.patch({ config }, 'settings-loaded'); store.persist(); renderSummary();

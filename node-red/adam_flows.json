@@ -2011,11 +2011,9 @@
     },
     {
         "id": "seer_station_01",
-        "type": "robot-stationlist",
+        "type": "function",
         "z": "0a01cdc12f3cc8f8",
-        "name": "station list",
-        "server": "3efcaa348a134079",
-        "pollInterval": 0,
+        "name": "AMR wired point query (1301)",
         "x": 460,
         "y": 920,
         "wires": [
@@ -2026,7 +2024,10 @@
                 "debug_poi_station_err",
                 "v2_points_error"
             ]
-        ]
+        ],
+        "func": "// Node-RED Function body. Requires functionGlobalContext.net = require('net').\n// SVI_AMR_HOST is the controller's wired IP, not the Gateway host.\nconst requestId = msg.payload && msg.payload.request_id;\nmsg._pointRequestId = requestId;\nconst net = global.get('net');\nconst host = String(env.get('SVI_AMR_HOST') || '').trim();\nconst port = Number(env.get('SVI_AMR_STATUS_PORT') || 19204);\nfunction fail(error) {\n    msg.error = error.message || String(error);\n    node.status({fill:'red', shape:'ring', text:msg.error.slice(0, 48)});\n    node.send([null, msg]);\n}\nif (!net || !host || !Number.isInteger(port) || port < 1 || port > 65535) {\n    fail(new Error('Configure functionGlobalContext.net and SVI_AMR_HOST / SVI_AMR_STATUS_PORT'));\n    node.done();\n    return null;\n}\nconst sequence = (Number(context.get('sequence') || 0) + 1) % 65536;\ncontext.set('sequence', sequence);\nconst header = Buffer.alloc(16);\nheader[0] = 0x5a; header[1] = 1;\nheader.writeUInt16BE(sequence, 2);\nheader.writeUInt32BE(0, 4);\nheader.writeUInt16BE(1301, 8);\nlet buffer = Buffer.alloc(0), settled = false;\nconst socket = new net.Socket();\nconst deadline = setTimeout(() => finish(new Error('AMR point query timed out')), 10000);\nfunction finish(error, points) {\n    if (settled) return;\n    settled = true;\n    clearTimeout(deadline);\n    socket.destroy();\n    if (error) fail(error);\n    else {\n        msg.payload = {points};\n        node.status({fill:'green', shape:'dot', text:points.length + ' points'});\n        node.send([msg, null]);\n    }\n    node.done();\n}\nsocket.once('error', error => finish(error));\nsocket.once('end', () => finish(new Error('AMR closed connection before a complete response')));\nsocket.once('close', () => { if (!settled) finish(new Error('AMR connection closed')); });\nsocket.on('data', chunk => {\n    if (settled) return;\n    buffer = Buffer.concat([buffer, chunk]);\n    try {\n        if (buffer.length < 16) return;\n        if (buffer[0] !== 0x5a || buffer[1] !== 1) throw new Error('Invalid SEER response header');\n        const length = buffer.readUInt32BE(4);\n        if (length > 4 * 1024 * 1024) throw new Error('SEER point response exceeds 4 MB');\n        if (buffer.readUInt16BE(2) !== sequence || buffer.readUInt16BE(8) !== 11301) throw new Error('Unexpected SEER response ID or type');\n        if (buffer.length < 16 + length) return;\n        const raw = JSON.parse(buffer.subarray(16, 16 + length).toString('utf8'));\n        if (raw.ret_code !== undefined && raw.ret_code !== 0) throw new Error(raw.err_msg || 'SEER error ' + raw.ret_code);\n        if (!Array.isArray(raw.stations)) throw new Error('SEER response has no stations array');\n        const seen = new Set();\n        const points = raw.stations.map(station => {\n            const id = String(station.id ?? '').trim();\n            if (!id || seen.has(id)) throw new Error('Missing or duplicate station ID');\n            seen.add(id);\n            return {id, name:String(station.name || station.alias || id), type:station.type || 'LocationMark', x:station.x, y:station.y, r:station.r};\n        });\n        finish(null, points);\n    } catch (error) { finish(error); }\n});\nnode.status({fill:'blue', shape:'dot', text:'Reading AMR map points'});\nsocket.connect(port, host, () => socket.write(header));\nreturn null;\n",
+        "outputs": 2,
+        "timeout": 0
     },
     {
         "id": "fn_poi_stations_fmt",
@@ -5039,7 +5040,7 @@
         "type": "function",
         "z": "0a01cdc12f3cc8f8",
         "name": "Point query error to UI",
-        "func": "flow.set('v2_point_catalog', null); msg.topic = 'poi/error'; msg.payload = { error:msg.error || 'Point query failed' }; return msg;",
+        "func": "flow.set('v2_point_catalog', null); msg.topic = 'poi/error'; msg.payload = { request_id:msg._pointRequestId, error:msg.error || 'Point query failed' }; return msg;",
         "outputs": 1,
         "x": 740,
         "y": 1000,
