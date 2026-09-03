@@ -1,5 +1,6 @@
 // Outputs: legacy command, browser reply, Fleet progress query.
 const p = msg.payload || {};
+if (['sound','relocate','do_control'].includes(msg.topic)) msg._maintenanceRequestId=p.request_id;
 const reply = (topic, payload) => ({ topic, payload, _socketId:msg._socketId });
 if (msg.topic === 'ui/state/request') {
     const cache = flow.get('site_ui_cache') || {};

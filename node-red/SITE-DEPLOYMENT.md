@@ -11,7 +11,7 @@
 
 ## Exact flow changes / Flow 改动范围
 
-- Six added nodes: `site_ui_bridge`, `site_ui_cache`, `site_settings`, `site_settings_load`, `site_point_error`, `site_control_error`. Total: 276 nodes.
+- Seven added nodes: `site_ui_bridge`, `site_ui_cache`, `site_settings`, `site_settings_load`, `site_point_error`, `site_control_error`, `site_sound_feedback`. Total: 277 nodes.
 - Route uibuilder commands through the bridge, mapping new command envelopes to the existing nav/pause/resume/cancel/charge/getjob/enqueue paths. The charging action uses the existing `charge` route; docking logic is not rewritten.
 - Intercept existing UI-bound wires to cache resumable messages. Reconnect requests replay UI state and trigger Fleet/config refresh. Commands are never replayed.
 - Preserve the station query node; add point-catalog caching and a browser-visible error output.
@@ -31,6 +31,10 @@
 - No Gateway, Fleet or custom-node source was modified for this update. The only flow change is UI state caching for named destinations and alarm-topic aliases.
 
 - Existing English design retained; live device identity, telemetry, charging indication and connection freshness.
+- Dedicated charging details distinguish Going to Charger, Waiting for Charging, physical Charging and Charging Stopped. 到达充电点不等于已经充电，阶段以导航和电池反馈组合判断。
+- Fleet task details show the complete ordered step list, current step, priority and an explicit note that progress is a step-position estimate. Dynamic choices support legacy destination aliases, approved-point pages and material names/quantities.
+- Password-gated Maintenance contains coordinate-based relocalization, robot audio controls and the currently mapped HOOK output. Relocalization requires an explicit physical-location confirmation; maintenance commands are disabled unless the live robot is idle and free of tasks/errors.
+- Device Status includes last-received timestamps for robot, Fleet, Wi-Fi and Gateway information when available.
 - Waiting-for-operator dialog with wait ID, deadline display, Ready confirmation and confirmed cancellation request.
 - Fleet dynamic pages and enqueue selections; configurable visibility of Fleet menu entries. Active task prompts are not hidden by the menu filter.
 - POI-occupied waiting/cancellation; local point whitelist and labels; persistent charging/standby configuration.
@@ -42,7 +46,7 @@
 - Browser reconnect recovery is supported while Node-RED remains running. Full Node-RED restart recovery of active custom-node waits/commands is NOT implemented. The custom wait node owns volatile runtime state; restoring an old screen alone cannot restore it.
 - Duplicate IDs are suppressed in memory for ten minutes; this is not durable, cross-restart exactly-once execution. Uncertain results are not automatically retried.
 - Existing custom-node task-completion inference and enqueue HTTP-400 handling are unchanged. Local UI cannot fix wrong upstream business state; it shows physical charging separately from Fleet step names.
-- Charging display is a live status banner, not a new dedicated charging dashboard. Mapping/grouping/sorting of points, sound/Hook/relocation admin tools, detailed alarm translations, and full backend busy arbitration are follow-up work.
+- Mapping/grouping/sorting of points, complete alarm translation for firmware-specific codes, and full backend busy arbitration remain follow-up work.
 - Settings save uses an atomic file replacement and revision check, but other already-open browsers refresh their settings on reconnect/opening Settings rather than receiving a full broadcast.
 
 ## Checks / 检查

@@ -47,27 +47,30 @@
     if (wait || occupied) return;
     const key = String(raw.pageKey || raw.pageId || raw.page || raw.id || '');
     const matches = pages.filter(p => configKey(p) === key || String(p.id) === key);
-    if (!raw.destinations && matches.length !== 1) { banner.textContent = 'Fleet selection is missing or ambiguous. Reload Fleet configuration.'; banner.hidden = false; return; }
+    if (![raw.destinations,raw.points,raw.pois,raw.options,raw.buttons].some(Array.isArray) && matches.length !== 1) { banner.textContent = 'Fleet selection is missing or ambiguous. Reload Fleet configuration.'; banner.hidden = false; return; }
     page = {...(matches[0] || {}), ...raw};
     $('#workflowMeta').textContent='';$('#workflowCountdown').hidden=true;
     $('#workflowTitle').textContent = page.title || 'Select Next Task';
     $('#workflowDetail').textContent = page.detail || 'Choose the next step requested by Fleet.';
     $('#workflowChoices').replaceChildren();
     $('#workflowReady').hidden = true; $('#workflowCancel').hidden = true; $('#workflowBack').hidden = false;
-    const options = page.destinations || page.points || page.options || [];
+    const options = page.sourceType==='poi' ? (store.getState().config.visiblePoints || []).map(p=>({point:p.id,label:p.label})) : page.destinations || page.points || page.pois || page.options || page.buttons || [];
     options.forEach(item => {
       const obj = typeof item === 'object' ? item : {point:String(item)};
       const value = obj.value || obj.point || obj.destination || obj.poi || obj.name || obj.id;
       if (!value) return;
       const button = document.createElement('button'); button.className = 'secondary';
-      button.textContent = obj.label || obj.title || String(value);
+      const label=obj.label || obj.title || String(value);
+      const material=page.materialByDestination?.[value] || obj.material || [];
+      const heading=document.createElement('strong');heading.textContent=label;button.append(heading);
+      const detail=document.createElement('small');detail.textContent=[typeof obj.detail==='string'?obj.detail:'',...material.filter(m=>m?.name).map(m=>m.name+(m.qty!=null?' × '+m.qty:''))].filter(Boolean).join(' · ');button.append(detail);
       button.onclick = () => {
         if (pending || transport.getStatus() !== 'online' || !fresh(fleetAt)) return;
         const selectedPage = page;
         const topic = selectedPage.selectTopic || 'nav';
         if (!['nav','enqueue'].includes(topic)) { feedback('Unsupported Fleet option: ' + topic); return; }
-        window.confirmAction(topic === 'enqueue' ? 'Submit Fleet Selection?' : 'Navigate to Point?', button.textContent, 'Confirm', () => {
-          const payload = {...(selectedPage.basePayload || {}),...(obj.payload || {}),page:selectedPage.id,pageId:selectedPage.id,point:value,target:value,destination:value,label:button.textContent,material:selectedPage.materialByDestination?.[value] || obj.material || []};
+        window.confirmAction(topic === 'enqueue' ? 'Submit Fleet Selection?' : 'Navigate to Point?', label, 'Confirm', () => {
+          const payload = {...(selectedPage.basePayload || {}),...(obj.payload || {}),page:selectedPage.id,pageId:selectedPage.id,point:value,target:value,destination:value,label,material};
           send(topic,topic,payload);
         });
       };
@@ -130,7 +133,7 @@
     if(t==='battery') chargeAt=at;
     if(t==='fleet/job-progress') { if(!p.unavailable) fleetAt=at; }
     if(t==='config/pages') {pages=Array.isArray(p)?p:p.pages || [];renderPages();}
-    if(t==='ui/page') showPage(p);
+    if(['ui/page','ui/assign','page/show','show/page'].includes(t)) showPage(p);
     if(t==='wait/start') { if(!p.waitId) {feedback('Invalid wait request: missing wait ID');return;} if(wait?.waitId !== p.waitId) resolve(); wait=p;showWait(); }
     if(['wait/done','wait/cancelled'].includes(t) && wait && p.waitId===wait.waitId) {wait=null;resolve();dialog.close();const nav=store.getState().navigation.state;window.setView(nav==='paused'?'paused':['running','waiting'].includes(nav)?'moving':'home');}
     if(t==='poi/waiting') {occupied=p;showOccupied();}

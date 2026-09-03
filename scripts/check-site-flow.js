@@ -24,4 +24,7 @@ assert.equal(format({statusCode:503,payload:{}},ctx,ctx).payload.unavailable,tru
 assert.equal(format({statusCode:200,payload:{}},ctx,ctx).payload.active,false);
 assert.deepEqual(nodes.find(n=>n.id==='bf26fc2cb143288b').wires[0],['site_ui_bridge','site_settings']);
 assert.equal(nodes.find(n=>n.id==='6ce56aab23742991').type,'seer-status-station');
+assert(nodes.find(n=>n.id==='773ccf5f45af3503').wires.flat().includes('site_sound_feedback'));
+result=bridge({topic:'relocate',payload:{request_id:'maintenance-1',x:1,y:2,angle:0}},ctx,ctx);
+assert.equal(result[0]._maintenanceRequestId,'maintenance-1');
 console.log('Site flow structure, protocol translation, duplicate guard, replay, terminal cleanup and Fleet failure tests passed ('+nodes.length+' nodes)');

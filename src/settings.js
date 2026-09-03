@@ -106,6 +106,6 @@
     if (msg.topic === 'ui/settings/error') { saving = null; feedback(msg.payload.error); }
   });
   transport.onStatus(status => { if (status !== 'online') ready = false; renderSummary(); if (status === 'online' && $('#settingsView').classList.contains('is-active')) refresh(); });
-  window.AMRSettings = { refresh };
+  window.AMRSettings = { refresh, getCatalog:()=>ready?catalog:[] };
   renderSummary();
 })();

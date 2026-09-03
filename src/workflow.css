@@ -7,6 +7,7 @@
 .fleet-page-options{padding:16px 24px;background:#fff;border-radius:20px;margin:16px 0}
 .fleet-page-options button{margin:6px;min-height:56px}
 #fleetView{overflow:auto}
+.equipment-view{padding:28px;gap:24px;flex-direction:column;background:var(--bg);overflow:auto}.equipment-view header{display:flex;justify-content:space-between;align-items:center}.equipment-view article{background:white;border-radius:28px;padding:32px;max-width:850px;width:100%;margin:auto}.charge-level{font-size:80px;color:var(--green)}.equipment-view dl,#diagnosticDetails{display:grid;grid-template-columns:1fr 2fr;gap:12px}.equipment-view dd,#diagnosticDetails dd{margin:0}.maintenance-dialog{padding:28px;width:min(800px,94vw);max-height:90vh;overflow:auto}.maintenance-dialog section{padding:16px 0;border-bottom:1px solid var(--line)}.maintenance-dialog button{margin:6px}.maintenance-dialog input,.maintenance-dialog select{padding:12px;max-width:100%;border:1px solid var(--line);border-radius:10px}.maintenance-dialog small{display:block}#fleetStepDetails li{padding:8px}#fleetStepDetails [aria-current]{background:#e4f4ff;font-weight:700;border-radius:8px}#workflowChoices button strong,#workflowChoices button small{display:block}#workflowChoices button small{font-weight:400;margin-top:6px}
 .workflow-meta{display:flex;gap:20px;flex-wrap:wrap;margin:16px 0;color:var(--muted)}
 .workflow-countdown{padding:16px;background:#edf7fd;border-radius:12px;font-size:20px;font-weight:700;margin:18px 0;color:var(--ink)}
 .workflow-countdown[hidden]{display:none}

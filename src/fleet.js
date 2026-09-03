@@ -160,6 +160,15 @@
     const current = payload.currentSubjob || payload.current_subjob || {};
     const index = steps.findIndex(step => String(step.id) === String(current.id));
     const progress = steps.length && index >= 0 ? Math.round(index / steps.length * 100) : 0;
+    let details=$fleet('#fleetStepDetails');
+    if(!details){details=document.createElement('section');details.id='fleetStepDetails';$fleet('#fleetTaskCard').append(details);}
+    details.replaceChildren();
+    if(payload.active!==false){
+      const title=document.createElement('h3');title.textContent='Task Steps'+(payload.priority!=null?' · Priority '+payload.priority:'');details.append(title);
+      const list=document.createElement('ol');
+      steps.forEach((step,i)=>{const li=document.createElement('li');li.textContent=String(step.name || 'Unnamed step');if(i===index){li.setAttribute('aria-current','step');li.textContent+=' — Current';}list.append(li);});details.append(list);
+      const note=document.createElement('small');note.textContent='Progress is estimated from step position, not measured execution time.';details.append(note);
+    }
     applyFleetSnapshot({
       revision: fleetState.revision + 1,
       connection: 'online',
