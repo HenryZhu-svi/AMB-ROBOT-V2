@@ -2,11 +2,11 @@
   'use strict';
   const store = window.AMRStore, transport = window.AMRTransport;
   const $ = selector => document.querySelector(selector);
-  let wait = null, occupied = null, pages = [], page = null, pending = null, alarm = '', estop = false;
+  let wait = null, occupied = null, pages = [], page = null, pending = null, estop = false;
   let robotAt = 0, fleetAt = 0, chargeAt = 0;
   const dialog = document.createElement('dialog');
   dialog.className = 'dialog workflow-dialog';
-  dialog.innerHTML = '<h2 id="workflowTitle"></h2><p id="workflowDetail"></p><div id="workflowChoices"></div><p id="workflowFeedback" role="status"></p><div class="workflow-actions"><button id="workflowBack" class="secondary">Close</button><button id="workflowCancel" class="secondary">Cancel Task</button><button id="workflowReady" class="primary">Ready</button></div>';
+  dialog.innerHTML = '<h2 id="workflowTitle"></h2><div class="workflow-meta" id="workflowMeta"></div><p id="workflowDetail"></p><div id="workflowCountdown" class="workflow-countdown" hidden></div><div id="workflowChoices"></div><p id="workflowFeedback" role="status"></p><div class="workflow-actions"><button id="workflowBack" class="secondary">Close</button><button id="workflowCancel" class="secondary">Cancel Task</button><button id="workflowReady" class="primary">Ready</button></div>';
   document.body.appendChild(dialog);
   const banner = document.createElement('aside');
   banner.className = 'live-banner'; banner.hidden = true; banner.setAttribute('role','status');
@@ -28,6 +28,9 @@
     page = null;
     $('#workflowTitle').textContent = wait.title || 'Waiting for Operator';
     $('#workflowDetail').textContent = wait.detail || wait.message || 'Press Ready to continue this Fleet step.';
+    const task=store.getState().task;
+    $('#workflowMeta').textContent = [task?.name ? 'Task: '+task.name : '',wait.target ? 'Point: '+wait.target : ''].filter(Boolean).join(' · ');
+    $('#workflowCountdown').hidden=false;
     $('#workflowChoices').replaceChildren();
     $('#workflowReady').hidden = false; $('#workflowReady').textContent = wait.buttonText || 'Ready';
     $('#workflowCancel').hidden = false; $('#workflowBack').hidden = true;
@@ -35,6 +38,7 @@
   }
   function showOccupied() {
     page = null;
+    $('#workflowMeta').textContent='';$('#workflowCountdown').hidden=true;
     $('#workflowTitle').textContent = 'Waiting for Destination';
     $('#workflowDetail').textContent = (occupied.poi || 'Destination') + (occupied.occupied_by ? ' is occupied by ' + occupied.occupied_by : ' is occupied') + '. The controller will retry automatically.';
     $('#workflowChoices').replaceChildren(); $('#workflowReady').hidden = true; $('#workflowCancel').hidden = false; $('#workflowBack').hidden = true; open();
@@ -45,6 +49,7 @@
     const matches = pages.filter(p => configKey(p) === key || String(p.id) === key);
     if (!raw.destinations && matches.length !== 1) { banner.textContent = 'Fleet selection is missing or ambiguous. Reload Fleet configuration.'; banner.hidden = false; return; }
     page = {...(matches[0] || {}), ...raw};
+    $('#workflowMeta').textContent='';$('#workflowCountdown').hidden=true;
     $('#workflowTitle').textContent = page.title || 'Select Next Task';
     $('#workflowDetail').textContent = page.detail || 'Choose the next step requested by Fleet.';
     $('#workflowChoices').replaceChildren();
@@ -93,20 +98,26 @@
     ['charge','standby','point'].forEach(action=>{ const config=state.config; const configured=action==='charge'?config.chargingPoint:action==='standby'?config.standbyPoint:config.visiblePoints?.length; $('[data-action="'+action+'"]').disabled=!online || !configured || !window.AMRWorkflow?.canNavigate(); });
     $('#fleetCurrentPoi').textContent = state.robot.currentPoi || '—';
     const charge = state.robot.charging;
-    const text = [!online ? 'Local control offline' : '', !fresh(robotAt) ? 'Robot status unavailable or stale' : '', estop ? 'EMERGENCY STOP ACTIVE' : '', alarm, charge === true ? (fresh(chargeAt) ? 'Robot is charging' : 'Last charging status is stale') : ''].filter(Boolean).join(' · ');
+    const text = [!online ? 'Local control offline' : '', !fresh(robotAt) ? 'Robot status unavailable or stale' : '', estop ? 'EMERGENCY STOP ACTIVE' : '', charge === true ? (fresh(chargeAt) ? 'Robot is charging' : 'Last charging status is stale') : ''].filter(Boolean).join(' · ');
     banner.textContent = text; banner.hidden = !text;
     $('#resumeButton').disabled = !online || !fresh(robotAt) || estop || state.navigation.state !== 'paused';
     $('#cancelButton').disabled = !online || !!pending;
     const paused = $('.paused-face small'); if(paused) paused.textContent = String(state.navigation.state || 'unknown').toUpperCase();
     $('#pausedTaskName').textContent = state.task?.name || 'Navigation';
     $('#pausedTo').textContent = state.navigation.destination || '—';
+    $('#pausedAction').textContent = state.navigation.destination ? 'Go to '+state.navigation.destination : 'Waiting for destination';
+    $('#pausedFleetConnection').textContent = fresh(fleetAt) && online ? state.connection.fleet : 'Status unavailable';
+    $('#movingTitle').textContent = state.navigation.destination ? 'Destination: '+state.navigation.destination : 'Waiting for destination';
+    $('#movingTaskName').textContent = state.task?.name ? 'Task: '+state.task.name : '';
     $('#pausedFrom').textContent = state.navigation.from || state.robot.currentPoi || '—';
     $('#workflowReady').disabled = !online || !!pending || estop;
     $('#workflowCancel').disabled = !online || !!pending;
     $('#workflowChoices').querySelectorAll('button').forEach(b => {b.disabled = !online || !fresh(fleetAt) || !!pending || estop;});
-    if(wait?.deadlineAt && !pending) {
-      const seconds = Math.max(0,Math.ceil((Date.parse(wait.deadlineAt)-Date.now())/1000));
-      feedback(seconds ? 'Remaining: ' + seconds + 's' : 'Waiting for controller confirmation.');
+    if(wait) {
+      const deadline=Date.parse(wait.deadlineAt || '');
+      const seconds = Math.max(0,Math.ceil((deadline-Date.now())/1000));
+      $('#workflowCountdown').textContent = wait.indefinite ? 'Operator confirmation required — no automatic timeout' : !Number.isFinite(deadline) ? 'Waiting for controller timing information' : seconds ? 'Continue now, or automatically in '+seconds+'s' : 'Maximum wait reached — awaiting controller confirmation';
+      if(!online)$('#workflowCountdown').textContent += ' · UI disconnected; controller owns the timer';
     }
     const values = [online?'Connected':'Offline',fresh(robotAt)?state.robot.mode:'Status unavailable',fresh(fleetAt)?state.connection.fleet:'Status unavailable',state.robot.currentPoi];
     $('#infoDialog').querySelectorAll('.device-list strong').forEach((el,i)=>{el.textContent=values[i] || '—';});
@@ -121,7 +132,7 @@
     if(t==='config/pages') {pages=Array.isArray(p)?p:p.pages || [];renderPages();}
     if(t==='ui/page') showPage(p);
     if(t==='wait/start') { if(!p.waitId) {feedback('Invalid wait request: missing wait ID');return;} if(wait?.waitId !== p.waitId) resolve(); wait=p;showWait(); }
-    if(['wait/done','wait/cancelled'].includes(t) && (!wait || !p.waitId || p.waitId===wait.waitId)) {wait=null;resolve();dialog.close();window.setView('home');}
+    if(['wait/done','wait/cancelled'].includes(t) && wait && p.waitId===wait.waitId) {wait=null;resolve();dialog.close();const nav=store.getState().navigation.state;window.setView(nav==='paused'?'paused':['running','waiting'].includes(nav)?'moving':'home');}
     if(t==='poi/waiting') {occupied=p;showOccupied();}
     if(['poi/available','poi/cancelled'].includes(t)) {occupied=null;if(!wait){dialog.close();} }
     if(t==='enqueue/success') {resolve();page=null;dialog.close();transport.requestSnapshot('enqueue-success');}
@@ -140,11 +151,10 @@
       let data=p; try {if(p.message) data=typeof p.message==='string'?JSON.parse(p.message):p.message;} catch(_) {}
       estop=typeof p.is_estop==='boolean'?p.is_estop:!!(data.emergency || data.driver_emc || data.electric);
     }
-    if(t==='robot/error') {const data=p.data || p;const errors=[...(data.fatals || []),...(data.errors || data._raw?.active_errors || [])];alarm=errors.map(e=>e.desc || e.message || ('Robot error '+e.code)).join('; ');}
     if(t==='ui/runtime/restored') store.patch({ui:{restoring:false}},'restored');
     renderLive();
   }
-  window.AMRWorkflow={track,renderPages,getPages:()=>pages,configKey,canNavigate:()=>fresh(robotAt) && !estop && !wait && !occupied && !pending && !store.getState().robot.charging && !store.getState().task && ['idle','none'].includes(String(store.getState().robot.mode).toLowerCase())};
+  window.AMRWorkflow={track,renderPages,getPages:()=>pages,configKey,canNavigate:()=>fresh(robotAt) && !estop && !window.AMRAlerts?.hasError() && !wait && !occupied && !pending && !store.getState().robot.charging && !store.getState().task && ['idle','none'].includes(String(store.getState().robot.mode).toLowerCase())};
   transport.subscribe(receive);
   transport.onStatus(status=>{ if(status!=='online'){robotAt=0;fleetAt=0;}renderLive();});
   store.subscribe(()=>{renderLive();});

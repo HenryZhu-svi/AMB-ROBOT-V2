@@ -1,0 +1,21 @@
+'use strict';
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict');
+const file=path.join(__dirname,'../../../svi-gateway/nodes/robot-wait.js');
+if(!fs.existsSync(file)){console.log('SKIP existing robot-wait test: sibling svi-gateway source not present');process.exit(0);}
+let Type;const timers=new Map();let id=0;
+const sandbox={module:{exports:{}},setTimeout:(fn,ms)=>{timers.set(++id,{fn,ms});return id;},clearTimeout:key=>timers.delete(key),Date,console};
+vm.runInNewContext(fs.readFileSync(file,'utf8'),sandbox);
+const RED={nodes:{createNode(node){node.id='test-wait';node.handlers={};node.outputs=[];node.on=(topic,fn)=>node.handlers[topic]=fn;node.send=m=>node.outputs.push(m);node.status=()=>{};node.warn=()=>{};},registerType(name,ctor){Type=ctor;}},util:{cloneMessage:m=>JSON.parse(JSON.stringify(m))}};
+sandbox.module.exports(RED);
+const node=new Type({seconds:60});const input=msg=>node.handlers.input(msg);
+input({topic:'wait/start',payload:{waitId:'a',seconds:5}});
+assert.equal(node.outputs.at(-1)[2].payload.seconds,5);assert.equal([...timers.values()][0].ms,5000);
+const timeout=[...timers.values()][0].fn;
+input({topic:'wait/control/ready',payload:{waitId:'wrong'}});assert.equal(node.outputs.length,1);
+input({topic:'wait/control/ready',payload:{waitId:'a'}});assert.equal(node.outputs.at(-1)[2].topic,'wait/done');assert.equal(node.outputs.at(-1)[2].payload.auto,false);assert.equal(timers.size,0);
+timeout();assert.equal(node.outputs.length,2,'late timer must not complete twice');
+input({topic:'wait/start',payload:{waitId:'b',seconds:2}});[...timers.values()][0].fn();assert.equal(node.outputs.at(-1)[2].payload.auto,true);
+const completed=node.outputs.length;input({topic:'wait/control/ready',payload:{waitId:'b'}});assert.equal(node.outputs.length,completed);
+input({topic:'wait/start',payload:{waitId:'c',indefinite:true}});assert.equal(timers.size,0);assert.equal(node.outputs.at(-1)[2].payload.deadlineAt,null);
+input({topic:'wait/control/cancel',payload:{waitId:'c'}});assert.equal(node.outputs.at(-1)[2].topic,'wait/cancelled');
+console.log('Existing robot-wait: manual, maximum-time completion, indefinite wait, wrong ID and timer/click race passed');

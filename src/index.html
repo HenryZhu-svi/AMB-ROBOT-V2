@@ -97,7 +97,8 @@
       <button id="movingTouchArea" class="moving-touch" aria-label="Tap to pause task">
         <div class="eyes" aria-hidden="true"><span><i></i></span><span><i></i></span></div>
         <div class="moving-caption">
-          <strong id="movingTitle">Moving to LM47</strong>
+          <strong id="movingTitle">Waiting for destination</strong>
+          <small id="movingTaskName"></small>
           <small>Tap the screen to pause</small>
         </div>
       </button>
@@ -114,7 +115,7 @@
             <div><dt>Current Action</dt><dd id="pausedAction">Go to LM47</dd></div>
             <div><dt>Current Location</dt><dd id="pausedFrom">LM45</dd></div>
             <div><dt>Destination</dt><dd id="pausedTo">LM47</dd></div>
-            <div><dt>Fleet Connection</dt><dd class="online">Online</dd></div>
+            <div><dt>Fleet Connection</dt><dd id="pausedFleetConnection">Checking</dd></div>
           </dl>
           <div class="pause-actions">
             <button id="resumeButton" class="primary">Resume Task</button>
@@ -220,6 +221,8 @@
   <script src="../uibuilder/uibuilder.iife.min.js"></script>
   <script src="./state.js"></script>
   <script src="./transport.js"></script>
+  <script src="./error-map.js"></script>
+  <script src="./alerts.js"></script>
   <script src="./fleet.js"></script>
   <script src="./app.js"></script>
   <link rel="stylesheet" href="./workflow.css">

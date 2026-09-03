@@ -22,6 +22,14 @@
 
 ## What is included / 已实现
 
+### Fleet wait, destination and error reporting update
+
+- Timed `robot-wait` steps show **Continue now, or automatically in …s**. The existing Node-RED node owns the timeout and advances the task even if the browser disconnects. UI never sends a second automatic Ready request. `indefinite` / `Wait,Only` still requires an operator; this update does not impose a timeout on it. 默认等待节点的 60 秒及上游 seconds 参数均未改动。
+- The waiting dialog shows task/point information and ignores completion for a different wait ID. Execution screens show the named destination; coordinate arrays are not displayed as point names.
+- Robot errors/warnings are reported in a persistent panel above the task screen, including English descriptions migrated from the old UI catalog. Unknown codes retain the controller detail. Clearing an error does not clear the task or dismiss its waiting step.
+- **Enable Voice Alerts** enables English speech in the current browser session. New/changed errors are announced once; identical polls and replayed cached errors are not repeatedly spoken. Mute is available. This is browser speech, not a new robot-speaker command. 树莓派浏览器的英文语音、扬声器和声音权限需现场验证；无语音支持时仍显示错误，不能依赖语音替代屏幕提示。
+- No Gateway, Fleet or custom-node source was modified for this update. The only flow change is UI state caching for named destinations and alarm-topic aliases.
+
 - Existing English design retained; live device identity, telemetry, charging indication and connection freshness.
 - Waiting-for-operator dialog with wait ID, deadline display, Ready confirmation and confirmed cancellation request.
 - Fleet dynamic pages and enqueue selections; configurable visibility of Fleet menu entries. Active task prompts are not hidden by the menu filter.

@@ -249,6 +249,13 @@
     return null;
   }
 
+  // A coordinate array or a Fleet job title is not a named physical destination.
+  function namedPoint(value) {
+    if (Array.isArray(value) || value == null) return '';
+    if (typeof value === 'object') return namedPoint(value.poi || value.station_id || value.stationId || value.point || value.id);
+    return typeof value === 'string' && value.trim() !== '-' ? value.trim() : '';
+  }
+
   function handleBackendMessage(msg) {
     if (!msg || typeof msg !== 'object') return;
     const topic = String(msg.topic || '');
@@ -269,8 +276,13 @@
 
     const robotPatch = normalizedRobotPatch(topic, payload);
     if (robotPatch) { store.patch({ robot: robotPatch }, 'legacy-' + topic); return; }
+    if (topic === 'destination') {
+      const destination=namedPoint(payload);
+      if(destination)store.patch({navigation:{destination}},topic);
+      return;
+    }
     if (topic === 'nav/started' || topic === 'nav/progress') {
-      const destination = payload && (payload.target || payload.destination || payload.poi) || state.navigation.destination;
+      const destination = namedPoint(payload?.target) || namedPoint(payload?.destination) || namedPoint(payload?.poi) || state.navigation.destination;
       const mode = payload?.is_suspended || ['suspended','paused'].includes(payload?.mode) ? 'paused' : payload?.mode === 'waiting' ? 'waiting' : 'running';
       store.patch({ navigation: { state: mode, destination }, robot: { mode } }, topic);
       $('#movingTitle').textContent = 'Moving to ' + (destination || 'destination');
