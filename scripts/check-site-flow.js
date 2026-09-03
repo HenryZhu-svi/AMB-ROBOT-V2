@@ -1,0 +1,27 @@
+'use strict';
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const nodes=JSON.parse(fs.readFileSync(path.join(__dirname,'../node-red/adam_flows.json'),'utf8'));
+const ids=new Set();
+for(const n of nodes){assert(!ids.has(n.id),'Duplicate ID');ids.add(n.id);if(n.type==='function')new Function('msg','flow','global','node','context','env','RED',n.func);}
+for(const n of nodes){for(const target of [...(n.wires || []).flat(),...(n.links || [])])assert(ids.has(target),'Missing '+target);}
+const run=(id)=>new Function('msg','flow','global',nodes.find(n=>n.id===id).func);
+const data=new Map(),ctx={get:k=>data.get(k),set:(k,v)=>data.set(k,v)};
+const bridge=run('site_ui_bridge'),cache=run('site_ui_cache');
+let result=bridge({topic:'edge/command/request',payload:{request_id:'n1',action:'navigate',params:{target:'LM1'}}},ctx,ctx);
+assert.equal(result[0].topic,'nav');assert.equal(result[0].payload.point,'LM1');
+result=bridge({topic:'edge/command/request',payload:{request_id:'n1',action:'navigate',params:{target:'LM1'}}},ctx,ctx);
+assert.equal(result[0],null);assert.equal(result[1].payload.duplicate,true);
+cache({topic:'wait/start',payload:{waitId:'w1'}},ctx,ctx);
+result=bridge({topic:'ui/state/request',payload:{},_socketId:'browser'},ctx,ctx);
+assert(result[1].some(m=>m.topic==='wait/start'&&m.payload.waitId==='w1'&&m._replay));
+cache({topic:'wait/done',payload:{waitId:'w1'}},ctx,ctx);
+assert(!data.get('site_ui_cache')['wait/start']);
+cache({topic:'nav/progress',payload:{mode:'running'}},ctx,ctx);
+cache({topic:'nav/cancelled',payload:{}},ctx,ctx);
+assert(!data.get('site_ui_cache')['nav/progress']);
+const format=run('c2dc2391f9094d80');
+assert.equal(format({statusCode:503,payload:{}},ctx,ctx).payload.unavailable,true);
+assert.equal(format({statusCode:200,payload:{}},ctx,ctx).payload.active,false);
+assert.deepEqual(nodes.find(n=>n.id==='bf26fc2cb143288b').wires[0],['site_ui_bridge','site_settings']);
+assert.equal(nodes.find(n=>n.id==='6ce56aab23742991').type,'seer-status-station');
+console.log('Site flow structure, protocol translation, duplicate guard, replay, terminal cleanup and Fleet failure tests passed ('+nodes.length+' nodes)');

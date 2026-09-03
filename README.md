@@ -2,6 +2,12 @@
 
 Operator-facing AMR control interface built for Node-RED uibuilder.
 
+## Site-flow release / 现场 Flow 适配版 — 2026-09-03
+
+Use [SITE-DEPLOYMENT.md](node-red/SITE-DEPLOYMENT.md) for this release. The delivered `node-red/adam_flows.json` now derives from the user's 270-node AMB-ROBOT-V2 export, not the older Adam baseline. Deploy frontend and flow together. Gateway and Fleet services remain unchanged. The earlier direct-station-query deployment instructions are historical, not the procedure for this release.
+
+本版已切换为用户提供的 270 节点现场 Flow 基线。前端与 Flow 必须配套更新；保留现场已修复的点位查询节点，不安装 Gateway 补丁。新增业务交互已通过模拟测试，真实机器人验收尚未进行。部署和已知边界见上述文档。
+
 ## Current scope
 
 - English operator interface

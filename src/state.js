@@ -55,7 +55,7 @@
   function restore() {
     try {
       const cached = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-      if (isObject(cached)) merge(state, cached);
+      if (isObject(cached)) merge(state, {config:cached.config || {}, robot:{...cached.robot,mode:'unknown'}, task:null, navigation:initialState.navigation});
     } catch (error) {
       console.warn('[state] cached snapshot ignored', error);
     }
@@ -109,4 +109,3 @@
     persist
   };
 })();
-

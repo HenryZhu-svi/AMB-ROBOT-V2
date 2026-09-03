@@ -1,5 +1,7 @@
 # Point settings deployment / 点位设置部署
 
+> Historical instructions for the older flow. For the current site export use [SITE-DEPLOYMENT.md](SITE-DEPLOYMENT.md). 当前版本保留现场点位查询节点，不按本文替换它。
+
 ## Required updates / 必须更新的组件
 
 1. Keep the original Gateway unchanged. Do not apply the previous query_stations patch. Point lookup now uses SEER TCP API 1301 directly from Node-RED to the wired AMR controller.

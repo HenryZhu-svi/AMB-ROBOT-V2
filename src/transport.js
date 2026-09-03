@@ -30,9 +30,9 @@
     const message = { topic, payload: Object.assign({}, payload) };
     if (!message.payload.request_id && !message.payload.command_id) message.payload.request_id = id;
     const command = { topic, payload: message.payload, createdAt: new Date().toISOString() };
-    if (window.AMRStore && options.track !== false) window.AMRStore.markCommand(id, command);
 
     if (window.uibuilder && typeof window.uibuilder.send === 'function' && status === 'online') {
+      if (window.AMRStore && options.track !== false) window.AMRStore.markCommand(id, command);
       window.uibuilder.send(message);
       return { id, sent: true, message };
     }
@@ -42,6 +42,7 @@
   }
 
   function requestSnapshot(reason = 'connect') {
+    send('ui/settings/request', {}, {track:false});
     return send('ui/state/request', {
       request_id: requestId('state'),
       reason,
@@ -70,6 +71,7 @@
         setStatus('offline', 'socket disconnected');
       }
     });
+    if (ub.ioConnected) { setStatus('online'); requestSnapshot('already-connected'); }
 
     connectionTimer = setTimeout(() => {
       if (status === 'connecting') setStatus('offline', 'connection timeout');
@@ -98,4 +100,3 @@
 
   initialize();
 })();
-

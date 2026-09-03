@@ -32,12 +32,12 @@
       params,
       expected_revision: state.revision,
       created_at: new Date().toISOString()
-    }, { requestId }).id;
+    }, { requestId });
   }
   window.sendEdge = sendEdge;
 
   function controlAvailable() {
-    return navigator.onLine && transport.getStatus() === 'online';
+    return transport.getStatus() === 'online' && (!window.AMRWorkflow || window.AMRWorkflow.canNavigate());
   }
 
   function pointId(value) {
@@ -71,13 +71,14 @@
     const connection = current.connection && typeof current.connection === 'object'
       ? current.connection
       : { fleet: current.connection || 'unknown', uibuilder: transport.getStatus() };
-    const battery = Number(robot.battery);
+    const battery = robot.battery == null ? NaN : Number(robot.battery);
     const fleet = connection.fleet === 'online' && connection.uibuilder === 'online'
       ? 'online'
-      : connection.uibuilder === 'connecting' ? 'syncing' : connection.fleet || 'offline';
+      : connection.uibuilder === 'connecting' ? 'syncing' : connection.uibuilder !== 'online' ? 'offline' : connection.fleet || 'offline';
 
     $('#robotMode').textContent = robot.mode && robot.mode !== 'unknown' ? String(robot.mode).replace(/_/g, ' ') : 'Checking';
     $('#currentPoi').textContent = robot.currentPoi || '—';
+    document.querySelectorAll('[data-robot-name]').forEach(el => { el.textContent = robot.name || robot.id || 'Robot'; });
     $('#fleetStatus').textContent = connectionLabel(fleet);
     $('#fleetDot').className = 'status-dot ' + (fleet === 'online' ? 'ok' : 'warn');
     $('#footerMessage').textContent = connection.uibuilder === 'online' ? 'Control service connected' : 'Restoring control connection';
@@ -102,12 +103,12 @@
     const task = current.task;
     if (task && !['completed', 'cancelled', 'failed'].includes(String(task.state || '').toLowerCase())) {
       $('#taskTitle').textContent = task.name || 'Active Task';
-      $('#taskDetail').textContent = task.destination ? 'Moving to ' + task.destination : task.currentStep || 'Task in progress';
+      $('#taskDetail').textContent = task.currentStep ? 'Fleet step: ' + task.currentStep : task.destination ? 'Destination: ' + task.destination : 'Task in progress';
       $('#taskBadge').textContent = String(task.state || 'RUNNING').toUpperCase();
     } else {
       $('#taskTitle').textContent = 'No Active Task';
-      $('#taskDetail').textContent = 'Robot is ready to accept a new task';
-      $('#taskBadge').textContent = 'READY';
+      $('#taskDetail').textContent = controlAvailable() ? 'Robot is ready to accept a new task' : 'Check robot and connection status';
+      $('#taskBadge').textContent = controlAvailable() ? 'READY' : 'CHECK STATUS';
     }
   }
 
@@ -134,7 +135,9 @@
     $('#taskRoute').hidden = false;
     $('#routeFrom').textContent = from;
     $('#routeTo').textContent = target;
-    sendEdge('navigate', { source, target });
+    const result = sendEdge(source === 'Charging Run' ? 'charge' : 'navigate', { source, target });
+    if (!result.sent) { store.patch({navigation:{state:'unknown'},task:null},'not-sent'); return; }
+    window.AMRWorkflow?.track('navigate', result);
     setView('moving');
   }
 
@@ -190,21 +193,29 @@
   });
 
   $('#movingTouchArea').addEventListener('pointerup', () => {
-    sendEdge('pause', { target: state.navigation.destination });
-    store.patch({ navigation: { state: 'paused' }, robot: { mode: 'Paused' } }, 'navigation-pause');
+    if (transport.getStatus() !== 'online' || state.navigation.state === 'pausing') return;
+    const result = sendEdge('pause', { target: state.navigation.destination });
+    if (!result.sent) return;
+    window.AMRWorkflow?.track('pause', result);
+    store.patch({ navigation: { state: 'pausing' } }, 'navigation-pause-request');
     setView('paused');
   });
   $('#resumeButton').addEventListener('click', () => {
-    sendEdge('resume', { target: state.navigation.destination });
-    store.patch({ navigation: { state: 'running' }, robot: { mode: 'Moving' } }, 'navigation-resume');
-    setView('moving');
+    if (transport.getStatus() !== 'online' || state.navigation.state !== 'paused') return;
+    const result = sendEdge('resume', { target: state.navigation.destination });
+    if (!result.sent) return;
+    window.AMRWorkflow?.track('resume', result);
+    store.patch({ navigation: { state: 'resuming' } }, 'navigation-resume-request');
   });
   $('#cancelButton').addEventListener('click', () => confirmAction(
     'Cancel Current Task?',
     'Robot will stop the current navigation.\nTask: ' + (state.task && state.task.name || 'Current task') + '\nDestination: ' + (state.navigation.destination || '—'),
     'Confirm Cancel',
     () => {
-      sendEdge('cancel', { target: state.navigation.destination });
+      if (transport.getStatus() !== 'online') return;
+      const result = sendEdge('cancel', { target: state.navigation.destination });
+      if (!result.sent) return;
+      window.AMRWorkflow?.track('cancel', result);
       store.patch({ navigation: { state: 'cancelling' }, robot: { mode: 'Cancelling' } }, 'navigation-cancel');
     }
   ));
@@ -231,7 +242,7 @@
   // Settings are handled by settings.js using the live point catalog.
 
   function normalizedRobotPatch(topic, payload) {
-    if (topic === 'battery') return { battery: Number(payload && typeof payload === 'object' ? payload.battery_pct ?? payload.battery : payload) };
+    if (topic === 'battery') return { battery: Number(payload && typeof payload === 'object' ? payload.battery_pct ?? payload.battery : payload), ...(typeof payload?.charging === 'boolean' ? {charging:payload.charging} : {}) };
     if (topic === 'poi') return { currentPoi: String(payload || '—') };
     if (topic === 'status') return { mode: String(payload && payload.mode || payload || 'unknown') };
     if (topic === 'robotName') return { name: String(payload || state.robot.name) };
@@ -260,20 +271,22 @@
     if (robotPatch) { store.patch({ robot: robotPatch }, 'legacy-' + topic); return; }
     if (topic === 'nav/started' || topic === 'nav/progress') {
       const destination = payload && (payload.target || payload.destination || payload.poi) || state.navigation.destination;
-      store.patch({ navigation: { state: 'running', destination }, robot: { mode: 'Moving' } }, topic);
+      const mode = payload?.is_suspended || ['suspended','paused'].includes(payload?.mode) ? 'paused' : payload?.mode === 'waiting' ? 'waiting' : 'running';
+      store.patch({ navigation: { state: mode, destination }, robot: { mode } }, topic);
       $('#movingTitle').textContent = 'Moving to ' + (destination || 'destination');
-      setView('moving', { persist: false });
+      setView(mode === 'paused' ? 'paused' : 'moving', { persist: false });
       return;
     }
     if (topic === 'nav/paused') { store.patch({ navigation: { state: 'paused' }, robot: { mode: 'Paused' } }, topic); setView('paused', { persist: false }); return; }
     if (topic === 'nav/resumed') { store.patch({ navigation: { state: 'running' }, robot: { mode: 'Moving' } }, topic); setView('moving', { persist: false }); return; }
     if (topic === 'nav/arrived' || topic === 'nav/cancelled') {
-      const currentPoi = payload && (payload.target || payload.destination || payload.poi) || state.robot.currentPoi;
-      store.patch({ navigation: { state: 'idle', destination: null }, robot: { mode: 'Idle', currentPoi }, task: null }, topic);
+      const currentPoi = topic === 'nav/arrived' ? payload?.current_station || payload?.poi || state.robot.currentPoi : state.robot.currentPoi;
+      store.patch({ navigation: { state: 'idle', destination: null }, robot: { mode: 'Idle', currentPoi }, ...(state.task?.source === 'local' ? {task:null} : {}) }, topic);
       $('#taskRoute').hidden = true;
       setView('home', { persist: false });
       return;
     }
+    if (topic === 'nav/error') { store.patch({navigation:{state:'unknown'}},topic); setView('paused'); $('#footerMessage').textContent = payload?.error || 'Navigation status unavailable'; return; }
     if (topic === 'config/saved' && !window.AMRSettings) {
       store.resolveCommand(payload && payload.request_id);
       if (payload && payload.config) store.patch({ config: payload.config }, 'config-saved');

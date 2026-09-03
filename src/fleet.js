@@ -155,16 +155,17 @@
 
   function applyLegacyProgress(payload) {
     if (!payload || typeof payload !== 'object') return;
+    if (payload.unavailable) { setConnection('offline'); renderFleetState(); return; }
     const steps = Array.isArray(payload.subjobs) ? payload.subjobs : [];
     const current = payload.currentSubjob || payload.current_subjob || {};
-    const order = Number(current.order || current.sequence || 0);
-    const progress = steps.length ? Math.round(Math.max(0, order - 1) / steps.length * 100) : 0;
+    const index = steps.findIndex(step => String(step.id) === String(current.id));
+    const progress = steps.length && index >= 0 ? Math.round(index / steps.length * 100) : 0;
     applyFleetSnapshot({
       revision: fleetState.revision + 1,
       connection: 'online',
       updatedAt: new Date().toISOString(),
       robot: { currentPoi: $fleet('#currentPoi') && $fleet('#currentPoi').textContent },
-      task: payload.active === false ? null : { id: payload.job && payload.job.id, name: payload.job && payload.job.name, state: 'running', type: 'Fleet Task', currentStep: current.name, destination: current.destination || current.poi, progress }
+      task: payload.active === false ? (window.AMRStore.getState().task?.source === 'local' ? window.AMRStore.getState().task : null) : { source:'fleet', id: payload.job && payload.job.id, name: payload.job && payload.job.name, state: 'running', type: 'Fleet Task', currentStep: current.name, destination: current.destination || current.poi, progress }
     });
   }
 
@@ -182,7 +183,7 @@
     }, 8000);
   }
 
-  window.openFleetTasks = function () { window.setView('fleet'); requestFleetState(); };
+  window.openFleetTasks = function () { window.setView('fleet'); requestFleetState(); window.AMRWorkflow?.renderPages(); };
   window.applyFleetSnapshot = applyFleetSnapshot;
 
   $fleet('#fleetBack').addEventListener('click', () => window.setView('home'));
@@ -226,7 +227,7 @@
     if (topic === 'fleet/job-progress') { applyLegacyProgress(payload); return true; }
     if (topic === 'enqueue/success') { requestFleetState(); return true; }
     if (topic === 'enqueue/error' || topic === 'fleet/cancel/failed') { setConnection('online'); fleetState.taskState = 'failed'; fleetState.task = Object.assign({}, fleetState.task, { error: payload && (payload.message || payload.error) }); fleetState.lastUpdate = new Date().toISOString(); renderFleetState(); return true; }
-    if (topic === 'poi/cancelled' || topic === 'nav/cancelled') { applyFleetSnapshot({ revision: fleetState.revision + 1, connection: 'online', task: null, taskState: 'cancelled', updatedAt: new Date().toISOString() }); return true; }
+    if (topic === 'poi/cancelled' || topic === 'nav/cancelled') { requestFleetState(); return true; }
     return false;
   };
   if (window.AMRTransport) window.AMRTransport.subscribe(window.handleFleetMessage);

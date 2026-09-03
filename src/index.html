@@ -16,7 +16,7 @@
         <div class="brand-block">
           <img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI">
           <div class="brand-copy">
-            <strong>AMB-20</strong>
+            <strong data-robot-name>Robot</strong>
             <span>Autonomous Mobile Robot</span>
           </div>
         </div>
@@ -37,7 +37,7 @@
             <img src="./assets/amr.png" alt="AMB-20 AMR" class="robot-image">
           </div>
           <div class="robot-meta">
-            <div><span>Device</span><strong>AMB-20</strong></div>
+            <div><span>Device</span><strong data-robot-name>Robot</strong></div>
             <div><span>Current POI</span><strong id="currentPoi">LM45</strong></div>
           </div>
         </article>
@@ -126,13 +126,13 @@
 
     <section id="fleetView" class="view fleet-view" aria-label="Fleet tasks">
       <header class="fleet-header">
-        <div class="brand-block"><img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI"><div class="brand-copy"><strong>Fleet Tasks</strong><span>AMB-20 Task Control</span></div></div>
+        <div class="brand-block"><img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI"><div class="brand-copy"><strong>Fleet Tasks</strong><span>Robot Task Control</span></div></div>
         <div class="fleet-header-actions"><span id="fleetPageConnection" class="fleet-connection syncing"><i></i>Synchronizing</span><button id="fleetBack" type="button">Back</button></div>
       </header>
       <div class="fleet-layout">
         <aside class="fleet-summary">
           <span class="panel-kicker">ROBOT AVAILABILITY</span>
-          <div class="fleet-robot"><img src="./assets/amr.png" alt="AMB-20 AMR"><div><strong>AMB-20</strong><span id="fleetRobotMode">Checking status</span></div></div>
+          <div class="fleet-robot"><img src="./assets/amr.png" alt="AMR"><div><strong data-robot-name>Robot</strong><span id="fleetRobotMode">Checking status</span></div></div>
           <dl><div><dt>Current POI</dt><dd id="fleetCurrentPoi">LM45</dd></div><div><dt>Fleet</dt><dd id="fleetLinkValue">Connecting</dd></div><div><dt>Last Update</dt><dd id="fleetLastUpdate">—</dd></div></dl>
           <button id="fleetRetry" class="fleet-retry" type="button">Refresh Status</button>
         </aside>
@@ -151,7 +151,7 @@
 
     <section id="settingsView" class="view settings-view" aria-label="AMR settings">
       <header class="settings-header">
-        <div class="brand-block"><img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI"><div class="brand-copy"><strong>Settings</strong><span>AMB-20 Configuration</span></div></div>
+        <div class="brand-block"><img class="brand-logo" src="./assets/svi_logo.svg" alt="SVI"><div class="brand-copy"><strong>Settings</strong><span>Robot Configuration</span></div></div>
         <button id="closeSettings" class="settings-close" type="button">Done</button>
       </header>
       <div class="settings-body">
@@ -194,7 +194,7 @@
   <dialog id="infoDialog" class="dialog info-dialog">
     <form method="dialog">
       <span class="dialog-icon">i</span><h2>Device Status</h2>
-      <div class="device-list"><div><span>Local Control</span><strong>Connected</strong></div><div><span>Robot</span><strong>Idle</strong></div><div><span>Fleet</span><strong>Online</strong></div><div><span>Current POI</span><strong>LM45</strong></div></div>
+      <div class="device-list"><div><span>Local Control</span><strong>Checking</strong></div><div><span>Robot</span><strong>Checking</strong></div><div><span>Fleet</span><strong>Checking</strong></div><div><span>Current POI</span><strong>—</strong></div></div>
       <div><button value="confirm" class="primary wide">Close</button></div>
     </form>
   </dialog>
@@ -222,6 +222,8 @@
   <script src="./transport.js"></script>
   <script src="./fleet.js"></script>
   <script src="./app.js"></script>
+  <link rel="stylesheet" href="./workflow.css">
+  <script src="./workflow.js"></script>
   <script src="./settings.js"></script>
 </body>
 </html>

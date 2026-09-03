@@ -15,10 +15,16 @@ try {
     if (topic === 'ui/settings/save') {
         if (p.revision !== saved.revision) throw new Error('Settings changed in another session. Reload before saving.');
         const catalog = flow.get('v2_point_catalog');
-        if (!catalog || Date.now() - catalog.at > 300000) throw new Error('Refresh the point catalog before saving');
-        const ids = new Set(catalog.points.map(point => point.id));
+        if (p.section !== 'fleet' && (!catalog || Date.now() - catalog.at > 300000)) throw new Error('Refresh the point catalog before saving');
+        const ids = new Set((catalog?.points || []).map(point => point.id));
         const values = p.values || {};
-        if (p.section === 'points') {
+        if (p.section === 'fleet') {
+            const pages = global.get('fleet_getjob_pages');
+            if (!Array.isArray(pages)) throw new Error('Load Fleet configuration before saving');
+            const keys = new Set(pages.map(page => page.sourceProjectId ? 'project:' + page.sourceProjectId + ':page:' + page.id : 'page:' + page.id));
+            if (!Array.isArray(values.pages) || values.pages.some(key => !keys.has(key))) throw new Error('Invalid Fleet page selection');
+            saved.config.fleetPages = [...new Set(values.pages)];
+        } else if (p.section === 'points') {
             if (!Array.isArray(values.points)) throw new Error('Invalid point selection');
             const selected = values.points.map(point => ({ id:String(point.id), label:String(point.label || point.id).trim() }));
             if (selected.some(point => !ids.has(point.id)) || new Set(selected.map(point => point.id)).size !== selected.length) throw new Error('Selection contains invalid or duplicate points');

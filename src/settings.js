@@ -4,11 +4,12 @@
   const $ = selector => document.querySelector(selector);
   let catalog = [], ready = false, request = null, timer = null, saving = null;
   let config = {}, revision = 0;
+  let draft = null;
   const style = document.createElement('style');
   style.textContent = '#configFields [data-search][hidden]{display:none!important}';
   document.head.appendChild(style);
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
-  const titles = { standby:'Standby Point', charge:'Charging Point', points:'Visible Points' };
+  const titles = { standby:'Standby Point', charge:'Charging Point', points:'Visible Points', fleet:'Fleet Task Configuration' };
   const points = () => Array.isArray(config.visiblePoints) ? config.visiblePoints : config.visiblePoints?.points || [];
   function feedback(message) { $('#configFeedback').textContent = message; }
   function renderSummary() {
@@ -19,6 +20,7 @@
     $('.settings-footer > span:nth-child(2)').textContent = transport.getStatus() === 'online' ? (ready ? catalog.length + ' map points loaded' : 'Point catalog not loaded') : 'Local control offline';
   }
   function refresh() {
+    if ($('#configDialog').open && $('#configDialog').dataset.config !== 'fleet') draft = {section:$('#configDialog').dataset.config, data:[...new FormData($('#configForm')).entries()]};
     ready = false;
     feedback('Loading map points from the wired AMR…');
     renderSummary();
@@ -32,6 +34,12 @@
   function renderEditor() {
     const section = $('#configDialog').dataset.config;
     if (!titles[section]) return;
+    if (section === 'fleet') {
+      const pages = window.AMRWorkflow.getPages();
+      $('#configFields').innerHTML = pages.map(page => { const key=window.AMRWorkflow.configKey(page); return '<label class="point-row"><input type="checkbox" name="fleetPage" value="'+escape(key)+'" '+(!Array.isArray(config.fleetPages)||config.fleetPages.includes(key)?'checked':'')+'><strong>'+escape(page.title || page.id)+'</strong><span>'+escape(key)+'</span></label>'; }).join('');
+      feedback(pages.length ? 'Select the Fleet menus available from this screen. Active task prompts remain available.' : 'No Fleet page configuration received. Reconnect to Fleet and reload.');
+      return;
+    }
     const selected = new Map(points().map(p => [p.id, p.label || p.id]));
     const field = section === 'standby' ? 'standbyPoint' : 'chargingPoint';
     const rows = catalog.map(p => {
@@ -43,28 +51,36 @@
       $('#configFields').querySelectorAll('[data-search]').forEach(row => { row.hidden = !row.dataset.search.includes(event.target.value.toLowerCase()); });
     });
     $('#reloadPoints').addEventListener('click', refresh);
+    if (draft?.section === section) {
+      const entries=draft.data;
+      $('#configFields').querySelectorAll('input[name]').forEach(input=>{
+        if (['checkbox','radio'].includes(input.type)) input.checked=entries.some(([name,value])=>name===input.name && value===input.value);
+        else {const entry=entries.find(([name])=>name===input.name);if(entry)input.value=entry[1];}
+      });
+      draft=null;
+    }
     const missing = section === 'points' ? [...selected.keys()].filter(id => !catalog.some(p => p.id === id)) : config[field] && !catalog.some(p => p.id === config[field]) ? [config[field]] : [];
     feedback(!ready ? 'Load the current map before saving.' : missing.length ? 'Saved points missing from current map: ' + missing.join(', ') + '. Review before saving.' : catalog.length ? catalog.length + ' points available' : 'This map contains no points.');
   }
   document.querySelectorAll('[data-config]').forEach(button => button.addEventListener('click', () => {
+    draft = null;
     const section = button.dataset.config;
     $('#configDialog').dataset.config = section;
     $('#configTitle').textContent = titles[section] || 'Fleet Task Configuration';
     $('#configDescription').textContent = section === 'points' ? 'Select destinations and set the names operators will see.' : 'Choose a destination from the current robot map.';
-    $('#configForm button[value="default"]').disabled = section === 'fleet';
-    if (section === 'fleet') { $('#configFields').textContent = 'Real Fleet task configuration will be connected in the next phase. Demo tasks have been removed.'; feedback('Not available yet'); }
-    else renderEditor();
+    $('#configForm button[value="default"]').disabled = false;
+    renderEditor();
     $('#configDialog').showModal();
   }));
   $('#configForm').addEventListener('submit', event => {
     if (event.submitter?.value === 'cancel') return;
     event.preventDefault();
     if (saving) return;
-    if (!ready || transport.getStatus() !== 'online') { feedback('A fresh point catalog and local connection are required.'); return; }
     const data = new FormData(event.currentTarget), section = $('#configDialog').dataset.config;
+    if ((section !== 'fleet' && !ready) || transport.getStatus() !== 'online') { feedback('A fresh point catalog and local connection are required.'); return; }
     const ids = data.getAll('point');
-    if (section !== 'points' && !ids.length) { feedback('Select a point.'); return; }
-    const values = section === 'points' ? { points:ids.map(id => ({ id, label:String(data.get('label_' + id) || id).trim() || id })) } : { [section === 'standby' ? 'standbyPoint' : 'chargePoint']:ids[0], label:String(data.get('operatorLabel') || ids[0]).trim() };
+    if (!['points','fleet'].includes(section) && !ids.length) { feedback('Select a point.'); return; }
+    const values = section === 'fleet' ? {pages:data.getAll('fleetPage')} : section === 'points' ? { points:ids.map(id => ({ id, label:String(data.get('label_' + id) || id).trim() || id })) } : { [section === 'standby' ? 'standbyPoint' : 'chargePoint']:ids[0], label:String(data.get('operatorLabel') || ids[0]).trim() };
     saving = transport.requestId('settings');
     const result = transport.send('ui/settings/save', { request_id:saving, revision, section, values }, { track:false });
     if (!result.sent) { saving = null; feedback('Not sent: local control offline.'); return; }
@@ -80,10 +96,11 @@
       catalog = list; ready = true; renderSummary();
       if ($('#configDialog').open) renderEditor();
     }
-    if (msg.topic === 'poi/error' && request && msg.payload?.request_id === request) { clearTimeout(timer); request = null; ready = false; feedback(msg.payload?.error || 'Point query failed. Retry to continue.'); }
+    if (msg.topic === 'poi/error' && request && (!msg.payload?.request_id || msg.payload.request_id === request)) { clearTimeout(timer); request = null; ready = false; feedback(msg.payload?.error || 'Point query failed. Retry to continue.'); }
     if (msg.topic === 'ui/settings/state' || msg.topic === 'ui/settings/saved') {
       config = msg.payload.config; revision = msg.payload.revision;
       store.patch({ config }, 'settings-loaded'); store.persist(); renderSummary();
+      window.AMRWorkflow?.renderPages();
       if (msg.topic === 'ui/settings/saved' && msg.payload.request_id === saving) { saving = null; feedback('Settings saved'); $('#configDialog').close(); }
     }
     if (msg.topic === 'ui/settings/error') { saving = null; feedback(msg.payload.error); }

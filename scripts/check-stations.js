@@ -35,6 +35,6 @@ for (const [body, options] of [[{},{}],[{ret_code:1,err_msg:'failure'},{}],[{sta
   const result=scenario(body,options); assert.equal(result[0],null);assert(result[1].error);assert.equal(result[1]._pointRequestId,'q1');
 }
 const flow=JSON.parse(fs.readFileSync(path.join(__dirname,'../node-red/adam_flows.json'),'utf8'));
-assert.equal(flow.find(n=>n.id==='seer_station_01').type,'function');
+assert.equal(flow.find(n=>n.id==='6ce56aab23742991').type,'seer-status-station');
 assert(!flow.some(n=>n.type==='robot-stationlist'));
 console.log('Direct AMR protocol, fragmentation, empty-list, error, timeout and close tests passed');

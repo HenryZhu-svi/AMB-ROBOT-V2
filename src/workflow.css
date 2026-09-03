@@ -1,0 +1,9 @@
+.live-banner{position:fixed;z-index:30;bottom:10px;left:20%;right:20%;padding:10px 20px;background:#fff2ce;color:#654300;border-radius:16px;font-weight:600;text-align:center;pointer-events:none}
+.live-banner[hidden]{display:none}
+.workflow-dialog{width:min(760px,90vw);max-height:85vh;overflow:auto;padding:30px}
+#workflowChoices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:20px 0}
+#workflowChoices button{min-height:72px}
+.workflow-actions{display:flex;gap:12px;justify-content:flex-end}
+.fleet-page-options{padding:16px 24px;background:#fff;border-radius:20px;margin:16px 0}
+.fleet-page-options button{margin:6px;min-height:56px}
+#fleetView{overflow:auto}
