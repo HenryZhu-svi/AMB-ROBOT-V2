@@ -29,7 +29,15 @@ stations.func = "const points=msg.payload && msg.payload.points; if(!Array.isArr
 fn('site_point_error','Point query failure',"flow.set('v2_point_catalog',null); return {topic:'poi/error',payload:{error:msg.error || 'Point query failed'},_socketId:msg._socketId};",[[ui.id]]);
 const station = get('6ce56aab23742991');
 if (!station.wires[1].includes('site_point_error')) station.wires[1].push('site_point_error');
-fn('site_control_error','Control request failure',"return {topic:'ui/control/error',payload:{request_id:msg.payload && msg.payload.request_id,error:msg.error || 'Control request failed'},_socketId:msg._socketId};",[[ui.id]]);
+fn('site_control_error','Control request failure',"return {topic:'ui/control/error',payload:{request_id:msg._uiRequestId || (msg.payload && msg.payload.request_id),action:msg._uiAction || msg.topic,error:msg.error || 'Control request failed'},_socketId:msg._socketId};",[[ui.id]]);
+fn('site_runtime_status','Authoritative robot runtime status',body('runtime-status.js'),[['site_ui_cache']]);
+fn('site_control_accepted','Control accepted + immediate status verification',body('control-accepted.js'),[['site_ui_cache'],['7d14c7fbd8d69a40']]);
+put({id:'site_runtime_poll',type:'inject',z:ui.z,name:'Poll authoritative runtime 1s',props:[{p:'topic',vt:'str'}],topic:'runtime/poll',once:true,onceDelay:0.5,repeat:'1',x:800,y:1980,wires:[['7d14c7fbd8d69a40']]});
+const runtimeSource=get('7d14c7fbd8d69a40');
+if(!runtimeSource.wires[0].includes('site_runtime_status')) runtimeSource.wires[0].push('site_runtime_status');
+const generalPoll=get('a1e8bcd64c1b40a8');
+generalPoll.wires[0]=generalPoll.wires[0].filter(id=>id!==runtimeSource.id);
+for (const id of ['e1ee13cff1d10c44','1525637a29f39235']) if (!get(id).wires[0].includes('site_control_accepted')) get(id).wires[0].push('site_control_accepted');
 fn('site_sound_feedback','Sound acknowledgement to UI',"return {topic:'sound/ack',payload:{accepted:!msg.error && msg.payload?.accepted===true,message:msg.error || msg.payload?.message || 'Sound result received'},_maintenanceRequestId:msg._maintenanceRequestId,_socketId:msg._socketId};",[[ui.id]]);
 const sound=get('773ccf5f45af3503');
 for(const wire of sound.wires) if(!wire.includes('site_sound_feedback'))wire.push('site_sound_feedback');

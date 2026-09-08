@@ -8,6 +8,17 @@ const server=http.createServer((req,res)=>{if(req.url.includes('uibuilder.iife')
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
 try{browser=await chromium.launch({headless:true,channel:process.env.TEST_BROWSER_CHANNEL || 'msedge'});const page=await browser.newPage({viewport:{width:1280,height:800}});const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('http://127.0.0.1:'+server.address().port);await page.evaluate(()=>{connect(true);emit({topic:'status',payload:'idle'});emit({topic:'poi',payload:'LM1'});emit({topic:'battery',payload:{battery_pct:83,charging:false}});emit({topic:'robotName',payload:'SITE-AMR'});emit({topic:'fleet/job-progress',payload:{active:false}});});
 assert.equal(await page.locator('[data-robot-name]').first().textContent(),'SITE-AMR');
+await page.evaluate(()=>{emit({topic:'fleet/job-progress',payload:{active:true,job:{id:9,name:'PCBA'},currentSubjob:{id:1,name:'GOTO,LM734',order:1},subjobs:[{id:1,name:'GOTO,LM734',order:1}]}});});
+assert.equal(await page.evaluate(()=>document.querySelector('#app').dataset.view),'home');
+await page.evaluate(()=>{emit({topic:'robot/runtime',payload:{mode:'running',task_status:2,running_status:1,target_point:'LM734'}});});
+assert.equal(await page.evaluate(()=>document.querySelector('#app').dataset.view),'moving');assert.equal(await page.locator('#movingTitle').textContent(),'Destination: LM734');
+await page.locator('#movingTouchArea').click();await page.waitForFunction(()=>sent.some(m=>m.topic==='edge/command/request'&&m.payload.action==='pause'));
+const pauseId=await page.evaluate(()=>sent.findLast(m=>m.topic==='edge/command/request'&&m.payload.action==='pause').payload.request_id);
+await page.evaluate(id=>emit({topic:'ui/control/accepted',payload:{request_id:id,action:'pause',accepted:true}}),pauseId);
+assert.equal(await page.evaluate(()=>AMRStore.getState().navigation.state),'pausing');
+await page.evaluate(()=>emit({topic:'robot/runtime',payload:{mode:'suspended',task_status:3,running_status:0,target_point:'LM734'}}));
+assert.equal(await page.evaluate(()=>AMRStore.getState().navigation.state),'paused');
+await page.evaluate(()=>{emit({topic:'robot/runtime',payload:{mode:'idle',task_status:0,running_status:0}});emit({topic:'fleet/job-progress',payload:{active:false}});});
 await page.evaluate(()=>{emit({topic:'nav/progress',payload:{target:'LM2',mode:'suspended',is_suspended:true}});});
 assert.equal(await page.evaluate(()=>AMRStore.getState().navigation.state),'paused');
 await page.evaluate(()=>{emit({topic:'nav/cancelled',payload:{target:'LM2',poi:'LM2'}});});

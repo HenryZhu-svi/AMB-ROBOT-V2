@@ -256,10 +256,49 @@
     return typeof value === 'string' && value.trim() !== '-' ? value.trim() : '';
   }
 
+  function fleetStepTarget() {
+    const step = String(state.task && state.task.currentStep || '').trim();
+    const match = step.match(/^\s*(?:GOTO|GO_TO|MOVE(?:\s+TO)?)\s*[,>: -]\s*(.+?)\s*$/i);
+    return match ? namedPoint(match[1]) : '';
+  }
+
+  function applyRobotRuntime(payload, observedAt) {
+    if (!payload || typeof payload !== 'object') return;
+    const mode = String(payload.mode || '').toLowerCase();
+    const destination = namedPoint(payload.target_point) || state.navigation.destination || fleetStepTarget();
+    const currentPoi = namedPoint(payload.current_station) || state.robot.currentPoi;
+    const patch = { robot: { mode: mode === 'suspended' ? 'Paused' : mode === 'running' ? 'Moving' : mode === 'waiting' ? 'Waiting' : mode === 'completed' ? 'Idle' : 'Idle' } };
+
+    if (['running', 'waiting'].includes(mode)) {
+      patch.navigation = { state: mode, destination, from: state.navigation.from || currentPoi, runtimeAt: observedAt || Date.now() };
+      store.patch(patch, 'robot-runtime-' + mode);
+      setView('moving', { persist: false });
+      return;
+    }
+    if (mode === 'suspended') {
+      patch.navigation = { state: 'paused', destination, from: state.navigation.from || currentPoi, runtimeAt: observedAt || Date.now() };
+      store.patch(patch, 'robot-runtime-suspended');
+      setView('paused', { persist: false });
+      return;
+    }
+    if (['idle', 'completed'].includes(mode)) {
+      const previous = String(state.navigation.state || '').toLowerCase();
+      patch.navigation = { state: 'idle', destination: null, runtimeAt: observedAt || Date.now() };
+      if (currentPoi) patch.robot.currentPoi = currentPoi;
+      store.patch(patch, 'robot-runtime-' + mode);
+      if (['running','moving','waiting','paused','resuming','cancelling','unknown'].includes(previous)) setView('home', { persist: false });
+    }
+  }
+
   function handleBackendMessage(msg) {
     if (!msg || typeof msg !== 'object') return;
     const topic = String(msg.topic || '');
     const payload = msg.payload;
+
+    if (topic === 'robot/runtime') {
+      applyRobotRuntime(payload, msg._observedAt || payload && payload.observed_at);
+      return;
+    }
 
     if (topic === 'ui/state/snapshot') {
       if (store.applySnapshot(payload, 'backend-snapshot')) restoreOperationalView(state);

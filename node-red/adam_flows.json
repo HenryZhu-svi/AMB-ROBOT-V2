@@ -442,7 +442,8 @@
             [
                 "7c877b284e97e371",
                 "24e639691402a2aa",
-                "311fd84e0c83b175"
+                "311fd84e0c83b175",
+                "site_runtime_status"
             ],
             []
         ]
@@ -670,7 +671,9 @@
         "x": 1910,
         "y": 700,
         "wires": [
-            [],
+            [
+                "site_control_accepted"
+            ],
             [
                 "02d091854156a5a8",
                 "site_control_error"
@@ -687,7 +690,9 @@
         "x": 1840,
         "y": 740,
         "wires": [
-            [],
+            [
+                "site_control_accepted"
+            ],
             [
                 "02d091854156a5a8",
                 "site_control_error"
@@ -1098,7 +1103,6 @@
         "wires": [
             [
                 "2b884c05a3ca3b54",
-                "7d14c7fbd8d69a40",
                 "0a66739e3db024a4",
                 "da6148441ab84dbb",
                 "25eb0a56d8ed1f45",
@@ -5637,10 +5641,10 @@
         "type": "function",
         "z": "626a4ab45fcb826c",
         "name": "V2 to site command protocol",
-        "func": "// Outputs: legacy command, browser reply, Fleet progress query.\nconst p = msg.payload || {};\nif (['sound','relocate','do_control'].includes(msg.topic)) msg._maintenanceRequestId=p.request_id;\nconst reply = (topic, payload) => ({ topic, payload, _socketId:msg._socketId });\nif (msg.topic === 'ui/state/request') {\n    const cache = flow.get('site_ui_cache') || {};\n    const messages = Object.values(cache).map(item => ({ ...item, _socketId:msg._socketId, _replay:true }));\n    messages.push(reply('ui/runtime/restored', { at:Date.now() }));\n    return [{ topic:'config/request', payload:{} }, messages, { payload:{} }];\n}\nif (msg.topic === 'ui/settings/request' || msg.topic === 'ui/settings/save') return null;\nlet topic = msg.topic;\nlet payload = p;\nif (topic === 'edge/command/request') {\n    const params = p.params || {};\n    topic = ({ navigate:'nav', pause:'pause', resume:'resume', cancel:'cancel', charge:'charge' })[p.action];\n    if (!topic) return [null, reply('ui/command/ack', { request_id:p.request_id, accepted:false, error:'Unsupported action' }), null];\n    payload = { ...params, point:params.target, chargeId:params.target, request_id:p.request_id };\n}\nif (topic === 'fleet/command/request') {\n    if (p.action === 'sync') return [{topic:'config/request',payload:{}}, null, {payload:{}}];\n    topic = ({ start:'getjob', cancel:'cancel' })[p.action];\n    if (!topic) return null;\n    payload = { request_id:p.command_id };\n}\nconst commands = new Set(['nav','pause','resume','cancel','charge','getjob','enqueue','wait/control/ready','wait/control/cancel']);\nif (commands.has(topic)) {\n    const id = p.request_id || p.command_id;\n    if (!id) return [null, reply('ui/command/ack', {accepted:false,error:'Request ID required'}), null];\n    const seen = flow.get('site_ui_commands') || {};\n    const now = Date.now();\n    for (const key of Object.keys(seen)) if (now - seen[key] > 600000) delete seen[key];\n    if (seen[id]) return [null, reply('ui/command/ack', {request_id:id,accepted:true,duplicate:true}), null];\n    seen[id] = now;\n    flow.set('site_ui_commands', seen);\n}\nreturn [{ ...msg, topic, payload }, null, null];\n",
+        "func": "// Outputs: legacy command, browser reply, Fleet progress query.\nconst p = msg.payload || {};\nif (['sound','relocate','do_control'].includes(msg.topic)) msg._maintenanceRequestId=p.request_id;\nconst reply = (topic, payload) => ({ topic, payload, _socketId:msg._socketId });\nif (msg.topic === 'ui/state/request') {\n    const cache = flow.get('site_ui_cache') || {};\n    const messages = Object.values(cache).map(item => ({ ...item, _socketId:msg._socketId, _replay:true }));\n    messages.push(reply('ui/runtime/restored', { at:Date.now() }));\n    return [{ topic:'config/request', payload:{} }, messages, { payload:{} }];\n}\nif (msg.topic === 'ui/settings/request' || msg.topic === 'ui/settings/save') return null;\nlet topic = msg.topic;\nlet payload = p;\nif (topic === 'edge/command/request') {\n    const params = p.params || {};\n    topic = ({ navigate:'nav', pause:'pause', resume:'resume', cancel:'cancel', charge:'charge' })[p.action];\n    if (!topic) return [null, reply('ui/command/ack', { request_id:p.request_id, accepted:false, error:'Unsupported action' }), null];\n    payload = { ...params, point:params.target, chargeId:params.target, request_id:p.request_id };\n    msg._uiRequestId = p.request_id;\n    msg._uiAction = topic;\n}\nif (topic === 'fleet/command/request') {\n    if (p.action === 'sync') return [{topic:'config/request',payload:{}}, null, {payload:{}}];\n    topic = ({ start:'getjob', cancel:'cancel' })[p.action];\n    if (!topic) return null;\n    payload = { request_id:p.command_id };\n}\nconst commands = new Set(['nav','pause','resume','cancel','charge','getjob','enqueue','wait/control/ready','wait/control/cancel']);\nif (commands.has(topic)) {\n    const id = p.request_id || p.command_id;\n    if (!id) return [null, reply('ui/command/ack', {accepted:false,error:'Request ID required'}), null];\n    const seen = flow.get('site_ui_commands') || {};\n    const now = Date.now();\n    for (const key of Object.keys(seen)) if (now - seen[key] > 600000) delete seen[key];\n    if (seen[id]) return [null, reply('ui/command/ack', {request_id:id,accepted:true,duplicate:true}), null];\n    seen[id] = now;\n    flow.set('site_ui_commands', seen);\n}\nreturn [{ ...msg, topic, payload }, null, null];\n",
         "outputs": 3,
         "x": 1150,
-        "y": 2220,
+        "y": 2400,
         "wires": [
             [
                 "edec085aaa25aa9e",
@@ -5663,10 +5667,10 @@
         "type": "function",
         "z": "626a4ab45fcb826c",
         "name": "Cache resumable UI state",
-        "func": "// Cache only resumable UI state, not commands or command acknowledgements.\nconst cache = flow.get('site_ui_cache') || {};\nconst topic = msg.topic;\nif ((topic === 'wait/done' || topic === 'wait/cancelled') && (!msg.payload?.waitId || msg.payload.waitId === cache['wait/start']?.payload?.waitId)) delete cache['wait/start'];\nif (topic === 'poi/available' || topic === 'poi/cancelled') delete cache['poi/waiting'];\nif (['enqueue/success','nav/started','wait/start','wait/done','wait/cancelled','nav/cancelled','poi/cancelled'].includes(topic)) delete cache['ui/page'];\nif (['nav/arrived','nav/cancelled','nav/error','wait/start'].includes(topic)) {delete cache['nav/progress'];delete cache['destination'];}\nconst allowed = ['battery','poi','status','robotName','wifi','robot/error','error/status','alarm/status','estop','estop/status','config/pages','config/robot','config/conn','fleet/job-progress','ui/page','wait/start','poi/waiting','nav/progress','destination'];\nif (allowed.includes(topic)) cache[topic] = { topic, payload:msg.payload, _observedAt:Date.now() };\nflow.set('site_ui_cache', cache);\nreturn { ...msg, _observedAt:Date.now() };\n",
+        "func": "// Cache only resumable UI state, not commands or command acknowledgements.\nconst cache = flow.get('site_ui_cache') || {};\nconst topic = msg.topic;\nif ((topic === 'wait/done' || topic === 'wait/cancelled') && (!msg.payload?.waitId || msg.payload.waitId === cache['wait/start']?.payload?.waitId)) delete cache['wait/start'];\nif (topic === 'poi/available' || topic === 'poi/cancelled') delete cache['poi/waiting'];\nif (['enqueue/success','nav/started','wait/start','wait/done','wait/cancelled','nav/cancelled','poi/cancelled'].includes(topic)) delete cache['ui/page'];\nif (['nav/arrived','nav/cancelled','nav/error','wait/start'].includes(topic)) {delete cache['nav/progress'];delete cache['destination'];}\nconst allowed = ['battery','poi','status','robot/runtime','robotName','wifi','robot/error','error/status','alarm/status','estop','estop/status','config/pages','config/robot','config/conn','fleet/job-progress','ui/page','wait/start','poi/waiting','nav/progress','destination'];\nif (allowed.includes(topic)) cache[topic] = { topic, payload:msg.payload, _observedAt:Date.now() };\nflow.set('site_ui_cache', cache);\nreturn { ...msg, _observedAt:Date.now() };\n",
         "outputs": 1,
         "x": 1150,
-        "y": 2220,
+        "y": 2400,
         "wires": [
             [
                 "bf26fc2cb143288b"
@@ -5681,7 +5685,7 @@
         "func": "// Node-RED Function body; global.fs must be configured in settings.js.\nconst topic = msg.topic;\nif (!['ui/settings/request', 'ui/settings/save'].includes(topic)) return null;\nconst p = msg.payload || {};\nfunction reply(topic, payload) { return { topic, payload, _socketId:msg._socketId }; }\ntry {\n    const fs = global.get('fs');\n    if (!fs) throw new Error('Persistent settings unavailable: configure functionGlobalContext.fs');\n    const file = env.get('SVI_UI_CONFIG_PATH') || (env.get('HOME') + '/.node-red/svi-ui-settings.json');\n    const cfg = global.get('cfg') || {};\n    let saved = { revision:0, config:{ standbyPoint:cfg.standbyPoi || null, chargingPoint:cfg.chargePoi || null, visiblePoints:[] } };\n    try { saved = JSON.parse(fs.readFileSync(file, 'utf8')); }\n    catch (e) { if (e.code !== 'ENOENT') throw e; }\n    if (!saved.config || !Number.isInteger(saved.revision)) throw new Error('Invalid settings file; repair before saving');\n    if (topic === 'ui/settings/save') {\n        if (p.revision !== saved.revision) throw new Error('Settings changed in another session. Reload before saving.');\n        const catalog = flow.get('v2_point_catalog');\n        if (p.section !== 'fleet' && (!catalog || Date.now() - catalog.at > 300000)) throw new Error('Refresh the point catalog before saving');\n        const ids = new Set((catalog?.points || []).map(point => point.id));\n        const values = p.values || {};\n        if (p.section === 'fleet') {\n            const pages = global.get('fleet_getjob_pages');\n            if (!Array.isArray(pages)) throw new Error('Load Fleet configuration before saving');\n            const keys = new Set(pages.map(page => page.sourceProjectId ? 'project:' + page.sourceProjectId + ':page:' + page.id : 'page:' + page.id));\n            if (!Array.isArray(values.pages) || values.pages.some(key => !keys.has(key))) throw new Error('Invalid Fleet page selection');\n            saved.config.fleetPages = [...new Set(values.pages)];\n        } else if (p.section === 'points') {\n            if (!Array.isArray(values.points)) throw new Error('Invalid point selection');\n            const selected = values.points.map(point => ({ id:String(point.id), label:String(point.label || point.id).trim() }));\n            if (selected.some(point => !ids.has(point.id)) || new Set(selected.map(point => point.id)).size !== selected.length) throw new Error('Selection contains invalid or duplicate points');\n            saved.config.visiblePoints = selected;\n        } else if (p.section === 'standby' || p.section === 'charge') {\n            const point = p.section === 'standby' ? values.standbyPoint : values.chargePoint;\n            if (!ids.has(point)) throw new Error('Point is not in the current map');\n            saved.config[p.section === 'standby' ? 'standbyPoint' : 'chargingPoint'] = point;\n            saved.config[p.section === 'standby' ? 'standbyLabel' : 'chargingLabel'] = String(values.label || point);\n        } else throw new Error('Unsupported settings section');\n        saved.revision++;\n        saved.config.savedAt = new Date().toISOString();\n        fs.writeFileSync(file + '.tmp', JSON.stringify(saved, null, 2), 'utf8');\n        fs.renameSync(file + '.tmp', file);\n    }\n    global.set('v2_saved_config', saved.config);\n    global.set('cfg', Object.assign({}, cfg, { standbyPoi:saved.config.standbyPoint, chargePoi:saved.config.chargingPoint }));\n    return reply(topic === 'ui/settings/save' ? 'ui/settings/saved' : 'ui/settings/state', { ...saved, request_id:p.request_id });\n} catch (error) { return reply('ui/settings/error', { request_id:p.request_id, error:error.message }); }\n",
         "outputs": 1,
         "x": 1150,
-        "y": 2220,
+        "y": 2400,
         "wires": [
             [
                 "bf26fc2cb143288b"
@@ -5719,7 +5723,7 @@
         "func": "flow.set('v2_point_catalog',null); return {topic:'poi/error',payload:{error:msg.error || 'Point query failed'},_socketId:msg._socketId};",
         "outputs": 1,
         "x": 1150,
-        "y": 2220,
+        "y": 2400,
         "wires": [
             [
                 "bf26fc2cb143288b"
@@ -5731,10 +5735,10 @@
         "type": "function",
         "z": "626a4ab45fcb826c",
         "name": "Control request failure",
-        "func": "return {topic:'ui/control/error',payload:{request_id:msg.payload && msg.payload.request_id,error:msg.error || 'Control request failed'},_socketId:msg._socketId};",
+        "func": "return {topic:'ui/control/error',payload:{request_id:msg._uiRequestId || (msg.payload && msg.payload.request_id),action:msg._uiAction || msg.topic,error:msg.error || 'Control request failed'},_socketId:msg._socketId};",
         "outputs": 1,
         "x": 1150,
-        "y": 2220,
+        "y": 2400,
         "wires": [
             [
                 "bf26fc2cb143288b"
@@ -5749,10 +5753,66 @@
         "func": "return {topic:'sound/ack',payload:{accepted:!msg.error && msg.payload?.accepted===true,message:msg.error || msg.payload?.message || 'Sound result received'},_maintenanceRequestId:msg._maintenanceRequestId,_socketId:msg._socketId};",
         "outputs": 1,
         "x": 1150,
-        "y": 2220,
+        "y": 2400,
         "wires": [
             [
                 "bf26fc2cb143288b"
+            ]
+        ]
+    },
+    {
+        "id": "site_runtime_status",
+        "type": "function",
+        "z": "626a4ab45fcb826c",
+        "name": "Authoritative robot runtime status",
+        "func": "// Publish the complete SEER task state. This is the authoritative UI movement\n// signal and remains active even when no robot-nav node owns the command.\nconst p = msg.payload && typeof msg.payload === 'object' ? msg.payload : {};\nconst taskStatus = Number(p.task_status);\nconst runningStatus = Number(p.running_status);\nconst cachedProgress = (flow.get('site_ui_cache') || {})['nav/progress'];\n// robot-nav deliberately reports \"waiting\" during SEER's short NONE grace\n// period after an accepted navigate command. Do not overwrite that newer,\n// command-correlated observation with a generic idle poll.\nif (taskStatus === 0 && cachedProgress && Date.now() - Number(cachedProgress._observedAt || 0) < 10000) return null;\nlet mode = String(p.mode || '').toLowerCase();\nif (taskStatus === 3 || p.is_suspended === true) mode = 'suspended';\nelse if (taskStatus === 2 || runningStatus === 1 || p.is_running === true) mode = 'running';\nelse if (taskStatus === 1 || p.is_waiting === true) mode = 'waiting';\nelse if (taskStatus === 4) mode = 'completed';\nelse mode = 'idle';\n\nreturn {\n    topic: 'robot/runtime',\n    payload: {\n        mode,\n        task_status: Number.isFinite(taskStatus) ? taskStatus : null,\n        running_status: Number.isFinite(runningStatus) ? runningStatus : null,\n        is_running: mode === 'running' || mode === 'waiting',\n        is_suspended: mode === 'suspended',\n        is_idle: mode === 'idle',\n        target_point: p.target_point || null,\n        current_station: p.current_station || p.current_poi || null,\n        unfinished_path: Array.isArray(p.unfinished_path) ? p.unfinished_path : [],\n        observed_at: Date.now()\n    }\n};\n",
+        "outputs": 1,
+        "x": 1150,
+        "y": 2400,
+        "wires": [
+            [
+                "site_ui_cache"
+            ]
+        ]
+    },
+    {
+        "id": "site_control_accepted",
+        "type": "function",
+        "z": "626a4ab45fcb826c",
+        "name": "Control accepted + immediate status verification",
+        "func": "// Gateway HTTP success means accepted, not physically paused/resumed. Output 2\n// immediately re-queries SEER so robot/runtime can provide confirmation.\nconst response = msg.payload && typeof msg.payload === 'object' ? msg.payload : {};\nconst accepted = response.accepted !== false;\nreturn [\n    {\n        topic: 'ui/control/accepted',\n        payload: {\n            request_id: msg._uiRequestId || null,\n            action: msg._uiAction || msg.topic || 'control',\n            accepted,\n            command_id: response.command_id || msg.commandId || null,\n            message: response.message || (accepted ? 'Gateway accepted the request' : 'Gateway rejected the request')\n        },\n        _socketId: msg._socketId\n    },\n    accepted ? { topic: 'runtime/verify', payload: {}, _uiAction: msg._uiAction } : null\n];\n",
+        "outputs": 2,
+        "x": 1150,
+        "y": 2400,
+        "wires": [
+            [
+                "site_ui_cache"
+            ],
+            [
+                "7d14c7fbd8d69a40"
+            ]
+        ]
+    },
+    {
+        "id": "site_runtime_poll",
+        "type": "inject",
+        "z": "626a4ab45fcb826c",
+        "name": "Poll authoritative runtime 1s",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "topic": "runtime/poll",
+        "once": true,
+        "onceDelay": 0.5,
+        "repeat": "1",
+        "x": 800,
+        "y": 1980,
+        "wires": [
+            [
+                "7d14c7fbd8d69a40"
             ]
         ]
     }

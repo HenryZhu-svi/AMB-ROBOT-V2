@@ -129,7 +129,7 @@
   function receive(msg) {
     const p=msg.payload || {}, t=msg.topic;
     const at=msg._observedAt || Date.now();
-    if(['status','poi','battery'].includes(t)) robotAt=at;
+    if(['status','robot/runtime','poi','battery'].includes(t)) robotAt=at;
     if(t==='battery') chargeAt=at;
     if(t==='fleet/job-progress') { if(!p.unavailable) fleetAt=at; }
     if(t==='config/pages') {pages=Array.isArray(p)?p:p.pages || [];renderPages();}
@@ -140,6 +140,10 @@
     if(['poi/available','poi/cancelled'].includes(t)) {occupied=null;if(!wait){dialog.close();} }
     if(t==='enqueue/success') {resolve();page=null;dialog.close();transport.requestSnapshot('enqueue-success');}
     if(['enqueue/error','cancel/failed','ui/control/error'].includes(t)) {resolve();feedback(p.error || 'Request failed');store.patch({navigation:{state:'unknown'}},'control-failure');}
+    if(t==='ui/control/accepted' && pending && p.request_id===pending.id) {
+      if(p.accepted===false) {const action=pending.action;resolve();feedback(action+': '+(p.message || 'Gateway rejected the request'));}
+      else feedback((p.action || pending.action)+' accepted by gateway. Waiting for robot confirmation…');
+    }
     if(t==='nav/progress' || t==='nav/started') {
       if(pending && ((pending.action==='pause' && (p.mode==='suspended' || p.is_suspended)) || (['navigate','nav','resume'].includes(pending.action) && p.mode==='running'))) resolve();
       if(page) {page=null;dialog.close();}
@@ -149,6 +153,11 @@
       const mode=String(p.mode || p).toLowerCase();
       if(['suspended','paused'].includes(mode) && ['running','waiting','pausing','resuming'].includes(store.getState().navigation.state)) {store.patch({navigation:{state:'paused'}},'pause-confirmed');if(pending?.action==='pause')resolve();window.setView('paused');}
       if(['running','moving'].includes(mode) && store.getState().navigation.state==='resuming') {resolve();store.patch({navigation:{state:'running'}},'resume-confirmed');window.setView('moving');}
+    }
+    if(t==='robot/runtime' && !msg._replay) {
+      const mode=String(p.mode || '').toLowerCase();
+      if(mode==='suspended' && pending?.action==='pause') resolve();
+      if(['running','waiting'].includes(mode) && pending?.action==='resume') resolve();
     }
     if(['estop','estop/status'].includes(t)) {
       let data=p; try {if(p.message) data=typeof p.message==='string'?JSON.parse(p.message):p.message;} catch(_) {}

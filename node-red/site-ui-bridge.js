@@ -16,6 +16,8 @@ if (topic === 'edge/command/request') {
     topic = ({ navigate:'nav', pause:'pause', resume:'resume', cancel:'cancel', charge:'charge' })[p.action];
     if (!topic) return [null, reply('ui/command/ack', { request_id:p.request_id, accepted:false, error:'Unsupported action' }), null];
     payload = { ...params, point:params.target, chargeId:params.target, request_id:p.request_id };
+    msg._uiRequestId = p.request_id;
+    msg._uiAction = topic;
 }
 if (topic === 'fleet/command/request') {
     if (p.action === 'sync') return [{topic:'config/request',payload:{}}, null, {payload:{}}];

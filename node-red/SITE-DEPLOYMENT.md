@@ -46,6 +46,7 @@
 - Browser reconnect recovery is supported while Node-RED remains running. Full Node-RED restart recovery of active custom-node waits/commands is NOT implemented. The custom wait node owns volatile runtime state; restoring an old screen alone cannot restore it.
 - Duplicate IDs are suppressed in memory for ten minutes; this is not durable, cross-restart exactly-once execution. Uncertain results are not automatically retried.
 - Existing custom-node task-completion inference and enqueue HTTP-400 handling are unchanged. Local UI cannot fix wrong upstream business state; it shows physical charging separately from Fleet step names.
+- The V2 flow polls the Gateway `query_task_status` command every second and publishes the complete result as `robot/runtime`. Moving and paused screens are driven by this AMR state, not by parsing a Fleet `GOTO` label. Pause/resume HTTP acceptance is reported separately, followed by an immediate status verification; only `task_status=3` confirms pause.
 - Mapping/grouping/sorting of points, complete alarm translation for firmware-specific codes, and full backend busy arbitration remain follow-up work.
 - Settings save uses an atomic file replacement and revision check, but other already-open browsers refresh their settings on reconnect/opening Settings rather than receiving a full broadcast.
 

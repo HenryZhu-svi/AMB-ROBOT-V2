@@ -7,6 +7,7 @@ for(const n of nodes){for(const target of [...(n.wires || []).flat(),...(n.links
 const run=(id)=>new Function('msg','flow','global',nodes.find(n=>n.id===id).func);
 const data=new Map(),ctx={get:k=>data.get(k),set:(k,v)=>data.set(k,v)};
 const bridge=run('site_ui_bridge'),cache=run('site_ui_cache');
+const runtime=run('site_runtime_status'),controlAccepted=run('site_control_accepted');
 let result=bridge({topic:'edge/command/request',payload:{request_id:'n1',action:'navigate',params:{target:'LM1'}}},ctx,ctx);
 assert.equal(result[0].topic,'nav');assert.equal(result[0].payload.point,'LM1');
 result=bridge({topic:'edge/command/request',payload:{request_id:'n1',action:'navigate',params:{target:'LM1'}}},ctx,ctx);
@@ -27,4 +28,15 @@ assert.equal(nodes.find(n=>n.id==='6ce56aab23742991').type,'seer-status-station'
 assert(nodes.find(n=>n.id==='773ccf5f45af3503').wires.flat().includes('site_sound_feedback'));
 result=bridge({topic:'relocate',payload:{request_id:'maintenance-1',x:1,y:2,angle:0}},ctx,ctx);
 assert.equal(result[0]._maintenanceRequestId,'maintenance-1');
-console.log('Site flow structure, protocol translation, duplicate guard, replay, terminal cleanup and Fleet failure tests passed ('+nodes.length+' nodes)');
+result=runtime({payload:{task_status:2,running_status:1,target_point:'LM734'}},ctx,ctx);
+assert.equal(result.topic,'robot/runtime');assert.equal(result.payload.mode,'running');assert.equal(result.payload.target_point,'LM734');
+result=runtime({payload:{task_status:3,running_status:0,target_point:'LM734'}},ctx,ctx);
+assert.equal(result.payload.mode,'suspended');
+result=bridge({topic:'edge/command/request',payload:{request_id:'pause-1',action:'pause',params:{target:'LM734'}},_socketId:'browser'},ctx,ctx);
+assert.equal(result[0]._uiRequestId,'pause-1');assert.equal(result[0]._uiAction,'pause');
+result=controlAccepted({_uiRequestId:'pause-1',_uiAction:'pause',_socketId:'browser',payload:{accepted:true,command_id:'gateway-1'}},ctx,ctx);
+assert.equal(result[0].topic,'ui/control/accepted');assert.equal(result[0].payload.action,'pause');assert.equal(result[1].topic,'runtime/verify');
+assert(nodes.find(n=>n.id==='e1ee13cff1d10c44').wires[0].includes('site_control_accepted'));
+assert(nodes.find(n=>n.id==='1525637a29f39235').wires[0].includes('site_control_accepted'));
+assert(nodes.find(n=>n.id==='7d14c7fbd8d69a40').wires[0].includes('site_runtime_status'));
+console.log('Site flow structure, live runtime feedback, control confirmation, protocol translation, replay and failure tests passed ('+nodes.length+' nodes)');
