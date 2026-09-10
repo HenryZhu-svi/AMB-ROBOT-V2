@@ -4,7 +4,8 @@ This directory is the Node-RED replacement under active development. It leaves
 `amr-gateway-service` and `amr-fleet-management` unchanged.
 
 The CMake project intentionally supports Qt 6.2 LTS and does not depend on the
-newer `qt_standard_project_setup()` helper.
+newer `qt_standard_project_setup()` helper. QML files use explicit resource
+aliases so their runtime URLs remain identical across Qt 6.2 and newer releases.
 
 ## Implemented in milestone 1
 

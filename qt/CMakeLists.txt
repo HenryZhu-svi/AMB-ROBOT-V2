@@ -46,6 +46,9 @@ target_link_libraries(svi-amr-ui PRIVATE svi_amr_common Qt6::Core Qt6::Gui Qt6::
 
 set_source_files_properties(../src/assets/amr.png PROPERTIES QT_RESOURCE_ALIAS assets/amr.png)
 set_source_files_properties(../src/assets/svi_logo.svg PROPERTIES QT_RESOURCE_ALIAS assets/svi_logo.svg)
+set_source_files_properties(qml/Main.qml PROPERTIES QT_RESOURCE_ALIAS Main.qml)
+set_source_files_properties(qml/HomePage.qml PROPERTIES QT_RESOURCE_ALIAS HomePage.qml)
+set_source_files_properties(qml/DrivePage.qml PROPERTIES QT_RESOURCE_ALIAS DrivePage.qml)
 qt_add_qml_module(svi-amr-ui
     URI Svi.AmrUi
     VERSION 1.0
