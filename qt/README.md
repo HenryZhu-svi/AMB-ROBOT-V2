@@ -3,6 +3,9 @@
 This directory is the Node-RED replacement under active development. It leaves
 `amr-gateway-service` and `amr-fleet-management` unchanged.
 
+The CMake project intentionally supports Qt 6.2 LTS and does not depend on the
+newer `qt_standard_project_setup()` helper.
+
 ## Implemented in milestone 1
 
 - `svi-amr-core`: a headless Qt service that owns external connections and survives UI restarts.

@@ -7,7 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Network Qml Quick QuickControls2)
-qt_standard_project_setup()
+
+# qt_standard_project_setup() was added after the Qt 6.2 LTS release used by
+# some deployed ARM64 devices. Keep the equivalent settings explicit so the
+# same source configures on Qt 6.2 and newer versions.
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
 add_library(svi_amr_common STATIC
     src/common/AppConfig.cpp
@@ -43,6 +49,7 @@ set_source_files_properties(../src/assets/svi_logo.svg PROPERTIES QT_RESOURCE_AL
 qt_add_qml_module(svi-amr-ui
     URI Svi.AmrUi
     VERSION 1.0
+    RESOURCE_PREFIX /qt/qml
     QML_FILES
         qml/Main.qml
         qml/HomePage.qml
