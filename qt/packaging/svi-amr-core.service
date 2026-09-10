@@ -1,0 +1,15 @@
+[Unit]
+Description=SVI AMR background controller
+After=network-online.target amr-gateway-service.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/svi-amr-core --config /etc/svi-amr/config.json
+Restart=always
+RestartSec=2
+User=amb
+Group=amb
+
+[Install]
+WantedBy=multi-user.target

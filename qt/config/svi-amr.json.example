@@ -1,0 +1,29 @@
+{
+  "gateway": {
+    "baseUrl": "http://127.0.0.1:8000/v1",
+    "robotId": "AMB-12",
+    "tenantId": "default",
+    "apiKey": "",
+    "statePollMs": 1000,
+    "taskPollMs": 1500,
+    "timeoutMs": 10000
+  },
+  "fleet": {
+    "baseUrl": "http://172.17.5.12:9000/api/v1",
+    "amrId": "",
+    "bearerToken": "",
+    "pollMs": 5000,
+    "timeoutMs": 10000
+  },
+  "seer": {
+    "host": "192.168.192.5",
+    "statusPort": 19204,
+    "protocolVersion": 1,
+    "timeoutMs": 10000,
+    "maxPayloadBytes": 4194304
+  },
+  "ui": {
+    "socketName": "svi-amr-core",
+    "displayName": "SVI AMR"
+  }
+}

@@ -1,5 +1,9 @@
 # SVI AMR uibuilder
 
+> A Node-RED-free Qt/C++ successor is now being developed in [`qt/`](qt/README.md).
+> The existing uibuilder and Flow remain the deployable baseline until the Qt
+> state machine completes shadow-mode validation.
+
 Operator-facing AMR control interface built for Node-RED uibuilder.
 
 ## Site-flow release / 现场 Flow 适配版 — 2026-09-03

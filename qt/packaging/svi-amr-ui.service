@@ -1,0 +1,16 @@
+[Unit]
+Description=SVI AMR operator interface
+After=graphical.target svi-amr-core.service
+Requires=svi-amr-core.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/svi-amr-ui --config /etc/svi-amr/config.json
+Restart=always
+RestartSec=2
+User=amb
+Group=amb
+Environment=QT_QUICK_CONTROLS_STYLE=Basic
+
+[Install]
+WantedBy=graphical.target
